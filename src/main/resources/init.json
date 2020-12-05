@@ -1,12 +1,11 @@
 {
   "people": {
-    "Milan": "father",
-    "Helena": "mother",
-    "David": "boy",
-    "Tom": "boy",
-    "Tereza": "girl",
-    "Ella":"baby",
-    "Kveta": "neighbor"
+    "Milan": "Father",
+    "Helena": "Mother",
+    "David": "Boy",
+    "Tom": "Boy",
+    "Tereza": "Girl",
+    "Ella":"Baby"
   },
   "equipment": {
 

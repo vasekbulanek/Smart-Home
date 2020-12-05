@@ -1,18 +1,14 @@
 package people;
 
 import general.Fasada;
-
 import general.House;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 
@@ -20,7 +16,7 @@ public class PeopleFasada extends Fasada{
     Map<String, Person>personMap;
 
     //Todo: If is this generating OK, repeat it in some forms in all Fasadas
-    //Todo: Prepare init.json and delete the curious neighbor
+
     public PeopleFasada(House house) {
         super(house);
         personMap = new HashMap<>();
@@ -35,19 +31,19 @@ public class PeopleFasada extends Fasada{
                 String type = people.get(key).toString();
                 System.out.println("Hi, I am "+name+" and I am "+type);
                 switch (type){
-                    case ("father"):
+                    case ("Father"):
                         personMap.put(name, new Father());
                         break;
-                    case ("mother"):
+                    case ("Mother"):
                         personMap.put(name, new Mother());
                         break;
-                    case ("boy"):
+                    case ("Boy"):
                         personMap.put(name, new Boy());
                         break;
-                    case ("girl"):
+                    case ("Girl"):
                         personMap.put(name, new Girl());
                         break;
-                    case ("baby"):
+                    case ("Baby"):
                         personMap.put(name, new Baby());
                         break;
                     default:
@@ -75,10 +71,10 @@ public class PeopleFasada extends Fasada{
         }
         return null;
     }
-    //Todo: check if is this function working
-    public Person getByType(String type){
+
+    public Person getByType(String type){ // I am not sure if it is the best way, but it works
         for (Person key:personMap.values()) {
-            if(key.getClass().toString().equals(type)){
+            if(key.getClass().toString().equals("class people."+type)){
                 return key;
             }
         }

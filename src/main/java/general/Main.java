@@ -5,7 +5,6 @@ public class Main {
         House house =new House();
         house.run();
     }
-    // Todo: Make a class representing weather (and disasters)
     // Todo: Do something about the rooms. It should be chengeable from init.json
     // Is it worse to have Czech comments, or have them in my poor English?
 }
