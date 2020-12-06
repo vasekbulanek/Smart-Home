@@ -24,4 +24,5 @@ public abstract class Equipment {
     protected abstract void report();
     protected abstract void tick();
 
+
 }

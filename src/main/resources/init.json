@@ -8,12 +8,25 @@
     "Ella":"Baby"
   },
   "equipment": {
+    "Bicycle": 3,
+    "Sky": 4
 
   },
   "appliance":{
-
+    "Blinds":8,
+    "Boiler": 2,
+    "Fridge": 1,
+    "Iron": 1,
+    "Phone": 5,
+    "Stove": 1,
+    "Television": 1
   },
   "animals": {
-
+    "Herkules": "Dog",
+    "Brok": "Dog",
+    "Lora": "Bird",
+    "Zako": "Bird",
+    "Mikes": "Cat",
+    "Vlocka": "Cat"
   }
 }

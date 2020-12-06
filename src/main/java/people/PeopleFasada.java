@@ -15,8 +15,6 @@ import java.util.Map;
 public class PeopleFasada extends Fasada{
     Map<String, Person>personMap;
 
-    //Todo: If is this generating OK, repeat it in some forms in all Fasadas
-
     public PeopleFasada(House house) {
         super(house);
         personMap = new HashMap<>();
@@ -32,19 +30,19 @@ public class PeopleFasada extends Fasada{
                 System.out.println("Hi, I am "+name+" and I am "+type);
                 switch (type){
                     case ("Father"):
-                        personMap.put(name, new Father());
+                        personMap.put(name, new Father(house));
                         break;
                     case ("Mother"):
-                        personMap.put(name, new Mother());
+                        personMap.put(name, new Mother(house));
                         break;
                     case ("Boy"):
-                        personMap.put(name, new Boy());
+                        personMap.put(name, new Boy(house));
                         break;
                     case ("Girl"):
-                        personMap.put(name, new Girl());
+                        personMap.put(name, new Girl(house));
                         break;
                     case ("Baby"):
-                        personMap.put(name, new Baby());
+                        personMap.put(name, new Baby(house));
                         break;
                     default:
                         System.out.println("There is unknown person type "+type+". Check init.json, please.");

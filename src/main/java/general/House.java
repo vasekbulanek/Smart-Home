@@ -12,7 +12,6 @@ public class House {
     private PeopleFasada peopleFasada;
     private EquipmentFasada equipmentFasada;
 
-    //Todo: Make house visible from all classes when generated in Fasadas
     public House() {
         animalFasada = new AnimalFasada(this);
         applianceFasada = new ApplianceFasada(this);

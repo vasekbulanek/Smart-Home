@@ -3,29 +3,26 @@ import general.Object;
 
 import java.util.Random;
 
-public class Sky extends Equipment implements Object{
+public class Bicycle extends Equipment implements Object {
     private boolean broken;
     private int timeToService;
-    private final int service = 50;
-    private final int using = 4;
-    private final int OKusageLikehood = 4;
-    private boolean inUse;
+    private final int service = 200;
+    private final int using = 3;
+    private final int OKusageLikehood = 5;
+    private boolean inUse =false;
 
-    public Sky(){
+    public Bicycle(){
         broken=false;
         timeToService=service;
-        inUse =false;
     }
 
     public boolean use(){
-        if(inUse)return false;
         if(broken)return false;
         if (timeToService<=0)return false;
         timeToService-=using;
         inUse=true;
         return true;
     }
-
     /*
      * Returns true if putting back was successful, false if broken
      */
@@ -40,7 +37,7 @@ public class Sky extends Equipment implements Object{
     }
     @Override
     public void tick() {
-
+        timeToService--;
     }
 
     @Override

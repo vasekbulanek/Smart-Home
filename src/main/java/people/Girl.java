@@ -1,7 +1,14 @@
 package people;
+import general.*;
 import general.Object;
 
-public class Girl extends Person implements Object{
+public class Girl extends Person implements Object {
+    House house;
+
+    public Girl(House house) {
+        this.house = house;
+    }
+
     @Override
     public void tick() {
 
