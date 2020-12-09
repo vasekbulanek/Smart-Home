@@ -1,6 +1,8 @@
 package appliance;
 
-public abstract class Appliance {
+import general.Tickable;
+
+public abstract class Appliance implements Tickable {
     protected int consective;
     protected int manual;
     protected boolean warranty;
@@ -14,7 +16,7 @@ public abstract class Appliance {
         functionality=true;
     }
 
-    protected abstract void report();
-    protected abstract void tick();
+    public abstract void report();
+    public abstract void tick();
 
 }

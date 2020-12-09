@@ -1,7 +1,7 @@
 package appliance;
-import general.Object;
+import general.Tickable;
 
-public class Iron extends Appliance implements Object{
+public class Iron extends Appliance implements Tickable {
     @Override
     public void use() {
 

@@ -1,6 +1,6 @@
 package general;
 
-public interface Object {
+public interface Tickable {
     void tick();
     void report();
 }

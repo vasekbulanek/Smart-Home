@@ -1,7 +1,7 @@
 package appliance;
-import general.Object;
+import general.Tickable;
 
-public class Boiler extends Appliance implements Object{
+public class Boiler extends Appliance implements Tickable {
     @Override
     public void use() {
 

@@ -2,7 +2,7 @@ package general;
 
 import java.util.Random;
 
-public class Weather implements Object{
+public class Weather implements Tickable {
     private int temperature;
     private static int maxTemperature;
     private static int minTemperature;

@@ -1,8 +1,8 @@
 package people;
 import general.House;
-import general.Object;
+import general.Tickable;
 
-public class Mother extends Person implements Object {
+public class Mother extends Person implements Tickable {
     House house;
     private static Mother singleton = null;
     private Mother(House house){

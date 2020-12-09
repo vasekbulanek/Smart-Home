@@ -1,7 +1,7 @@
 package animals;
-import general.Object;
+import general.Tickable;
 
-public class Dog extends Animal implements Object{
+public class Dog extends Animal implements Tickable {
 
     @Override
     public void tick() {

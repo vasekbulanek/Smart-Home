@@ -1,9 +1,9 @@
 package equipment;
-import general.Object;
+import general.Tickable;
 
 import java.util.Random;
 
-public class Sky extends Equipment implements Object{
+public class Sky extends Equipment implements Tickable {
     private boolean broken;
     private int timeToService;
     private final int service = 50;

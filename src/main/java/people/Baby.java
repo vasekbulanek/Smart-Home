@@ -1,8 +1,8 @@
 package people;
 import general.House;
-import general.Object;
+import general.Tickable;
 
-public class Baby extends Person implements Object{
+public class Baby extends Person implements Tickable {
     public Baby(House house) {
         this.house = house;
 

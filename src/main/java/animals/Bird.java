@@ -1,7 +1,7 @@
 package animals;
-import general.Object;
+import general.Tickable;
 
-public class Bird extends Animal implements Object {
+public class Bird extends Animal implements Tickable {
 
     public Bird(){
 
