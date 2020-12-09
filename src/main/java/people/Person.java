@@ -1,10 +1,15 @@
 package people;
 
+import animals.Animal;
+import appliance.Appliance;
+import equipment.Equipment;
+
 public abstract class Person {
     int hunger;
     int mood;
     int health;
     boolean sleeping;
+    private final Request request = new Request();
 
     protected abstract void useAppliance();
     protected void eat(){
@@ -21,4 +26,18 @@ public abstract class Person {
     }
     protected abstract void report();
     protected abstract void tick();
+    public void addPersonRequest(Person person){
+        request.addPerson(person);
+    }
+    public void addAnimalRequest(Animal animal){
+        request.addAnimal(animal);
+    }
+    public void addApplianceRequest(Appliance appliance){
+        request.addAppliance(appliance);
+    }
+    public void addEquipment(Equipment equipment){
+        request.addEquipment(equipment);
+    }
 }
+
+

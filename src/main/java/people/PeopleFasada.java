@@ -30,10 +30,12 @@ public class PeopleFasada extends Fasada{
                 System.out.println("Hi, I am "+name+" and I am "+type);
                 switch (type){
                     case ("Father"):
-                        personMap.put(name, new Father(house));
+                        Father father = Father.getInstance(house);
+                        if(!personMap.containsValue(father)) personMap.put(name, father);
                         break;
                     case ("Mother"):
-                        personMap.put(name, new Mother(house));
+                        Mother mother = Mother.getInstance(house);
+                        if(!personMap.containsValue(mother)) personMap.put(name, mother);
                         break;
                     case ("Boy"):
                         personMap.put(name, new Boy(house));

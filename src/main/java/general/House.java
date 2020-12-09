@@ -17,6 +17,7 @@ public class House {
         applianceFasada = new ApplianceFasada(this);
         peopleFasada = new PeopleFasada(this);
         equipmentFasada = new EquipmentFasada(this);
+        peopleFasada.sendTicks();
     }
 
     void run(){
