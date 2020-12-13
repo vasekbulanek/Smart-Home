@@ -13,14 +13,15 @@
 
   },
   "appliance":{
-    "Blinds":8,
-    "Boiler": 2,
-    "Fridge": 1,
-    "Iron": 1,
-    "Phone": 5,
-    "Stove": 1,
-    "Television": 1
+    "Blinds":{"count": 9, "electricity on": 10, "electricity off": 1, "water": 0},
+    "Boiler": {"count": 2, "electricity on": 100, "electricity off": 10, "water": 15},
+    "Fridge": {"count": 1, "electricity on": 40, "electricity off": 20, "water": 0},
+    "Iron": {"count": 2, "electricity on": 25, "electricity off": 0, "water": 1},
+    "Phone": {"count": 5, "electricity on": 2, "electricity off": 1, "water": 0},
+    "Stove": {"count": 1, "electricity on": 100, "electricity off": 1, "water": 0},
+    "Television": {"count": 2, "electricity on": 10, "electricity off": 0, "water": 0}
   },
+  "prices": {"electricity": 1, "water":1},
   "animals": {
     "Herkules": "Dog",
     "Brok": "Dog",

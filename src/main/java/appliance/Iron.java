@@ -2,6 +2,16 @@ package appliance;
 import general.Tickable;
 
 public class Iron extends Appliance implements Tickable {
+    private int electricityOn;
+    private int electricityOff;
+    private int water;
+
+    public Iron(int electricityOn, int electricityOff, int water) {
+        this.electricityOn = electricityOn;
+        this.electricityOff = electricityOff;
+        this.water = water;
+    }
+
     @Override
     public void use() {
 

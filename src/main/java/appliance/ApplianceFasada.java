@@ -13,6 +13,8 @@ import java.util.LinkedList;
 
 public class ApplianceFasada extends Fasada{
     private LinkedList<Appliance> appliances;
+    private int waterPrice;
+    private int electricityPrice;
     public ApplianceFasada(House house) {
         super(house);
         appliances=new LinkedList<>();
@@ -20,42 +22,27 @@ public class ApplianceFasada extends Fasada{
         try {
             Object obj = parser.parse(new FileReader("src/main/resources/init.json"));
             JSONObject jsonObject = (JSONObject) obj;
-
-            JSONObject people = (JSONObject) jsonObject.get("appliance");
-            for (Object key:people.keySet()) {
-                String type = key.toString();
-                int num = Integer.parseInt(people.get(key).toString());
+            waterPrice=Integer.parseInt(((JSONObject)jsonObject.get("prices")).get("water").toString());
+            System.out.println("water "+waterPrice);
+            electricityPrice=Integer.parseInt(((JSONObject)jsonObject.get("prices")).get("electricity").toString());
+            JSONObject appliance = (JSONObject) jsonObject.get("appliance");
+            ApplianceFactory applianceFactory = new ApplianceFactory(this);
+            for (Object key:appliance.keySet()) {
+                int num = Integer.parseInt(((JSONObject)appliance.get(key)).get("count").toString());
+                int electrOn = Integer.parseInt(((JSONObject)appliance.get(key)).get("electricity on").toString());
+                int electrOff = Integer.parseInt(((JSONObject)appliance.get(key)).get("electricity off").toString());
+                int water0 = Integer.parseInt(((JSONObject)appliance.get(key)).get("water").toString());
+                String type = appliance.get(key).toString();
                 System.out.println("There will be "+num+" "+type);
-                switch (type){
-                    case ("Blinds"):
-                        appliances.add(new Blinds());
-                        break;
-                    case ("Boiler"):
-                        appliances.add(new Boiler());
-                        break;
-                    case ("Fridge"):
-                        appliances.add(new Fridge());
-                        break;
-                    case ("Iron"):
-                        appliances.add(new Iron());
-                        break;
-                    case ("Phone"):
-                        appliances.add(new Phone());
-                        break;
-                    case ("Stove"):
-                        appliances.add(new Stove());
-                        break;
-                    case ("Television"):
-                        appliances.add(new Television());
-                        break;
-                    default:
-                        System.out.println("There is unknown appliance type "+type+". Check init.json, please.");
-                }
+                applianceFactory.create(type, num, electrOn, electrOff, water0);
             }
 
         } catch (ParseException | IOException e) {
             e.printStackTrace();
         }
+    }
+    protected void addToList(Appliance appliance){
+        appliances.add(appliance);
     }
 
     @Override
@@ -74,4 +61,11 @@ public class ApplianceFasada extends Fasada{
         return null;
     }
 
+    public int getWaterPrice() {
+        return waterPrice;
+    }
+
+    public int getElectricityPrice() {
+        return electricityPrice;
+    }
 }
