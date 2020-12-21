@@ -15,12 +15,12 @@ import java.util.Map;
 public class PeopleFasada extends Fasada{
     Map<String, Person>personMap;
 
-    public PeopleFasada(House house) {
-        super(house);
+    public PeopleFasada(House house, String initFile) {
+        super(house, initFile);
         personMap = new HashMap<>();
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse(new FileReader("src/main/resources/init.json"));
+            Object obj = parser.parse(new FileReader(initFile));
             JSONObject jsonObject = (JSONObject) obj;
 
             JSONObject people = (JSONObject) jsonObject.get("people");
@@ -75,6 +75,16 @@ public class PeopleFasada extends Fasada{
     public Person getByType(String type){ // I am not sure if it is the best way, but it works
         for (Person key:personMap.values()) {
             if(key.getClass().toString().equals("class people."+type)){
+                return key;
+            }
+        }
+        return null;
+    }
+    public Person getNextByType(String type, int hash){
+        boolean found=false;
+        for (Person key:personMap.values()) {
+            if(!found && key.hashCode()==hash)found=true;
+            else if(found && key.getClass().toString().equals("class people."+type)){
                 return key;
             }
         }

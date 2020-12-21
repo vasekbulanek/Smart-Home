@@ -15,12 +15,12 @@ public class AnimalFasada extends Fasada{
     private HashMap<String, Animal> animalMap;
 
 
-    public AnimalFasada(House house) {
-        super(house);
+    public AnimalFasada(House house, String initFile) {
+        super(house, initFile);
         animalMap=new HashMap<>();
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse(new FileReader("src/main/resources/init.json"));
+            Object obj = parser.parse(new FileReader(initFile));
             JSONObject jsonObject = (JSONObject) obj;
 
             JSONObject people = (JSONObject) jsonObject.get("animals");

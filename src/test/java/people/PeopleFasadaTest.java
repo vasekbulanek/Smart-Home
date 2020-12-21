@@ -19,7 +19,7 @@ public class PeopleFasadaTest {
     @Before
     public void runBeforeEachTest(){
         House house = new House();
-        peopleFasada = new PeopleFasada(house);
+        peopleFasada = new PeopleFasada(house, "src/main/resources/init.json");
         System.out.println("prepared");
     }
 

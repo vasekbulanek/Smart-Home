@@ -15,12 +15,12 @@ public class ApplianceFasada extends Fasada{
     private LinkedList<Appliance> appliances;
     private int waterPrice;
     private int electricityPrice;
-    public ApplianceFasada(House house) {
-        super(house);
+    public ApplianceFasada(House house, String initFile) {
+        super(house, initFile);
         appliances=new LinkedList<>();
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse(new FileReader("src/main/resources/init.json"));
+            Object obj = parser.parse(new FileReader(initFile));
             JSONObject jsonObject = (JSONObject) obj;
             waterPrice=Integer.parseInt(((JSONObject)jsonObject.get("prices")).get("water").toString());
             System.out.println("water "+waterPrice);
@@ -32,9 +32,9 @@ public class ApplianceFasada extends Fasada{
                 int electrOn = Integer.parseInt(((JSONObject)appliance.get(key)).get("electricity on").toString());
                 int electrOff = Integer.parseInt(((JSONObject)appliance.get(key)).get("electricity off").toString());
                 int water0 = Integer.parseInt(((JSONObject)appliance.get(key)).get("water").toString());
-                String type = appliance.get(key).toString();
-                System.out.println("There will be "+num+" "+type);
-                applianceFactory.create(type, num, electrOn, electrOff, water0);
+
+                System.out.println("There will be "+num+" "+key.toString());
+                applianceFactory.create(key.toString(), num, electrOn, electrOff, water0);
             }
 
         } catch (ParseException | IOException e) {
@@ -52,9 +52,19 @@ public class ApplianceFasada extends Fasada{
         }
     }
     public Appliance getByType(String type){ // I am not sure if it is the best way, but it works
-        Collections.shuffle(appliances);
         for (Appliance a:appliances) {
             if(a.getClass().toString().equals("class appliance."+type)){
+                return a;
+            }
+        }
+        return null;
+    }
+
+    public Appliance getNextByType(String type , int hash){
+        boolean found =false;
+        for (Appliance a:appliances) {
+            if(!found && a.hashCode()==hash)found=true;
+            else if(found && a.getClass().toString().equals("class appliance."+type)){
                 return a;
             }
         }

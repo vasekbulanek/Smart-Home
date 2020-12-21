@@ -1,4 +1,6 @@
 {
+  "room": {"kitchen": {"Blinds": 1, "Fridge": 1, "Phone": 1, "Stove": 1, "Mother": 1},
+    "livingroom": {"Blinds": 3, "Iron": 1, "Father": 1}},
   "people": {
     "Milan": "Father",
     "Helena": "Mother",

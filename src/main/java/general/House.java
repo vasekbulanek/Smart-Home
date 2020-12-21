@@ -11,12 +11,14 @@ public class House {
     private ApplianceFasada applianceFasada;
     private PeopleFasada peopleFasada;
     private EquipmentFasada equipmentFasada;
-
+    private RoomFasada roomFasada;
     public House() {
-        animalFasada = new AnimalFasada(this);
-        applianceFasada = new ApplianceFasada(this);
-        peopleFasada = new PeopleFasada(this);
-        equipmentFasada = new EquipmentFasada(this);
+        String initFile="src/main/resources/init.json";
+        animalFasada = new AnimalFasada(this, initFile);
+        applianceFasada = new ApplianceFasada(this, initFile);
+        peopleFasada = new PeopleFasada(this, initFile);
+        equipmentFasada = new EquipmentFasada(this, initFile);
+        roomFasada = new RoomFasada(this, initFile);
         peopleFasada.sendTicks();
     }
 

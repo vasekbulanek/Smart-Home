@@ -14,12 +14,12 @@ import java.util.LinkedList;
 public class EquipmentFasada extends Fasada{
     private LinkedList<Equipment> equipment;
 
-    public EquipmentFasada(House house) {
-        super(house);
+    public EquipmentFasada(House house, String initFile) {
+        super(house, initFile);
         equipment=new LinkedList<>();
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse(new FileReader("src/main/resources/init.json"));
+            Object obj = parser.parse(new FileReader(initFile));
             JSONObject jsonObject = (JSONObject) obj;
 
             JSONObject people = (JSONObject) jsonObject.get("equipment");
@@ -51,9 +51,18 @@ public class EquipmentFasada extends Fasada{
         }
     }
     public Equipment getByType(String type){ // I am not sure if it is the best way, but it works
-        Collections.shuffle(equipment);
         for (Equipment e:equipment) {
             if(e.getClass().toString().equals("class equipment."+type)){
+                return e;
+            }
+        }
+        return null;
+    }
+    public Equipment getNextByType(String type, int hash){
+        boolean found=false;
+        for (Equipment e:equipment) {
+            if(!found && e.hashCode()==hash)found=true;
+            else if(found && e.getClass().toString().equals("class equipment."+type)){
                 return e;
             }
         }
