@@ -1,5 +1,6 @@
 package people;
 import general.House;
+import general.Room;
 import general.Tickable;
 
 public class Mother extends Person implements Tickable {
@@ -25,6 +26,11 @@ public class Mother extends Person implements Tickable {
 
     @Override
     public void report() {
+
+    }
+
+    @Override
+    public void place(Room room) {
 
     }
 

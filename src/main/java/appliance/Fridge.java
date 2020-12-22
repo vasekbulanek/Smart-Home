@@ -1,4 +1,6 @@
 package appliance;
+import general.Room;
+
 import java.util.LinkedList;
 
 public class Fridge extends Appliance{
@@ -18,6 +20,11 @@ public class Fridge extends Appliance{
     }
 
     public void report() {
+
+    }
+
+    @Override
+    public void place(Room room) {
 
     }
 

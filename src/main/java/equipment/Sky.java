@@ -1,4 +1,5 @@
 package equipment;
+import general.Room;
 import general.Tickable;
 
 import java.util.Random;
@@ -47,6 +48,12 @@ public class Sky extends Equipment implements Tickable {
     public void report() {
 
     }
+
+    @Override
+    public void place(Room room) {
+
+    }
+
     public int getTimeToService() {
         return timeToService;
     }

@@ -74,4 +74,9 @@ public class AnimalFasada extends Fasada{
         return null;
     }
 
+    @Override
+    public Object getNextByType(String type, int hash) {
+        return null;
+    }
+
 }

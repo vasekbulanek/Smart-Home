@@ -1,5 +1,6 @@
 package appliance;
 
+import general.Room;
 import general.Tickable;
 
 public abstract class Appliance implements Tickable {
@@ -17,6 +18,12 @@ public abstract class Appliance implements Tickable {
     }
 
     public abstract void report();
+
+    @Override
+    public void place(Room room) {
+
+    }
+
     public abstract void tick();
 
 }

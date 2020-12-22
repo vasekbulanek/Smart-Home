@@ -20,6 +20,11 @@ public class Girl extends Person implements Tickable {
     }
 
     @Override
+    public void place(Room room) {
+
+    }
+
+    @Override
     protected void useAppliance() {
 
     }
