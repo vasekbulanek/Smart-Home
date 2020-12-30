@@ -11,23 +11,24 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 
-public class EquipmentFasada extends Fasada{
+public class EquipmentFasada extends Fasada {
     private LinkedList<Equipment> equipment;
 
     public EquipmentFasada(House house, String initFile) {
         super(house, initFile);
-        equipment=new LinkedList<>();
+        equipment = new LinkedList<>();
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse(new FileReader(initFile));
             JSONObject jsonObject = (JSONObject) obj;
 
             JSONObject people = (JSONObject) jsonObject.get("equipment");
-            for (Object key:people.keySet()) {
+            for (Object key : people.keySet()) {
                 String type = key.toString();
-                int num = Integer.parseInt(people.get(key).toString());
-                System.out.println("There will be "+num+" "+type);
-                switch (type){
+                int num = Integer.parseInt(people.get(key)
+                                                 .toString());
+                System.out.println("There will be " + num + " " + type);
+                switch (type) {
                     case ("Sky"):
                         equipment.add(new Sky());
                         break;
@@ -35,7 +36,7 @@ public class EquipmentFasada extends Fasada{
                         equipment.add(new Bicycle());
                         break;
                     default:
-                        System.out.println("There is unknown equipment type "+type+". Check init.json, please.");
+                        System.out.println("There is unknown equipment type " + type + ". Check init.json, please.");
                 }
             }
 
@@ -50,19 +51,25 @@ public class EquipmentFasada extends Fasada{
             e.tick();
         }
     }
-    public Equipment getByType(String type){ // I am not sure if it is the best way, but it works
-        for (Equipment e:equipment) {
-            if(e.getClass().toString().equals("class equipment."+type)){
+
+    public Equipment getByType(String type) { // I am not sure if it is the best way, but it works
+        for (Equipment e : equipment) {
+            if (e.getClass()
+                 .toString()
+                 .equals("class equipment." + type)) {
                 return e;
             }
         }
         return null;
     }
-    public Equipment getNextByType(String type, int hash){
-        boolean found=false;
-        for (Equipment e:equipment) {
-            if(!found && e.hashCode()==hash)found=true;
-            else if(found && e.getClass().toString().equals("class equipment."+type)){
+
+    public Equipment getNextByType(String type, int hash) {
+        boolean found = false;
+        for (Equipment e : equipment) {
+            if (!found && e.hashCode() == hash) found = true;
+            else if (found && e.getClass()
+                               .toString()
+                               .equals("class equipment." + type)) {
                 return e;
             }
         }

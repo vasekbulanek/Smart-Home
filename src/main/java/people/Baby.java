@@ -1,4 +1,5 @@
 package people;
+
 import general.House;
 import general.Room;
 import general.Tickable;
@@ -10,6 +11,7 @@ public class Baby extends Person implements Tickable {
     }
 
     House house;
+
     @Override
     public void tick() {
     }

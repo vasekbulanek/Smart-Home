@@ -1,4 +1,5 @@
 package appliance;
+
 import general.Room;
 import general.Tickable;
 

@@ -1,11 +1,14 @@
 package appliance;
+
 // I do not know, if it is really factory
 // May be it should be just a one of ApplianceFasada functions
 public class ApplianceFactory {
     ApplianceFasada applianceFasada;
-    public ApplianceFactory(ApplianceFasada applianceFasada){
-        this.applianceFasada=applianceFasada;
+
+    public ApplianceFactory(ApplianceFasada applianceFasada) {
+        this.applianceFasada = applianceFasada;
     }
+
     protected void create(String type, int count, int elecOn, int elecOff, int water) {
         switch (type) {
             case ("Blinds"):

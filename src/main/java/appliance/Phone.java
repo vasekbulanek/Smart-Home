@@ -1,4 +1,5 @@
 package appliance;
+
 import general.Room;
 import general.Tickable;
 
@@ -10,6 +11,7 @@ public class Phone extends Appliance implements Tickable {
 
     private int electricityOn;
     private int electricityOff;
+
     @Override
     public void use() {
 

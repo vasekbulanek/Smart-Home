@@ -1,4 +1,5 @@
 package animals;
+
 import general.Room;
 import general.Tickable;
 

@@ -1,4 +1,5 @@
 package equipment;
+
 import general.Room;
 import general.Tickable;
 
@@ -12,33 +13,34 @@ public class Sky extends Equipment implements Tickable {
     private final int OKusageLikehood = 4;
     private boolean inUse;
 
-    public Sky(){
-        broken=false;
-        timeToService=service;
-        inUse =false;
+    public Sky() {
+        broken = false;
+        timeToService = service;
+        inUse = false;
     }
 
-    public boolean use(){
-        if(inUse)return false;
-        if(broken)return false;
-        if (timeToService<=0)return false;
-        timeToService-=using;
-        inUse=true;
+    public boolean use() {
+        if (inUse) return false;
+        if (broken) return false;
+        if (timeToService <= 0) return false;
+        timeToService -= using;
+        inUse = true;
         return true;
     }
 
     /*
      * Returns true if putting back was successful, false if broken
      */
-    public boolean back(){
-        Random random =new Random();
-        inUse=false;
-        for(int i =0; i<OKusageLikehood; i++){
-            if(random.nextBoolean())return true;
+    public boolean back() {
+        Random random = new Random();
+        inUse = false;
+        for (int i = 0; i < OKusageLikehood; i++) {
+            if (random.nextBoolean()) return true;
         }
-        broken=true;
+        broken = true;
         return false;
     }
+
     @Override
     public void tick() {
 

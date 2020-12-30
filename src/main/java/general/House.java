@@ -12,8 +12,9 @@ public class House {
     private PeopleFasada peopleFasada;
     private EquipmentFasada equipmentFasada;
     private RoomFasada roomFasada;
+
     public House() {
-        String initFile="src/main/resources/init.json";
+        String initFile = "src/main/resources/init.json";
         animalFasada = new AnimalFasada(this, initFile);
         applianceFasada = new ApplianceFasada(this, initFile);
         peopleFasada = new PeopleFasada(this, initFile);
@@ -22,7 +23,7 @@ public class House {
         peopleFasada.sendTicks();
     }
 
-    void run(){
+    void run() {
         animalFasada.sendTicks();
         applianceFasada.sendTicks();
         peopleFasada.sendTicks();
@@ -43,5 +44,9 @@ public class House {
 
     public EquipmentFasada getEquipmentFasada() {
         return equipmentFasada;
+    }
+
+    public RoomFasada getRoomFasada() {
+        return roomFasada;
     }
 }

@@ -10,11 +10,13 @@ public abstract class Appliance implements Tickable {
     protected boolean functionality;
 
     public abstract void use();
-    public void breakDown(){
-        functionality=false;
+
+    public void breakDown() {
+        functionality = false;
     }
-    public void repair(){
-        functionality=true;
+
+    public void repair() {
+        functionality = true;
     }
 
     public abstract void report();

@@ -1,10 +1,11 @@
 package animals;
+
 import general.Room;
 import general.Tickable;
 
 public class Bird extends Animal implements Tickable {
 
-    public Bird(){
+    public Bird() {
 
     }
 

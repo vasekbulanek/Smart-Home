@@ -12,8 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class PeopleFasada extends Fasada{
-    Map<String, Person>personMap;
+public class PeopleFasada extends Fasada {
+    Map<String, Person> personMap;
 
     public PeopleFasada(House house, String initFile) {
         super(house, initFile);
@@ -24,18 +24,19 @@ public class PeopleFasada extends Fasada{
             JSONObject jsonObject = (JSONObject) obj;
 
             JSONObject people = (JSONObject) jsonObject.get("people");
-            for (Object key:people.keySet()) {
+            for (Object key : people.keySet()) {
                 String name = key.toString();
-                String type = people.get(key).toString();
-                System.out.println("Hi, I am "+name+" and I am "+type);
-                switch (type){
+                String type = people.get(key)
+                                    .toString();
+                System.out.println("Hi, I am " + name + " and I am " + type);
+                switch (type) {
                     case ("Father"):
                         Father father = Father.getInstance(house);
-                        if(!personMap.containsValue(father)) personMap.put(name, father);
+                        if (!personMap.containsValue(father)) personMap.put(name, father);
                         break;
                     case ("Mother"):
                         Mother mother = Mother.getInstance(house);
-                        if(!personMap.containsValue(mother)) personMap.put(name, mother);
+                        if (!personMap.containsValue(mother)) personMap.put(name, mother);
                         break;
                     case ("Boy"):
                         personMap.put(name, new Boy(house));
@@ -47,7 +48,7 @@ public class PeopleFasada extends Fasada{
                         personMap.put(name, new Baby(house));
                         break;
                     default:
-                        System.out.println("There is unknown person type "+type+". Check init.json, please.");
+                        System.out.println("There is unknown person type " + type + ". Check init.json, please.");
                 }
             }
 
@@ -56,35 +57,42 @@ public class PeopleFasada extends Fasada{
         }
 
     }
+
     @Override
     public void sendTicks() {
-        for (Person person:personMap.values()) {
+        for (Person person : personMap.values()) {
             person.tick();
         }
 
     }
-    public Person getByName(String name){
-        for (String key:personMap.keySet()) {
-            if(name.equals(key)){
+
+    public Person getByName(String name) {
+        for (String key : personMap.keySet()) {
+            if (name.equals(key)) {
                 return personMap.get(key);
             }
         }
         return null;
     }
 
-    public Person getByType(String type){ // I am not sure if it is the best way, but it works
-        for (Person key:personMap.values()) {
-            if(key.getClass().toString().equals("class people."+type)){
+    public Person getByType(String type) { // I am not sure if it is the best way, but it works
+        for (Person key : personMap.values()) {
+            if (key.getClass()
+                   .toString()
+                   .equals("class people." + type)) {
                 return key;
             }
         }
         return null;
     }
-    public Person getNextByType(String type, int hash){
-        boolean found=false;
-        for (Person key:personMap.values()) {
-            if(!found && key.hashCode()==hash)found=true;
-            else if(found && key.getClass().toString().equals("class people."+type)){
+
+    public Person getNextByType(String type, int hash) {
+        boolean found = false;
+        for (Person key : personMap.values()) {
+            if (!found && key.hashCode() == hash) found = true;
+            else if (found && key.getClass()
+                                 .toString()
+                                 .equals("class people." + type)) {
                 return key;
             }
         }
