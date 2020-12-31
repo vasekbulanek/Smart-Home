@@ -26,14 +26,14 @@ public class EquipmentFasada extends Fasada {
             for (Object key : people.keySet()) {
                 String type = key.toString();
                 int num = Integer.parseInt(people.get(key)
-                                                 .toString());
+                        .toString());
                 System.out.println("There will be " + num + " " + type);
                 switch (type) {
                     case ("Sky"):
-                        equipment.add(new Sky());
+                        equipment.add(new Sky(house));
                         break;
                     case ("Bicycle"):
-                        equipment.add(new Bicycle());
+                        equipment.add(new Bicycle(house));
                         break;
                     default:
                         System.out.println("There is unknown equipment type " + type + ". Check init.json, please.");
@@ -55,8 +55,8 @@ public class EquipmentFasada extends Fasada {
     public Equipment getByType(String type) { // I am not sure if it is the best way, but it works
         for (Equipment e : equipment) {
             if (e.getClass()
-                 .toString()
-                 .equals("class equipment." + type)) {
+                    .toString()
+                    .equals("class equipment." + type)) {
                 return e;
             }
         }
@@ -68,8 +68,8 @@ public class EquipmentFasada extends Fasada {
         for (Equipment e : equipment) {
             if (!found && e.hashCode() == hash) found = true;
             else if (found && e.getClass()
-                               .toString()
-                               .equals("class equipment." + type)) {
+                    .toString()
+                    .equals("class equipment." + type)) {
                 return e;
             }
         }

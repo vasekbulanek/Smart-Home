@@ -4,10 +4,9 @@ import general.*;
 import general.Tickable;
 
 public class Girl extends Person implements Tickable {
-    House house;
 
     public Girl(House house) {
-        this.house = house;
+        super(house);
     }
 
     @Override

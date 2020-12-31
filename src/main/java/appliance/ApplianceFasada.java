@@ -24,21 +24,21 @@ public class ApplianceFasada extends Fasada {
             Object obj = parser.parse(new FileReader(initFile));
             JSONObject jsonObject = (JSONObject) obj;
             waterPrice = Integer.parseInt(((JSONObject) jsonObject.get("prices")).get("water")
-                                                                                 .toString());
+                    .toString());
             System.out.println("water " + waterPrice);
             electricityPrice = Integer.parseInt(((JSONObject) jsonObject.get("prices")).get("electricity")
-                                                                                       .toString());
+                    .toString());
             JSONObject appliance = (JSONObject) jsonObject.get("appliance");
-            ApplianceFactory applianceFactory = new ApplianceFactory(this);
+            ApplianceFactory applianceFactory = new ApplianceFactory(this, house);
             for (Object key : appliance.keySet()) {
                 int num = Integer.parseInt(((JSONObject) appliance.get(key)).get("count")
-                                                                            .toString());
+                        .toString());
                 int electrOn = Integer.parseInt(((JSONObject) appliance.get(key)).get("electricity on")
-                                                                                 .toString());
+                        .toString());
                 int electrOff = Integer.parseInt(((JSONObject) appliance.get(key)).get("electricity off")
-                                                                                  .toString());
+                        .toString());
                 int water0 = Integer.parseInt(((JSONObject) appliance.get(key)).get("water")
-                                                                               .toString());
+                        .toString());
 
                 System.out.println("There will be " + num + " " + key.toString());
                 applianceFactory.create(key.toString(), num, electrOn, electrOff, water0);
@@ -63,8 +63,8 @@ public class ApplianceFasada extends Fasada {
     public Appliance getByType(String type) { // I am not sure if it is the best way, but it works
         for (Appliance a : appliances) {
             if (a.getClass()
-                 .toString()
-                 .equals("class appliance." + type)) {
+                    .toString()
+                    .equals("class appliance." + type)) {
                 return a;
             }
         }
@@ -76,8 +76,8 @@ public class ApplianceFasada extends Fasada {
         for (Appliance a : appliances) {
             if (!found && a.hashCode() == hash) found = true;
             else if (found && a.getClass()
-                               .toString()
-                               .equals("class appliance." + type)) {
+                    .toString()
+                    .equals("class appliance." + type)) {
                 return a;
             }
         }

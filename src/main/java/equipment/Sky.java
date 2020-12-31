@@ -1,11 +1,12 @@
 package equipment;
 
+import general.House;
 import general.Room;
 import general.Tickable;
 
 import java.util.Random;
 
-public class Sky extends Equipment implements Tickable {
+public class Sky extends Equipment  {
     private boolean broken;
     private int timeToService;
     private final int service = 50;
@@ -13,7 +14,8 @@ public class Sky extends Equipment implements Tickable {
     private final int OKusageLikehood = 4;
     private boolean inUse;
 
-    public Sky() {
+    public Sky(House  house) {
+        super(house);
         broken = false;
         timeToService = service;
         inUse = false;
@@ -51,10 +53,6 @@ public class Sky extends Equipment implements Tickable {
 
     }
 
-    @Override
-    public void place(Room room) {
-
-    }
 
     public int getTimeToService() {
         return timeToService;

@@ -27,17 +27,17 @@ public class AnimalFasada extends Fasada {
             for (Object key : people.keySet()) {
                 String name = key.toString();
                 String type = people.get(key)
-                                    .toString();
+                        .toString();
                 System.out.println("Hi, I am " + name + " and I am " + type);
                 switch (type) {
                     case ("Bird"):
-                        animalMap.put(name, new Bird());
+                        animalMap.put(name, new Bird(house));
                         break;
                     case ("Cat"):
-                        animalMap.put(name, new Cat());
+                        animalMap.put(name, new Cat(house));
                         break;
                     case ("Dog"):
-                        animalMap.put(name, new Dog());
+                        animalMap.put(name, new Dog(house));
                         break;
                     default:
                         System.out.println("There is unknown animal type " + type + ". Check init.json, please.");
@@ -70,8 +70,8 @@ public class AnimalFasada extends Fasada {
     public Animal getByType(String type) { // I am not sure if it is the best way, but it works
         for (Animal key : animalMap.values()) {
             if (key.getClass()
-                   .toString()
-                   .equals("class animal." + type)) {
+                    .toString()
+                    .equals("class animal." + type)) {
                 return key;
             }
         }

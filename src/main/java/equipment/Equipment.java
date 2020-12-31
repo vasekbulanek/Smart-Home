@@ -1,10 +1,17 @@
 package equipment;
 
-public abstract class Equipment {
+import general.House;
+import general.Room;
+import general.Tickable;
+
+public abstract class Equipment implements Tickable {
     public boolean free;
     public boolean functionality;
+    House house;
+    Room room;
 
-    public Equipment() {
+    public Equipment(House house) {
+        this.house=house;
         free = true;
         functionality = true;
     }
@@ -24,9 +31,19 @@ public abstract class Equipment {
         functionality = true;
     }
 
-    protected abstract void report();
+    public abstract void report();
 
-    protected abstract void tick();
+    public abstract void tick();
 
+    public Room getRoom(){
+        if(room!=null)return room;
+        house.getRoomFasada().getOutside().addPropriet(this);
+        return house.getRoomFasada().getOutside();
+    }
+
+    @Override
+    public void place(Room room) {
+        this.room=room;
+    }
 
 }

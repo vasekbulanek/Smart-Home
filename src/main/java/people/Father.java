@@ -6,11 +6,10 @@ import general.Tickable;
 
 
 public class Father extends Person implements Tickable {
-    House house;
     private static Father singleton = null;
 
     private Father(House house) {
-        this.house = house;
+        super(house);
     }
 
     public static Father getInstance(House house) {

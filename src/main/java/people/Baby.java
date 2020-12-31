@@ -4,13 +4,11 @@ import general.House;
 import general.Room;
 import general.Tickable;
 
-public class Baby extends Person implements Tickable {
+public class Baby extends Person {
     public Baby(House house) {
-        this.house = house;
+        super(house);
 
     }
-
-    House house;
 
     @Override
     public void tick() {
@@ -21,10 +19,6 @@ public class Baby extends Person implements Tickable {
 
     }
 
-    @Override
-    public void place(Room room) {
-
-    }
 
     @Override
     protected void useAppliance() {

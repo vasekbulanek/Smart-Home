@@ -27,7 +27,7 @@ public class PeopleFasada extends Fasada {
             for (Object key : people.keySet()) {
                 String name = key.toString();
                 String type = people.get(key)
-                                    .toString();
+                        .toString();
                 System.out.println("Hi, I am " + name + " and I am " + type);
                 switch (type) {
                     case ("Father"):
@@ -78,8 +78,8 @@ public class PeopleFasada extends Fasada {
     public Person getByType(String type) { // I am not sure if it is the best way, but it works
         for (Person key : personMap.values()) {
             if (key.getClass()
-                   .toString()
-                   .equals("class people." + type)) {
+                    .toString()
+                    .equals("class people." + type)) {
                 return key;
             }
         }
@@ -91,8 +91,8 @@ public class PeopleFasada extends Fasada {
         for (Person key : personMap.values()) {
             if (!found && key.hashCode() == hash) found = true;
             else if (found && key.getClass()
-                                 .toString()
-                                 .equals("class people." + type)) {
+                    .toString()
+                    .equals("class people." + type)) {
                 return key;
             }
         }

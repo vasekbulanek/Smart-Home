@@ -1,5 +1,6 @@
 package appliance;
 
+import general.House;
 import general.Room;
 import general.Tickable;
 
@@ -8,7 +9,8 @@ public class Iron extends Appliance implements Tickable {
     private int electricityOff;
     private int water;
 
-    public Iron(int electricityOn, int electricityOff, int water) {
+    public Iron(House house, int electricityOn, int electricityOff, int water) {
+        super(house);
         this.electricityOn = electricityOn;
         this.electricityOff = electricityOff;
         this.water = water;
@@ -29,8 +31,4 @@ public class Iron extends Appliance implements Tickable {
 
     }
 
-    @Override
-    public void place(Room room) {
-
-    }
 }

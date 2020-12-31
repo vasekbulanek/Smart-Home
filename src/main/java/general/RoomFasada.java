@@ -14,6 +14,7 @@ public class RoomFasada extends Fasada {
     HashMap<String, Integer> lasts;
     LinkedList<Fasada> fasadas;
     LinkedList<Room> roomLinkedList;
+    Room outside;
 
     public RoomFasada(House house, String initFile) {
         super(house, initFile);
@@ -36,7 +37,7 @@ public class RoomFasada extends Fasada {
                 for (Object thing : inside.keySet()) {
                     String name = thing.toString();
                     int count = Integer.parseInt(inside.get(thing)
-                                                       .toString());
+                            .toString());
                     //System.out.println(name+" "+count);
                     for (; count > 0; count--) {
                         if (lasts.containsKey(name)) {
@@ -44,7 +45,7 @@ public class RoomFasada extends Fasada {
                                 if (fasada.getNextByType(name, lasts.get(name)) != null) {
                                     room1.addPropriet((Tickable) fasada.getNextByType(name, lasts.get(name)));
                                     lasts.replace(name, fasada.getNextByType(name, lasts.get(name))
-                                                              .hashCode());
+                                            .hashCode());
                                 }
                             }
                         } else {
@@ -52,7 +53,7 @@ public class RoomFasada extends Fasada {
                                 if (fasada.getByType(name) != null) {
                                     room1.addPropriet((Tickable) fasada.getByType(name));
                                     lasts.put(name, fasada.getByType(name)
-                                                          .hashCode());
+                                            .hashCode());
                                 }
                             }
                         }
@@ -65,6 +66,8 @@ public class RoomFasada extends Fasada {
         } catch (ParseException | IOException e) {
             e.printStackTrace();
         }
+        outside = new Room("outside");
+        roomLinkedList.add(outside);
         for (Room r : roomLinkedList) {
             r.printContent();
         }
@@ -93,4 +96,8 @@ public class RoomFasada extends Fasada {
     public LinkedList<Room> getRoomLinkedList() {
         return roomLinkedList;
     }
+    public Room getOutside(){
+        return outside;
+    }
 }
+

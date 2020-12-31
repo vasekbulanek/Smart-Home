@@ -1,5 +1,6 @@
 package equipment;
 
+import general.House;
 import general.Room;
 import general.Tickable;
 
@@ -13,7 +14,8 @@ public class Bicycle extends Equipment implements Tickable {
     private final int OKusageLikehood = 5;
     private boolean inUse = false;
 
-    public Bicycle() {
+    public Bicycle(House house) {
+        super(house);
         broken = false;
         timeToService = service;
     }

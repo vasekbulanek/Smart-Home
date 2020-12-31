@@ -1,10 +1,12 @@
 package appliance;
 
+import general.House;
 import general.Room;
 import general.Tickable;
 
 public class Phone extends Appliance implements Tickable {
-    public Phone(int electricityOn, int electricityOff) {
+    public Phone(House house, int electricityOn, int electricityOff) {
+        super(house);
         this.electricityOn = electricityOn;
         this.electricityOff = electricityOff;
     }
@@ -27,8 +29,4 @@ public class Phone extends Appliance implements Tickable {
 
     }
 
-    @Override
-    public void place(Room room) {
-
-    }
 }

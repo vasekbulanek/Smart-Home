@@ -1,9 +1,14 @@
 package animals;
 
+import general.House;
 import general.Room;
 import general.Tickable;
 
-public class Cat extends Animal implements Tickable {
+public class Cat extends Animal  {
+
+    public Cat(House house) {
+        super(house);
+    }
 
     @Override
     public void tick() {
@@ -15,10 +20,6 @@ public class Cat extends Animal implements Tickable {
 
     }
 
-    @Override
-    public void place(Room room) {
-
-    }
 
     @Override
     public void play() {

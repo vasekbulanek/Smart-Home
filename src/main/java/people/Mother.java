@@ -3,13 +3,13 @@ package people;
 import general.House;
 import general.Room;
 import general.Tickable;
+import people.Person;
 
-public class Mother extends Person implements Tickable {
-    House house;
+public class Mother extends Person {
     private static Mother singleton = null;
 
     private Mother(House house) {
-        this.house = house;
+        super(house);
     }
 
     public static Mother getInstance(House house) {
