@@ -14,6 +14,7 @@ public abstract class Animal implements Tickable {
 
     public Animal(House house) {
         this.house = house;
+        hunger=0;
     }
 
     public abstract void play();
@@ -36,12 +37,15 @@ public abstract class Animal implements Tickable {
 
     public Room getRoom(){
         if(room!=null)return room;
-        house.getRoomFasada().getOutside().addPropriet(this);
+        house.getRoomFasada().getOutside().addProprietInit(this);
         return house.getRoomFasada().getOutside();
     }
 
     @Override
     public void place(Room room) {
         this.room=room;
+    }
+    public void feed(){
+        hunger=0;
     }
 }

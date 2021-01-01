@@ -50,7 +50,6 @@ public class Mother extends Person {
         if(person instanceof Mother)solvePerson((Mother) person);
     }
     void solvePerson(Baby baby){
-        room.deletePropriet(this);
         baby.getRoom().addPropriet(this);
         if(baby.getHunger()>4)baby.eating();
         if (baby.getDiaper())baby.diapering();

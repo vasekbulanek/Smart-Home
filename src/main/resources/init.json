@@ -1,6 +1,8 @@
 {
-  "room": {"kitchen": {"Blinds": 1, "Fridge": 1, "Phone": 1, "Stove": 1, "Mother": 1},
-    "livingroom": {"Blinds": 3, "Iron": 1, "Father": 1}},
+  "room": {"kitchen": {"Blinds": 1, "Fridge": 1, "Phone": 1, "Stove": 1, "Mother": 1, "Baby": 1},
+    "living room": {"Blinds": 3, "Iron": 1, "Father": 1, "Television": 1},
+    "bathroom": {"Boiler": 1, "Girl": 1},
+    "bedroom": {"Blinds": 1, "Cat": 1, "Phone": 1}},
   "people": {
     "Milan": "Father",
     "Helena": "Mother",

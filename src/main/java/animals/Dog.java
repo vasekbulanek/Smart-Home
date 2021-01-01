@@ -3,6 +3,7 @@ package animals;
 import general.House;
 import general.Room;
 import general.Tickable;
+import people.Person;
 
 public class Dog extends Animal{
 
@@ -12,6 +13,12 @@ public class Dog extends Animal{
 
     @Override
     public void tick() {
+        hunger++;
+        if(hunger>12){
+            for (Person p: room.getPeople()) {
+                p.addAnimalRequest(this);
+            }
+        }
 
     }
 

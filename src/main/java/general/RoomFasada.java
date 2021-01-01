@@ -33,7 +33,7 @@ public class RoomFasada extends Fasada {
             for (Object key : room.keySet()) {
                 JSONObject inside = (JSONObject) room.get(key);
                 //System.out.println(key.toString());
-                Room room1 = new Room(key.toString());
+                Room room1 = new Room(key.toString(), house);
                 for (Object thing : inside.keySet()) {
                     String name = thing.toString();
                     int count = Integer.parseInt(inside.get(thing)
@@ -43,7 +43,7 @@ public class RoomFasada extends Fasada {
                         if (lasts.containsKey(name)) {
                             for (Fasada fasada : fasadas) {
                                 if (fasada.getNextByType(name, lasts.get(name)) != null) {
-                                    room1.addPropriet((Tickable) fasada.getNextByType(name, lasts.get(name)));
+                                    room1.addProprietInit((Tickable) fasada.getNextByType(name, lasts.get(name)));
                                     lasts.replace(name, fasada.getNextByType(name, lasts.get(name))
                                             .hashCode());
                                 }
@@ -51,7 +51,7 @@ public class RoomFasada extends Fasada {
                         } else {
                             for (Fasada fasada : fasadas) {
                                 if (fasada.getByType(name) != null) {
-                                    room1.addPropriet((Tickable) fasada.getByType(name));
+                                    room1.addProprietInit((Tickable) fasada.getByType(name));
                                     lasts.put(name, fasada.getByType(name)
                                             .hashCode());
                                 }
@@ -66,7 +66,7 @@ public class RoomFasada extends Fasada {
         } catch (ParseException | IOException e) {
             e.printStackTrace();
         }
-        outside = new Room("outside");
+        outside = new Room("outside", house);
         roomLinkedList.add(outside);
         for (Room r : roomLinkedList) {
             r.printContent();
