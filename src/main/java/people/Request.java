@@ -58,6 +58,13 @@ public class Request {
     protected int allRequests() {
         return applianceLinkedList.size() + animalLinkedList.size() + personLinkedList.size() + equipmentLinkedList.size();
     }
+    protected Typ getFirst(){
+        if (!personLinkedList.isEmpty())return Typ.person;
+        if (!animalLinkedList.isEmpty())return Typ.animal;
+        if (!applianceLinkedList.isEmpty())return Typ.appliance;
+        if (!equipmentLinkedList.isEmpty())return Typ.equipment;
+        return null;
+    }
 
     protected Person getPerson() {
         Person person = personLinkedList.get(0);

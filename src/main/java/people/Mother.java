@@ -12,6 +12,7 @@ public class Mother extends Person {
         super(house);
     }
 
+
     public static Mother getInstance(House house) {
         if (singleton == null) {
             singleton = new Mother(house);
@@ -24,7 +25,12 @@ public class Mother extends Person {
 
     @Override
     public void tick() {
+        if(request.allRequests()>0){
+            if(request.hasTo(Request.Typ.person)>0){
+                Person a =request.getPerson();
+                solvePerson(a);}
 
+        }
     }
 
     @Override
@@ -33,12 +39,32 @@ public class Mother extends Person {
     }
 
     @Override
-    public void place(Room room) {
+    protected void useAppliance() {
 
     }
+    void solvePerson(Person person){
+        if(person instanceof Baby)solvePerson((Baby) person);
+        if(person instanceof Boy)solvePerson((Boy) person);
+        if(person instanceof Girl)solvePerson((Girl) person);
+        if(person instanceof Father)solvePerson((Father) person);
+        if(person instanceof Mother)solvePerson((Mother) person);
+    }
+    void solvePerson(Baby baby){
+        room.deletePropriet(this);
+        baby.getRoom().addPropriet(this);
+        if(baby.getHunger()>4)baby.eating();
+        if (baby.getDiaper())baby.diapering();
+    }
+    void solvePerson(Girl girl){
 
-    @Override
-    protected void useAppliance() {
+    }
+    void solvePerson(Father father){
+
+    }
+    void solvePerson(Boy boy){
+
+    }
+    void solvePerson(Mother mother){
 
     }
 }

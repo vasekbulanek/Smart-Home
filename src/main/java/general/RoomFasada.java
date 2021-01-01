@@ -75,17 +75,26 @@ public class RoomFasada extends Fasada {
 
     @Override
     public Object getByType(String k) {
-        return null;
+        return roomLinkedList.get(0);
     }
 
     @Override
     public Object getNextByType(String type, int hash) {
+        for (Room room :roomLinkedList) {
+            if(room.hashCode()==hash)return room;
+        }
         return null;
     }
 
     private void nextKey(String k, int hash) {
         if (lasts.containsKey(k)) lasts.replace(k, hash);
         else lasts.put(k, hash);
+    }
+    public Object getByName(String k) {
+        for (Room room :roomLinkedList) {
+            if(room.getName().equals(k))return room;
+        }
+        return null;
     }
 
     @Override

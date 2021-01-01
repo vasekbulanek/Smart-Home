@@ -86,6 +86,5 @@ public class Weather implements Tickable {
 
     @Override
     public void place(Room room) {
-
     }
 }

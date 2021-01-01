@@ -7,18 +7,21 @@ import general.House;
 import general.Room;
 import general.Tickable;
 
-public abstract class Person implements Tickable {
+public abstract class Person  implements Tickable {
     int hunger;
     int mood;
     int health;
     boolean sleeping;
-    private final Request request = new Request();
+    protected final Request request = new Request();
     Room room;
     House house;
 
     public Person(House house) {
         this.house = house;
+        hunger=0;
+        sleeping=false;
     }
+
 
     protected abstract void useAppliance();
 

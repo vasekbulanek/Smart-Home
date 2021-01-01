@@ -5,7 +5,7 @@ import general.Room;
 import general.Tickable;
 
 
-public class Father extends Person implements Tickable {
+public class Father extends Person  {
     private static Father singleton = null;
 
     private Father(House house) {
@@ -32,10 +32,6 @@ public class Father extends Person implements Tickable {
 
     }
 
-    @Override
-    public void place(Room room) {
-
-    }
 
     @Override
     protected void useAppliance() {
