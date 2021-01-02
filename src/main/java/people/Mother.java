@@ -1,5 +1,6 @@
 package people;
 
+import appliance.Appliance;
 import general.House;
 import general.Room;
 import general.Tickable;
@@ -26,9 +27,16 @@ public class Mother extends Person {
     @Override
     public void tick() {
         if(request.allRequests()>0){
+            if(request.allRequests()>1 && request.hasTo(Request.Typ.appliance)>0){
+                house.getPeopleFasada().getRandom().addApplianceRequest(request.getAppliance());
+            }
             if(request.hasTo(Request.Typ.person)>0){
                 Person a =request.getPerson();
-                solvePerson(a);}
+                solvePerson(a);
+            return;}
+            if(request.hasTo(Request.Typ.appliance)>0){
+                Appliance appliance = request.getAppliance();
+            }
 
         }
     }

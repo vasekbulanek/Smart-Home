@@ -9,8 +9,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 public class PeopleFasada extends Fasada {
@@ -58,7 +57,6 @@ public class PeopleFasada extends Fasada {
         } catch (ParseException | IOException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -108,5 +106,10 @@ public class PeopleFasada extends Fasada {
             }
         }
     }
-
+    public Person getRandom(){
+        Random r = new Random();
+        Person person = (Person) personMap.values().toArray()[r.nextInt(personMap.size())];
+        System.out.println(person);
+        return person;
+    }
 }

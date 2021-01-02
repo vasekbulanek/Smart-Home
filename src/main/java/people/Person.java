@@ -4,11 +4,12 @@ import animals.Animal;
 import appliance.Appliance;
 import equipment.Equipment;
 import general.House;
+import general.Observer;
 import general.Room;
 import general.Tickable;
 import appliance.workItems.Foodstuff;
 
-public abstract class Person  implements Tickable {
+public abstract class Person  extends Observer implements Tickable {
     int hunger;
     int mood;
     int health;
@@ -18,6 +19,7 @@ public abstract class Person  implements Tickable {
     House house;
 
     public Person(House house) {
+        super(house.getTime());
         this.house = house;
         hunger=0;
         sleeping=false;
@@ -72,6 +74,18 @@ public abstract class Person  implements Tickable {
 
     public void addEquipment(Equipment equipment) {
         request.addEquipment(equipment);
+    }
+
+    public void update(){
+        if(!sleeping && !house.getTime().isDay()){
+            if(house.getRoomFasada().getByName("bedroom")!=null){
+                ((Room)house.getRoomFasada().getByName("bedroom")).addPropriet(this, room);
+            }
+            sleeping=true;
+        }
+        else if(sleeping && house.getTime().isDay()){
+            sleeping=false;
+        }
     }
 }
 
