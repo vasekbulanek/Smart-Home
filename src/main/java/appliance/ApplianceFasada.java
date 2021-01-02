@@ -31,17 +31,7 @@ public class ApplianceFasada extends Fasada {
             JSONObject appliance = (JSONObject) jsonObject.get("appliance");
             ApplianceFactory applianceFactory = new ApplianceFactory(this, house);
             for (Object key : appliance.keySet()) {
-                int num = Integer.parseInt(((JSONObject) appliance.get(key)).get("count")
-                        .toString());
-                int electrOn = Integer.parseInt(((JSONObject) appliance.get(key)).get("electricity on")
-                        .toString());
-                int electrOff = Integer.parseInt(((JSONObject) appliance.get(key)).get("electricity off")
-                        .toString());
-                int water0 = Integer.parseInt(((JSONObject) appliance.get(key)).get("water")
-                        .toString());
-
-                System.out.println("There will be " + num + " " + key.toString());
-                applianceFactory.create(key.toString(), num, electrOn, electrOff, water0);
+                applianceFactory.create(key, jsonObject);
             }
 
         } catch (ParseException | IOException e) {

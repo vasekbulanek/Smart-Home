@@ -25,8 +25,7 @@ public class EquipmentFasada extends Fasada {
             JSONObject people = (JSONObject) jsonObject.get("equipment");
             for (Object key : people.keySet()) {
                 String type = key.toString();
-                int num = Integer.parseInt(people.get(key)
-                        .toString());
+                int num = countJsonItems(type, jsonObject);
                 System.out.println("There will be " + num + " " + type);
                 switch (type) {
                     case ("Sky"):

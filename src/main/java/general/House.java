@@ -20,6 +20,8 @@ public class House {
         peopleFasada = new PeopleFasada(this, initFile);
         equipmentFasada = new EquipmentFasada(this, initFile);
         roomFasada = new RoomFasada(this, initFile);
+        getPeopleFasada().checkRooms();
+        getAnimalFasada().checkRooms();
         peopleFasada.sendTicks();
     }
 

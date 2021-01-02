@@ -13,11 +13,12 @@ import java.util.HashMap;
 
 public class AnimalFasada extends Fasada {
     private HashMap<String, Animal> animalMap;
-
+    House house;
 
     public AnimalFasada(House house, String initFile) {
         super(house, initFile);
         animalMap = new HashMap<>();
+        this.house=house;
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse(new FileReader(initFile));
@@ -82,5 +83,12 @@ public class AnimalFasada extends Fasada {
     public Object getNextByType(String type, int hash) {
         return null;
     }
+
+    public void checkRooms(){
+        for (Animal p: animalMap.values()) {
+            p.getRoom();
+        }
+    }
+
 
 }

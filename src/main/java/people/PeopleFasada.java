@@ -2,6 +2,7 @@ package people;
 
 import general.Fasada;
 import general.House;
+import general.Tickable;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -14,11 +15,13 @@ import java.util.Map;
 
 public class PeopleFasada extends Fasada {
     Map<String, Person> personMap;
+    House house;
 
     public PeopleFasada(House house, String initFile) {
         super(house, initFile);
         personMap = new HashMap<>();
         JSONParser parser = new JSONParser();
+        this.house=house;
         try {
             Object obj = parser.parse(new FileReader(initFile));
             JSONObject jsonObject = (JSONObject) obj;
@@ -97,6 +100,13 @@ public class PeopleFasada extends Fasada {
             }
         }
         return null;
+    }
+    public void checkRooms(){
+        for (Person p: personMap.values()) {
+            if (p.getRoom()==house.getRoomFasada().getOutside()){
+                house.getRoomFasada().getRoomLinkedList().get(0).addPropriet(p, p.room);
+            }
+        }
     }
 
 }

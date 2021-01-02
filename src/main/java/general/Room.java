@@ -19,12 +19,13 @@ public class Room {
 
     public void addPropriet(Tickable tickable, Room old) {
         if(old!=null) old.deletePropriet(tickable);
+        if(propriets.contains(tickable))return;
         propriets.add(tickable);
         tickable.place(this);
     }
 
     protected void deletePropriet(Tickable tickable) {
-        if (propriets.contains(tickable)) propriets.remove(tickable);
+        propriets.remove(tickable);
     }
 
     public String getName() {
