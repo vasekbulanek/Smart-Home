@@ -37,7 +37,7 @@ public abstract class Appliance implements Tickable {
 
     public Room getRoom(){
         if(room!=null)return room;
-        house.getRoomFasada().getOutside().addPropriet(this);
+        house.getRoomFasada().getOutside().addPropriet(this, room);
         return house.getRoomFasada().getOutside();
     }
 }

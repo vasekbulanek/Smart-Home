@@ -42,7 +42,8 @@ public abstract class Person  implements Tickable {
     }
     public Room getRoom(){
         if(room!=null)return room;
-        house.getRoomFasada().getOutside().addPropriet(this);
+        if(house.getRoomFasada()==null)return null;
+        house.getRoomFasada().getOutside().addPropriet(this, room);
         return house.getRoomFasada().getOutside();
     }
 

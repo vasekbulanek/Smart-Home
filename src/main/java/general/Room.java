@@ -15,14 +15,10 @@ public class Room {
         this.house=house;
     }
 
-    public void addProprietInit(Tickable tickable) {
-        propriets.add(tickable);
-        tickable.place(this);
-    }
 
 
-    public void addPropriet(Tickable tickable) {
-        if(tickable.getRoom()!=null) tickable.getRoom().deletePropriet(tickable);
+    public void addPropriet(Tickable tickable, Room old) {
+        if(old!=null) old.deletePropriet(tickable);
         propriets.add(tickable);
         tickable.place(this);
     }
@@ -53,3 +49,4 @@ public class Room {
         System.out.println(name + propriets.toString());
     }
 }
+

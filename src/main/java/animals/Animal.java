@@ -3,6 +3,7 @@ package animals;
 import general.House;
 import general.Room;
 import general.Tickable;
+import people.Person;
 
 public abstract class Animal implements Tickable {
     int hunger;
@@ -16,10 +17,9 @@ public abstract class Animal implements Tickable {
         this.house = house;
         hunger=0;
     }
-
     public abstract void play();
 
-    protected void eat() {
+    protected void feed(Person person) {
         hunger = 0;
     }
 
@@ -37,7 +37,7 @@ public abstract class Animal implements Tickable {
 
     public Room getRoom(){
         if(room!=null)return room;
-        house.getRoomFasada().getOutside().addProprietInit(this);
+        house.getRoomFasada().getOutside().addPropriet(this, room);
         return house.getRoomFasada().getOutside();
     }
 
@@ -48,4 +48,5 @@ public abstract class Animal implements Tickable {
     public void feed(){
         hunger=0;
     }
+
 }

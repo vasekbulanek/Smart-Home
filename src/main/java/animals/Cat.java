@@ -24,7 +24,7 @@ public class Cat extends Animal  {
         Random random = new Random();
         int number = random.nextInt(house.getRoomFasada().getRoomLinkedList().size()) ;
         Room r = house.getRoomFasada().getRoomLinkedList().get(number);
-        r.addPropriet(this);
+        r.addPropriet(this, room);
     }
 
     @Override
@@ -35,6 +35,12 @@ public class Cat extends Animal  {
 
     @Override
     public void play() {
+
+    }
+    @Override
+    public void feed(Person person) {
+        if(room!=person.getRoom())person.getRoom().addPropriet(this, room);
+        super.feed(person);
 
     }
 

@@ -43,7 +43,7 @@ public class RoomFasada extends Fasada {
                         if (lasts.containsKey(name)) {
                             for (Fasada fasada : fasadas) {
                                 if (fasada.getNextByType(name, lasts.get(name)) != null) {
-                                    room1.addProprietInit((Tickable) fasada.getNextByType(name, lasts.get(name)));
+                                    room1.addPropriet((Tickable) fasada.getNextByType(name, lasts.get(name)), null);
                                     lasts.replace(name, fasada.getNextByType(name, lasts.get(name))
                                             .hashCode());
                                 }
@@ -51,7 +51,7 @@ public class RoomFasada extends Fasada {
                         } else {
                             for (Fasada fasada : fasadas) {
                                 if (fasada.getByType(name) != null) {
-                                    room1.addProprietInit((Tickable) fasada.getByType(name));
+                                    room1.addPropriet((Tickable) fasada.getByType(name), null);
                                     lasts.put(name, fasada.getByType(name)
                                             .hashCode());
                                 }

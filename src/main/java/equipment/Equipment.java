@@ -37,7 +37,7 @@ public abstract class Equipment implements Tickable {
 
     public Room getRoom(){
         if(room!=null)return room;
-        house.getRoomFasada().getOutside().addPropriet(this);
+        house.getRoomFasada().getOutside().addPropriet(this, null);
         return house.getRoomFasada().getOutside();
     }
 
