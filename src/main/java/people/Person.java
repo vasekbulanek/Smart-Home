@@ -6,6 +6,7 @@ import equipment.Equipment;
 import general.House;
 import general.Room;
 import general.Tickable;
+import appliance.workItems.Foodstuff;
 
 public abstract class Person  implements Tickable {
     int hunger;
@@ -25,7 +26,8 @@ public abstract class Person  implements Tickable {
 
     protected abstract void useAppliance();
 
-    protected void eat() {
+    protected void eat(Foodstuff foodstuff) {
+        foodstuff.beEaten();
         hunger = 0;
     }
 
