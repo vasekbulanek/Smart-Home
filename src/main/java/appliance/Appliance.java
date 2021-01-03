@@ -1,10 +1,12 @@
 package appliance;
 
 import general.House;
+import general.Repairable;
 import general.Room;
 import general.Tickable;
+import people.Person;
 
-public abstract class Appliance implements Tickable {
+public abstract class Appliance implements Repairable {
     protected int consective;
     protected int manual;
     protected boolean warranty;
@@ -21,11 +23,6 @@ public abstract class Appliance implements Tickable {
     public void breakDown() {
         functionality = false;
     }
-
-    public void repair() {
-        functionality = true;
-    }
-
     public abstract void report();
 
     @Override
@@ -39,6 +36,12 @@ public abstract class Appliance implements Tickable {
         if(room!=null)return room;
         house.getRoomFasada().getOutside().addPropriet(this, room);
         return house.getRoomFasada().getOutside();
+    }
+    public void repair(Person person){
+        if(!functionality){
+            functionality=true;
+            person.delay();
+        }
     }
 }
 

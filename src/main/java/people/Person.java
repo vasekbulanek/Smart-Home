@@ -2,27 +2,30 @@ package people;
 
 import animals.Animal;
 import appliance.Appliance;
+import appliance.workItems.Work;
 import equipment.Equipment;
-import general.House;
-import general.Observer;
-import general.Room;
-import general.Tickable;
+import general.*;
 import appliance.workItems.Foodstuff;
 
 public abstract class Person  extends Observer implements Tickable {
     int hunger;
     int mood;
     int health;
-    boolean sleeping;
     protected final Request request = new Request();
     Room room;
     House house;
+    protected Equipment using;
+    protected longActivity activity;
+
+    protected enum longActivity{
+        no, sleep, sport, other
+    }
 
     public Person(House house) {
         super(house.getTime());
         this.house = house;
         hunger=0;
-        sleeping=false;
+        activity=longActivity.no;
     }
 
 
@@ -34,14 +37,30 @@ public abstract class Person  extends Observer implements Tickable {
     }
 
     protected void sleep() {
-        sleeping = true;
+        activity = longActivity.sleep;
     }
 
     protected void wakeUp() {
-        sleeping = false;
+        activity = longActivity.no;
     }
 
-    protected void sport() {
+    protected boolean sport() {
+        String eq ="Sky";
+        if (house.getWeather().getTemperature()>0){
+            eq = "Bibycle";
+        }
+        Equipment equipment = house.getEquipmentFasada().getByType(eq);
+        while (equipment.isInUse()){
+            equipment = house.getEquipmentFasada().getNextByType(eq, equipment.hashCode());
+            if (equipment==null)return false;
+        }
+        if (equipment.isBroken()){
+            house.getPeopleFasada().getByType("Father").addRepairableRequest(equipment);
+            return false;
+        }
+        equipment.use(this);
+        activity=longActivity.sport;
+        return true;
 
     }
     public Room getRoom(){
@@ -68,24 +87,31 @@ public abstract class Person  extends Observer implements Tickable {
         request.addAnimal(animal);
     }
 
-    public void addApplianceRequest(Appliance appliance) {
-        request.addAppliance(appliance);
+    public void addRepairableRequest(Repairable repairable) {
+        request.addRepairable(repairable);
     }
 
-    public void addEquipment(Equipment equipment) {
-        request.addEquipment(equipment);
+    public void addWorkRequest(Work work) {
+        request.addWork(work);
     }
 
     public void update(){
-        if(!sleeping && !house.getTime().isDay()){
+        if(activity!=longActivity.sleep && !house.getTime().isDay()){
             if(house.getRoomFasada().getByName("bedroom")!=null){
                 ((Room)house.getRoomFasada().getByName("bedroom")).addPropriet(this, room);
             }
-            sleeping=true;
+            activity=longActivity.sleep;
         }
-        else if(sleeping && house.getTime().isDay()){
-            sleeping=false;
+        else if(activity==longActivity.sleep && house.getTime().isDay()){
+            activity=longActivity.no;
         }
+    }
+    public void delay(){
+        activity=longActivity.other;
+    }
+
+    public void setUsing(Equipment using) {
+        this.using = using;
     }
 }
 

@@ -9,7 +9,7 @@ import java.util.Random;
 public class Bicycle extends Equipment implements Tickable {
     private boolean broken;
     private int timeToService;
-    private final int service = 200;
+    private final int service = 24*60;
     private final int using = 3;
     private final int OKusageLikehood = 5;
     private boolean inUse = false;
@@ -60,8 +60,12 @@ public class Bicycle extends Equipment implements Tickable {
         return timeToService;
     }
 
+    protected void refreshService(){
+        timeToService=service;
+    }
+
     public boolean isBroken() {
-        return broken;
+        return broken && timeToService<0;
     }
 
     public boolean isInUse() {

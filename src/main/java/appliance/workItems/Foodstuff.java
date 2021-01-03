@@ -1,8 +1,9 @@
 package appliance.workItems;
 
+import appliance.Appliance;
 import appliance.Stove;
 
-public class Foodstuff {
+public class Foodstuff implements Work{
     private stateFood currentState;
 
     private enum stateFood{
@@ -22,6 +23,21 @@ public class Foodstuff {
         }
         return false;
     }
+
+    @Override
+    public boolean work(Appliance appliance) {
+        if(appliance.toString().contains("Stove.")){
+            return work((Stove) appliance);
+        }
+        return false;
+    }
+
+    @Override
+    public String need() {
+        if(currentState==stateFood.cut)return "Stove";
+        return null;
+    }
+
     public boolean work(Stove stove){
         stove.use();
         if(currentState== stateFood.cut ){

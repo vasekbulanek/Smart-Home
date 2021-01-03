@@ -26,19 +26,37 @@ public class Mother extends Person {
 
     @Override
     public void tick() {
+        if(activity!=longActivity.no){
+            if(activity==longActivity.sleep){
+                if(request.hasTo(Request.Typ.person)>0)solvePerson(request.getPerson());
+                sleep();
+                return;
+            }
+            if (activity == longActivity.sport && using!=null){
+                using.Tidy();
+                using=null;
+            }
+            activity=longActivity.no;
+            return;
+        }
         if(request.allRequests()>0){
-            if(request.allRequests()>1 && request.hasTo(Request.Typ.appliance)>0){
-                house.getPeopleFasada().getRandom().addApplianceRequest(request.getAppliance());
+            if(request.allRequests()>1 && request.hasTo(Request.Typ.work)>0){
+                house.getPeopleFasada().getRandom().addWorkRequest(request.getWork());
             }
             if(request.hasTo(Request.Typ.person)>0){
                 Person a =request.getPerson();
                 solvePerson(a);
             return;}
-            if(request.hasTo(Request.Typ.appliance)>0){
-                Appliance appliance = request.getAppliance();
+            if(request.hasTo(Request.Typ.repairable)>1){
+                request.getRepairable().repair(this);
+                if(house.getPeopleFasada().getByType("Father")!=null){
+                    house.getPeopleFasada().getByType("Father").addRepairableRequest(request.getRepairable());
+                }
+                return;
             }
 
         }
+        sport();
     }
 
     @Override

@@ -2,25 +2,27 @@ package people;
 
 import animals.Animal;
 import appliance.Appliance;
+import appliance.workItems.Work;
 import equipment.Equipment;
+import general.Repairable;
 
 import java.util.LinkedList;
 
 public class Request {
     private final LinkedList<Person> personLinkedList;
     private final LinkedList<Animal> animalLinkedList;
-    private final LinkedList<Appliance> applianceLinkedList;
-    private final LinkedList<Equipment> equipmentLinkedList;
+    private final LinkedList<Repairable> repairableLinkedList;
+    private final LinkedList<Work> workLinkedList;
 
     public enum Typ {
-        person, animal, appliance, equipment
+        person, animal, repairable, work
     }
 
     public Request() {
         personLinkedList = new LinkedList<>();
         animalLinkedList = new LinkedList<>();
-        applianceLinkedList = new LinkedList<>();
-        equipmentLinkedList = new LinkedList<>();
+        repairableLinkedList = new LinkedList<>();
+        workLinkedList = new LinkedList<>();
     }
 
     public void addPerson(Person person) {
@@ -31,12 +33,12 @@ public class Request {
         animalLinkedList.add(animal);
     }
 
-    public void addAppliance(Appliance appliance) {
-        applianceLinkedList.add(appliance);
+    public void addRepairable(Repairable repairable) {
+        repairableLinkedList.add(repairable);
     }
 
-    public void addEquipment(Equipment equipment) {
-        equipmentLinkedList.add(equipment);
+    public void addWork(Work work) {
+        workLinkedList.add(work);
     }
 
 
@@ -46,23 +48,23 @@ public class Request {
                 return animalLinkedList.size();
             case person:
                 return personLinkedList.size();
-            case appliance:
-                return applianceLinkedList.size();
-            case equipment:
-                return equipmentLinkedList.size();
+            case repairable:
+                return repairableLinkedList.size();
+            case work:
+                return workLinkedList.size();
             default:
                 return 0;
         }
     }
 
     protected int allRequests() {
-        return applianceLinkedList.size() + animalLinkedList.size() + personLinkedList.size() + equipmentLinkedList.size();
+        return repairableLinkedList.size() + animalLinkedList.size() + personLinkedList.size() + workLinkedList.size();
     }
     protected Typ getFirst(){
         if (!personLinkedList.isEmpty())return Typ.person;
         if (!animalLinkedList.isEmpty())return Typ.animal;
-        if (!applianceLinkedList.isEmpty())return Typ.appliance;
-        if (!equipmentLinkedList.isEmpty())return Typ.equipment;
+        if (!repairableLinkedList.isEmpty())return Typ.repairable;
+        if (!workLinkedList.isEmpty())return Typ.work;
         return null;
     }
 
@@ -78,9 +80,14 @@ public class Request {
         return animal;
     }
 
-    protected Appliance getAppliance() {
-        Appliance appliance = applianceLinkedList.get(0);
-        applianceLinkedList.remove(0);
-        return appliance;
+    protected Repairable getRepairable() {
+        Repairable repairable = repairableLinkedList.get(0);
+        repairableLinkedList.remove(0);
+        return repairable;
+    }
+    protected Work getWork() {
+        Work work = workLinkedList.get(0);
+        workLinkedList.remove(0);
+        return work;
     }
 }

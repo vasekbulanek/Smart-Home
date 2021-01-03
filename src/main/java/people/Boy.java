@@ -16,6 +16,7 @@ public class Boy extends Person  {
         if(request.allRequests()>0){
 
         }
+        else sport();
     }
 
     @Override

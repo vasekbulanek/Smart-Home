@@ -53,9 +53,12 @@ public class Sky extends Equipment  {
 
     }
 
-
     public int getTimeToService() {
         return timeToService;
+    }
+
+    protected void refreshService(){
+        timeToService=service;
     }
 
     public boolean isBroken() {

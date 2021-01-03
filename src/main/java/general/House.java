@@ -13,9 +13,11 @@ public class House {
     private EquipmentFasada equipmentFasada;
     private RoomFasada roomFasada;
     private Time time;
+    private Weather weather;
 
     public House() {
         time=new Time();
+        weather = new Weather();
         String initFile = "src/main/resources/init.json";
         animalFasada = new AnimalFasada(this, initFile);
         applianceFasada = new ApplianceFasada(this, initFile);
@@ -29,6 +31,7 @@ public class House {
 
     void run() {
         time.tick();
+        weather.tick();
         animalFasada.sendTicks();
         applianceFasada.sendTicks();
         peopleFasada.sendTicks();
@@ -57,5 +60,9 @@ public class House {
 
     public Time getTime() {
         return time;
+    }
+
+    public Weather getWeather() {
+        return weather;
     }
 }

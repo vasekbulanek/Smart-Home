@@ -1,10 +1,6 @@
 package people;
 
 import general.House;
-import general.Room;
-import general.Tickable;
-
-import java.util.LinkedList;
 import java.util.Random;
 
 public class Baby extends Person {
