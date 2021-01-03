@@ -74,6 +74,10 @@ public class ApplianceFasada extends Fasada {
         return null;
     }
 
+    public LinkedList<Appliance> getAppliances() {
+        return appliances;
+    }
+
     public int getWaterPrice() {
         return waterPrice;
     }

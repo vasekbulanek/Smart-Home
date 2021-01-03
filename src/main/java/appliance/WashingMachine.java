@@ -29,5 +29,12 @@ public class WashingMachine extends Appliance{
     @Override
     public void tick() {
 
+        if(this.on){
+            this.usedElectricity += this.electricityOn;
+            this.usedWater += this.water;
+        }
+        else {
+            this.usedElectricity += this.electricityOff;
+        }
     }
 }

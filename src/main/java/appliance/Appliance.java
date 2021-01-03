@@ -11,6 +11,9 @@ public abstract class Appliance implements Repairable {
     protected int manual;
     protected boolean warranty;
     protected boolean functionality;
+    protected boolean on;
+    protected int usedElectricity;
+    protected int usedWater;
     Room room;
     House house;
 
@@ -23,25 +26,43 @@ public abstract class Appliance implements Repairable {
     public void breakDown() {
         functionality = false;
     }
+
     public abstract void report();
 
     @Override
     public void place(Room room) {
-        this.room=room;
+        this.room = room;
     }
 
     public abstract void tick();
 
-    public Room getRoom(){
-        if(room!=null)return room;
-        house.getRoomFasada().getOutside().addPropriet(this, room);
-        return house.getRoomFasada().getOutside();
+    public Room getRoom() {
+        if (room != null) return room;
+        house.getRoomFasada()
+             .getOutside()
+             .addPropriet(this, room);
+        return house.getRoomFasada()
+                    .getOutside();
     }
-    public void repair(Person person){
-        if(!functionality){
-            functionality=true;
+
+    public void repair(Person person) {
+        if (!functionality) {
+            functionality = true;
             person.delay();
         }
+    }
+
+    public int getUsedElectricity() {
+        return usedElectricity;
+    }
+
+    public int getUsedWater() {
+        return usedWater;
+    }
+
+    public void annulConsuption() {
+        this.usedElectricity = 0;
+        this.usedWater = 0;
     }
 }
 

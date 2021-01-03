@@ -28,5 +28,11 @@ public class Fridge extends Appliance {
 
     public void tick() {
 
+        if(this.on){
+            this.usedElectricity += this.electricityOn;
+        }
+        else {
+            this.usedElectricity += this.electricityOff;
+        }
     }
 }

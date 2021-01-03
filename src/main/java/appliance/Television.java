@@ -23,6 +23,12 @@ public class Television extends Appliance  {
     @Override
     public void tick() {
 
+        if(this.on){
+            this.usedElectricity += this.electricityOn;
+        }
+        else {
+            this.usedElectricity += this.electricityOff;
+        }
     }
 
     @Override
