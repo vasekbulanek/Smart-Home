@@ -6,8 +6,9 @@ import general.Tickable;
 import people.Person;
 
 public class Dog extends Animal{
-    Person master;
-    boolean validMaster;
+    private Person master;
+    private boolean validMaster;
+    private Room allowed;
     public Dog(House house) {
         super(house);
         validMaster=false;
@@ -25,7 +26,12 @@ public class Dog extends Animal{
             }
             master.addAnimalRequest(this);
         }
-
+        if(master!=null && master.getRoom()==house.getRoomFasada().getOutside()){
+            house.getRoomFasada().getOutside().addPropriet(this, room);
+        }
+        else if (allowed!=null){
+            allowed.addPropriet(this, room);
+        }
     }
 
     @Override
@@ -44,5 +50,10 @@ public class Dog extends Animal{
     @Override
     public void play() {
 
+    }
+
+    public void place(Room room) {
+        if (allowed==null)allowed=room;
+        this.room=room;
     }
 }

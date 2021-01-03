@@ -3,16 +3,25 @@ package appliance.workItems;
 import appliance.Appliance;
 import appliance.Iron;
 import appliance.WashingMachine;
+import general.House;
 
 public class Clothes implements Work{
     private stateCloth currentState;
+    House house;
 
     private enum stateCloth{
         dirty, washed, ironed
     }
 
-    public Clothes() {
+    public Clothes(House house) {
+        this.house=house;
         currentState = stateCloth.washed;
+    }
+
+    public void becomeDirty(){
+        if(currentState==stateCloth.ironed){
+            currentState=stateCloth.dirty;
+        }
     }
 
     @Override

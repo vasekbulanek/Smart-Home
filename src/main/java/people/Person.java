@@ -50,6 +50,7 @@ public abstract class Person  extends Observer implements Tickable {
             eq = "Bibycle";
         }
         Equipment equipment = house.getEquipmentFasada().getByType(eq);
+        if(equipment==null)return false;
         while (equipment.isInUse()){
             equipment = house.getEquipmentFasada().getNextByType(eq, equipment.hashCode());
             if (equipment==null)return false;
@@ -77,7 +78,19 @@ public abstract class Person  extends Observer implements Tickable {
 
     public abstract void report();
 
-    public abstract void tick();
+    public void tick(){
+        if(activity!=longActivity.no){
+            if(activity==longActivity.sleep){
+                return;
+            }
+            if (activity == longActivity.sport && using!=null){
+                using.Tidy();
+                using=null;
+            }
+            activity=longActivity.no;
+            return;
+        }
+    }
 
     public void addPersonRequest(Person person) {
         request.addPerson(person);
@@ -112,6 +125,13 @@ public abstract class Person  extends Observer implements Tickable {
 
     public void setUsing(Equipment using) {
         this.using = using;
+    }
+
+    protected void workSolve(){
+        Work r = request.getWork();
+        String name = r.need();
+        if(name!=null)r.work(house.getApplianceFasada().getByType(name));
+        else r.work();
     }
 }
 
