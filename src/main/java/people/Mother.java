@@ -1,6 +1,8 @@
 package people;
 
+import animals.Animal;
 import appliance.Appliance;
+import appliance.Boiler;
 import general.House;
 import general.Room;
 import general.Tickable;
@@ -28,19 +30,27 @@ public class Mother extends Person {
     public void tick() {
         if(activity!=longActivity.no){
             if(activity==longActivity.sleep){
-                if(request.hasTo(Request.Typ.person)>0)solvePerson(request.getPerson());
+                if(request.hasTo(Request.Typ.person)>0) {
+                    wakeUp();
+                    solvePerson(request.getPerson());
+                    if (house.getPeopleFasada().getByType("Baby").activity != longActivity.sleep) {
+                        ((Baby)house.getPeopleFasada().getByType("Baby")).Gosleep();
+                    }
+                }
                 sleep();
                 return;
             }
             if (activity == longActivity.sport && using!=null){
                 using.Tidy();
                 using=null;
+                Boiler boiler =(Boiler) house.getApplianceFasada().getByType("Boiler");
+                if(boiler!=null)boiler.use();
             }
             activity=longActivity.no;
             return;
         }
         if(request.allRequests()>0){
-            if(request.allRequests()>1 && request.hasTo(Request.Typ.work)>0){
+            while(request.allRequests()>1 && request.hasTo(Request.Typ.work)>0){
                 house.getPeopleFasada().getRandom().addWorkRequest(request.getWork());
             }
             if(request.hasTo(Request.Typ.person)>0){
@@ -52,6 +62,10 @@ public class Mother extends Person {
                 if(house.getPeopleFasada().getByType("Father")!=null){
                     house.getPeopleFasada().getByType("Father").addRepairableRequest(request.getRepairable());
                 }
+                return;
+            }
+            if(request.hasTo(Request.Typ.work)>0){
+                workSolve();
                 return;
             }
 
@@ -91,5 +105,9 @@ public class Mother extends Person {
     }
     void solvePerson(Mother mother){
 
+    }
+
+    public void addAnimalRequest(Animal animal) {
+        house.getPeopleFasada().getRandom().addAnimalRequest(animal);
     }
 }

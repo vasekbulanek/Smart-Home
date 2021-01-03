@@ -49,4 +49,11 @@ public abstract class Animal implements Tickable {
         hunger=0;
     }
 
+    public int getHunger() {
+        return hunger;
+    }
+
+    public boolean isSleeping() {
+        return sleeping;
+    }
 }

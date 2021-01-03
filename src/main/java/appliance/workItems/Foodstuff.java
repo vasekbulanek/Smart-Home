@@ -2,23 +2,40 @@ package appliance.workItems;
 
 import appliance.Appliance;
 import appliance.Stove;
+import general.House;
 
 public class Foodstuff implements Work{
     private stateFood currentState;
+    House house;
+    private int portions;
 
     private enum stateFood{
         raw, cut, prepared, trash
     }
-    public Foodstuff() {
+    public Foodstuff(House house) {
+        this.house=house;
         currentState= stateFood.raw;
+        portions=0;
     }
 
     public void beEaten(){
-        currentState= stateFood.trash;
+        if(currentState==stateFood.prepared) {
+            portions--;
+            if(portions==0) {
+                currentState = stateFood.trash;
+                house.getPeopleFasada().getByType("Mother").addWorkRequest(this);
+            }
+        }
     }
     public boolean work(){
         if(currentState== stateFood.raw ){
             currentState = stateFood.cut;
+            house.getPeopleFasada().getByType("Mother").addWorkRequest(this);
+            return true;
+        }
+        if(currentState==stateFood.trash){
+            currentState=stateFood.raw;
+            house.getPeopleFasada().getByType("Mother").addWorkRequest(this);
             return true;
         }
         return false;
@@ -42,13 +59,7 @@ public class Foodstuff implements Work{
         stove.use();
         if(currentState== stateFood.cut ){
             currentState = stateFood.prepared;
-            return true;
-        }
-        return false;
-    }
-    public boolean takeOutTrash_buyFood(){
-        if(currentState== stateFood.trash){
-            currentState= stateFood.raw;
+            portions = house.getPeopleFasada().getSize()*2;
             return true;
         }
         return false;

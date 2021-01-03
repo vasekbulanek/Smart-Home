@@ -77,12 +77,17 @@ public class PeopleFasada extends Fasada {
     }
 
     public Person getByType(String type) { // I am not sure if it is the best way, but it works
+        LinkedList<Person> people = new LinkedList<>();
         for (Person key : personMap.values()) {
             if (key.getClass()
                     .toString()
                     .equals("class people." + type)) {
-                return key;
+                people.add(key);
             }
+        }
+        if(people.size()>0){
+            Random random = new Random();
+            return people.get(random.nextInt(people.size()+2)%people.size());
         }
         return null;
     }
@@ -111,5 +116,9 @@ public class PeopleFasada extends Fasada {
         Person person = (Person) personMap.values().toArray()[r.nextInt(personMap.size())];
         System.out.println(person);
         return person;
+    }
+
+    public int getSize(){
+        return personMap.size();
     }
 }

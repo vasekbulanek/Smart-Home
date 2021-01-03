@@ -1,6 +1,10 @@
 package people;
 
+import animals.Animal;
+import appliance.workItems.Work;
 import general.House;
+import general.Repairable;
+
 import java.util.Random;
 
 public class Baby extends Person {
@@ -12,16 +16,16 @@ public class Baby extends Person {
 
     private void hungry(){
         hunger++;
-        if(hunger>6 && !sleeping){
+        if(hunger>6 && activity!=longActivity.sleep){
             house.getPeopleFasada().getByType("Mother").addPersonRequest(this);
         }
         if(hunger>8){
-            sleeping=false;
+            activity=longActivity.no;
             house.getPeopleFasada().getByType("Mother").addPersonRequest(this);
         }
     }
     private void poop(){
-        if(diaper && !sleeping){
+        if(diaper && activity!=longActivity.sleep){
             house.getPeopleFasada().getByType("Mother").addPersonRequest(this);
             return;
         }
@@ -43,7 +47,7 @@ public class Baby extends Person {
             Random random = new Random();
             int number = random.nextInt(3) ;
             if (number==1){
-                sleeping=true;
+                activity=longActivity.sleep;
                 return true;
             }
         }
@@ -70,7 +74,25 @@ public class Baby extends Person {
     public int getHunger(){
         return hunger;
     }
+
     public boolean getDiaper(){
         return diaper;
+    }
+
+    public void addPersonRequest(Person person) {
+        house.getPeopleFasada().getByType("Mother").addPersonRequest(person);
+    }
+
+    public void addAnimalRequest(Animal animal) {
+        request.addAnimal(animal);
+        house.getPeopleFasada().getByType("Mother").addAnimalRequest(animal);
+    }
+
+    public void addRepairableRequest(Repairable repairable) {
+        house.getPeopleFasada().getByType("Mother").addRepairableRequest(repairable);
+    }
+
+    public void addWorkRequest(Work work) {
+        house.getPeopleFasada().getByType("Mother").addWorkRequest(work);
     }
 }
