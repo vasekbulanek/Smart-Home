@@ -9,7 +9,7 @@ import java.util.Random;
 public class Sky extends Equipment  {
     private boolean broken;
     private int timeToService;
-    private final int service = 50;
+    private final int service = 50*24;
     private final int using = 4;
     private final int OKusageLikehood = 4;
     private boolean inUse;
@@ -22,9 +22,11 @@ public class Sky extends Equipment  {
     }
 
     public boolean use() {
-        if (inUse) return false;
-        if (broken) return false;
-        if (timeToService <= 0) return false;
+        if(inUse)return false;
+        if ( broken || timeToService <= 0){
+            house.getPeopleFasada().getByType("Father").addRepairableRequest(this);
+            return false;
+        }
         timeToService -= using;
         inUse = true;
         return true;
@@ -45,7 +47,7 @@ public class Sky extends Equipment  {
 
     @Override
     public void tick() {
-
+        timeToService--;
     }
 
     @Override

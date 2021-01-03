@@ -19,9 +19,9 @@ public class House {
         time=new Time();
         weather = new Weather();
         String initFile = "src/main/resources/init.json";
+        peopleFasada = new PeopleFasada(this, initFile);
         animalFasada = new AnimalFasada(this, initFile);
         applianceFasada = new ApplianceFasada(this, initFile);
-        peopleFasada = new PeopleFasada(this, initFile);
         equipmentFasada = new EquipmentFasada(this, initFile);
         roomFasada = new RoomFasada(this, initFile);
         getPeopleFasada().checkRooms();

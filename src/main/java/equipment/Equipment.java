@@ -32,7 +32,9 @@ public abstract class Equipment implements Repairable {
 
     public void Tidy(){
         free=true;
-        whenTidy.addPropriet(this, room);
+        if(whenTidy!=null) {
+            whenTidy.addPropriet(this, room);
+        }
     }
 
     private void breakDown() {

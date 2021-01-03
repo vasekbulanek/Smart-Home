@@ -1,5 +1,8 @@
 package general;
 
+import appliance.Blinds;
+
+import java.util.LinkedList;
 import java.util.Random;
 
 public class Weather implements Tickable {
@@ -7,6 +10,7 @@ public class Weather implements Tickable {
     private static int maxTemperature;
     private static int minTemperature;
     private clouds sky;
+    private LinkedList<Blinds> observers;
 
     private enum clouds {
         sunny, clouds, overcast, splashes, rains, snow
@@ -19,6 +23,7 @@ public class Weather implements Tickable {
         maxTemperature = 35;
         minTemperature = -10;
         sky = clouds.sunny;
+        observers=new LinkedList<>();
     }
 
     private void changeTemperature() {
@@ -58,11 +63,15 @@ public class Weather implements Tickable {
             case clouds:
                 if (number < 0) {
                     sky = clouds.sunny;
+                    inform();
                     temperature += 2;
                 } else sky = clouds.overcast;
                 return;
             case sunny:
-                if (number < 0) sky = clouds.clouds;
+                if (number < 0){
+                    sky = clouds.clouds;
+                    inform();
+                }
                 return;
             case snow:
                 if (number < 0) sky = clouds.overcast;
@@ -91,5 +100,13 @@ public class Weather implements Tickable {
     @Override
     public Room getRoom() {
         return null;
+    }
+    public void addObserver(Blinds blinds){
+        observers.add(blinds);
+    }
+    private void inform(){
+        for (Blinds b:observers) {
+            b.use();
+        }
     }
 }

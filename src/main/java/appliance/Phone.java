@@ -15,15 +15,11 @@ public class Phone extends Appliance implements Tickable {
     private int electricityOff;
 
     @Override
-    public void use() {
-
-    }
-
-    @Override
     public void tick() {
 
         if (this.on) {
             this.usedElectricity += this.electricityOn;
+            on=false;
         } else {
             this.usedElectricity += this.electricityOff;
         }

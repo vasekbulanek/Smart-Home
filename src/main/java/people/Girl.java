@@ -19,7 +19,7 @@ public class Girl extends Person  {
     public void tick() {
         if (activity==longActivity.sport){
             Boiler boiler =(Boiler) house.getApplianceFasada().getByType("Boiler");
-            if(boiler!=null)boiler.use();
+            if(boiler!=null)boiler.use(this);
             delay();
         }
         super.tick();
@@ -27,7 +27,7 @@ public class Girl extends Person  {
             if(request.hasTo(Request.Typ.work)>0){
                 Work r = request.getWork();
                 String name = r.need();
-                if(name!=null)r.work(house.getApplianceFasada().getByType(name));
+                if(name!=null)r.work(house.getApplianceFasada().getByType(name), this);
                 else r.work();
                 return;
             }
@@ -49,10 +49,10 @@ public class Girl extends Person  {
         Random random = new Random();
         if(random.nextBoolean()){
             Phone phone= (Phone) house.getApplianceFasada().getByType("Phone");
-            if(phone!=null)phone.use();
+            if(phone!=null)phone.use(this);
             else {
                 Television television = (Television) house.getApplianceFasada().getByType("Television");
-                if(television!=null)television.use();
+                if(television!=null)television.use(this);
             }
             return;
         }
@@ -64,11 +64,6 @@ public class Girl extends Person  {
 
     }
 
-
-    @Override
-    protected void useAppliance() {
-
-    }
 
     public void addRepairableRequest(Repairable repairable) {
         Father father = (Father) house.getPeopleFasada().getByType("Father");

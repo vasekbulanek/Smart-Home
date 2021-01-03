@@ -1,7 +1,7 @@
 package people;
 
 import animals.Animal;
-import appliance.Appliance;
+import appliance.Fridge;
 import appliance.workItems.Work;
 import equipment.Equipment;
 import general.*;
@@ -9,8 +9,6 @@ import appliance.workItems.Foodstuff;
 
 public abstract class Person  extends Observer implements Tickable {
     int hunger;
-    int mood;
-    int health;
     protected final Request request = new Request();
     Room room;
     House house;
@@ -29,8 +27,6 @@ public abstract class Person  extends Observer implements Tickable {
     }
 
 
-    protected abstract void useAppliance();
-
     protected void eat(Foodstuff foodstuff) {
         foodstuff.beEaten();
         hunger = 0;
@@ -47,7 +43,7 @@ public abstract class Person  extends Observer implements Tickable {
     protected boolean sport() {
         String eq ="Sky";
         if (house.getWeather().getTemperature()>0){
-            eq = "Bibycle";
+            eq = "Bicycle";
         }
         Equipment equipment = house.getEquipmentFasada().getByType(eq);
         if(equipment==null)return false;
@@ -79,6 +75,11 @@ public abstract class Person  extends Observer implements Tickable {
     public abstract void report();
 
     public void tick(){
+        hunger++;
+        if(hunger>8){
+            Fridge fridge = (Fridge) house.getApplianceFasada().getByType("Fridge");
+            if(fridge!=null)fridge.getContent().beEaten();
+        }
         if(activity!=longActivity.no){
             if(activity==longActivity.sleep){
                 return;
@@ -130,7 +131,9 @@ public abstract class Person  extends Observer implements Tickable {
     protected void workSolve(){
         Work r = request.getWork();
         String name = r.need();
-        if(name!=null)r.work(house.getApplianceFasada().getByType(name));
+        if(name!=null){
+            r.work(house.getApplianceFasada().getByType(name), this);
+        }
         else r.work();
     }
 }

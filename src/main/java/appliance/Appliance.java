@@ -6,6 +6,8 @@ import general.Room;
 import general.Tickable;
 import people.Person;
 
+import java.util.Random;
+
 public abstract class Appliance implements Repairable {
     protected int consective;
     protected int manual;
@@ -21,9 +23,16 @@ public abstract class Appliance implements Repairable {
         this.house = house;
     }
 
-    public abstract void use();
+    public boolean use(Person person){
+        room.addPropriet(person, person.getRoom());
+        Random random = new Random();
+        if(random.nextInt(100)==1)breakDown();
+        on=true;
+        return functionality;
+    }
 
-    public void breakDown() {
+    protected void breakDown() {
+        house.getPeopleFasada().getByType("Father").addRepairableRequest(this);
         functionality = false;
     }
 

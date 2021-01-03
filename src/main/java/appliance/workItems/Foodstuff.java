@@ -3,6 +3,7 @@ package appliance.workItems;
 import appliance.Appliance;
 import appliance.Stove;
 import general.House;
+import people.Person;
 
 public class Foodstuff implements Work{
     private stateFood currentState;
@@ -16,6 +17,7 @@ public class Foodstuff implements Work{
         this.house=house;
         currentState= stateFood.raw;
         portions=0;
+        house.getPeopleFasada().getByType("Mother").addWorkRequest(this);
     }
 
     public void beEaten(){
@@ -42,9 +44,9 @@ public class Foodstuff implements Work{
     }
 
     @Override
-    public boolean work(Appliance appliance) {
+    public boolean work(Appliance appliance, Person person) {
         if(appliance.toString().contains("Stove.")){
-            return work((Stove) appliance);
+            return work((Stove) appliance, person);
         }
         return false;
     }
@@ -55,13 +57,14 @@ public class Foodstuff implements Work{
         return null;
     }
 
-    public boolean work(Stove stove){
-        stove.use();
+    public boolean work(Stove stove, Person person){
+        stove.use(person);
         if(currentState== stateFood.cut ){
             currentState = stateFood.prepared;
             portions = house.getPeopleFasada().getSize()*2;
             return true;
         }
+        person.addWorkRequest(this);
         return false;
     }
 

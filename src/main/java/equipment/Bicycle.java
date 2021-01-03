@@ -21,8 +21,11 @@ public class Bicycle extends Equipment implements Tickable {
     }
 
     public boolean use() {
-        if (broken) return false;
-        if (timeToService <= 0) return false;
+        if(inUse)return false;
+        if ( broken || timeToService <= 0){
+            house.getPeopleFasada().getByType("Father").addRepairableRequest(this);
+            return false;
+        }
         timeToService -= using;
         inUse = true;
         return true;

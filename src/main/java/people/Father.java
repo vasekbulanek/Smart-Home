@@ -2,8 +2,6 @@ package people;
 
 import appliance.Appliance;
 import general.House;
-import general.Room;
-import general.Tickable;
 
 import java.util.Random;
 
@@ -58,7 +56,7 @@ public class Father extends Person  {
         if(random.nextBoolean()){
             Appliance a = house.getApplianceFasada().getByType("Television");
             if(a!=null){
-                a.use();
+                a.use(this);
                 return;
             }
             sport();
@@ -71,8 +69,4 @@ public class Father extends Person  {
     }
 
 
-    @Override
-    protected void useAppliance() {
-
-    }
 }

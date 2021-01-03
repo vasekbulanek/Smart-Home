@@ -2,9 +2,6 @@ package people;
 
 import animals.Animal;
 import general.House;
-import general.Repairable;
-import general.Room;
-import general.Tickable;
 
 public class Boy extends Person  {
 
@@ -45,10 +42,6 @@ public class Boy extends Person  {
     }
 
 
-    @Override
-    protected void useAppliance() {
-
-    }
     public void addPersonRequest(Person person) {
         Mother mother = (Mother) house.getPeopleFasada().getByType("Mother");
         if(mother!=null){

@@ -1,12 +1,13 @@
 package appliance;
 
+import appliance.workItems.Foodstuff;
 import general.House;
 import general.Room;
 
 import java.util.LinkedList;
 
 public class Fridge extends Appliance {
-    private LinkedList<String> content;
+    private Foodstuff content;
     private int electricityOn;
     private int electricityOff;
 
@@ -14,12 +15,7 @@ public class Fridge extends Appliance {
         super(house);
         this.electricityOn = electricityOn;
         this.electricityOff = electricityOff;
-        content = new LinkedList<>();
-    }
-
-    @Override
-    public void use() {
-
+        content = new Foodstuff(house);
     }
 
     public void report() {
@@ -33,5 +29,9 @@ public class Fridge extends Appliance {
         } else {
             this.usedElectricity += this.electricityOff;
         }
+    }
+
+    public Foodstuff getContent() {
+        return content;
     }
 }

@@ -4,19 +4,19 @@ import general.House;
 import general.Room;
 import general.Tickable;
 
-public class Blinds extends Appliance implements Tickable {
+public class Blinds extends Appliance implements Tickable{
     private int electricityOn;
     private int electricityOff;
 
     public Blinds(House house, int electricityOn, int electricityOff) {
         super(house);
+        house.getWeather().addObserver(this);
         this.electricityOn = electricityOn;
         this.electricityOff = electricityOff;
     }
 
-    @Override
-    public void use() {
-
+    public void use(){
+        on=true;
     }
 
     @Override
@@ -24,6 +24,7 @@ public class Blinds extends Appliance implements Tickable {
 
         if (this.on) {
             this.usedElectricity += this.electricityOn;
+            on=false;
         } else {
             this.usedElectricity += this.electricityOff;
         }

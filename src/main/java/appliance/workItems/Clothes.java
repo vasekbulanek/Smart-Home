@@ -4,6 +4,7 @@ import appliance.Appliance;
 import appliance.Iron;
 import appliance.WashingMachine;
 import general.House;
+import people.Person;
 
 public class Clothes implements Work{
     private stateCloth currentState;
@@ -30,12 +31,12 @@ public class Clothes implements Work{
     }
 
     @Override
-    public boolean work(Appliance appliance) {
+    public boolean work(Appliance appliance, Person person) {
         if(appliance.toString().contains("WashingMachine.")){
-            return work((WashingMachine) appliance);
+            return work((WashingMachine) appliance, person);
         }
         if(appliance.toString().contains("Iron.")){
-            return work((Iron) appliance);
+            return work((Iron) appliance, person);
         }
         return false;
     }
@@ -47,20 +48,22 @@ public class Clothes implements Work{
         return null;
     }
 
-    public boolean work(Iron iron){
-        iron.use();
+    public boolean work(Iron iron, Person person){
+        iron.use(person);
         if(currentState==stateCloth.washed){
             currentState=stateCloth.ironed;
             return true;
         }
+        person.addWorkRequest(this);
         return false;
     }
-   public boolean work(WashingMachine washingMachine){
-        washingMachine.use();
+   public boolean work(WashingMachine washingMachine, Person person){
+        washingMachine.use(person);
         if(currentState==stateCloth.dirty){
             currentState=stateCloth.washed;
             return true;
         }
+        person.addWorkRequest(this);
         return false;
     }
 }

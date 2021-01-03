@@ -1,12 +1,8 @@
 package people;
 
 import animals.Animal;
-import appliance.Appliance;
 import appliance.Boiler;
 import general.House;
-import general.Room;
-import general.Tickable;
-import people.Person;
 
 public class Mother extends Person {
     private static Mother singleton = null;
@@ -44,7 +40,7 @@ public class Mother extends Person {
                 using.Tidy();
                 using=null;
                 Boiler boiler =(Boiler) house.getApplianceFasada().getByType("Boiler");
-                if(boiler!=null)boiler.use();
+                if(boiler!=null)boiler.use(this);
             }
             activity=longActivity.no;
             return;
@@ -78,10 +74,6 @@ public class Mother extends Person {
 
     }
 
-    @Override
-    protected void useAppliance() {
-
-    }
     void solvePerson(Person person){
         if(person instanceof Baby)solvePerson((Baby) person);
         if(person instanceof Boy)solvePerson((Boy) person);

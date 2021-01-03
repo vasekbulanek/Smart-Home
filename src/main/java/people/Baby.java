@@ -67,10 +67,6 @@ public class Baby extends Person {
     }
 
 
-    @Override
-    protected void useAppliance() {
-
-    }
     public int getHunger(){
         return hunger;
     }
