@@ -24,11 +24,10 @@ public class Boiler extends Appliance implements Tickable {
     @Override
     public void tick() {
 
-        if(this.on){
+        if (this.on) {
             this.usedElectricity += this.electricityOn;
             this.usedWater += this.water;
-        }
-        else {
+        } else {
             this.usedElectricity += this.electricityOff;
         }
     }

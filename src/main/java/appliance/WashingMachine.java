@@ -4,10 +4,11 @@ import general.House;
 
 
 //TODO: Generate washing machines
-public class WashingMachine extends Appliance{
+public class WashingMachine extends Appliance {
     private int electricityOn;
     private int electricityOff;
     private int water;
+
     public WashingMachine(House house, int electricityOn, int electricityOff, int water) {
         super(house);
         this.electricityOn = electricityOn;
@@ -29,11 +30,10 @@ public class WashingMachine extends Appliance{
     @Override
     public void tick() {
 
-        if(this.on){
+        if (this.on) {
             this.usedElectricity += this.electricityOn;
             this.usedWater += this.water;
-        }
-        else {
+        } else {
             this.usedElectricity += this.electricityOff;
         }
     }

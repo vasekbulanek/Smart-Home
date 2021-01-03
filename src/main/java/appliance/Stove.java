@@ -22,10 +22,9 @@ public class Stove extends Appliance implements Tickable {
     @Override
     public void tick() {
 
-        if(this.on){
+        if (this.on) {
             this.usedElectricity += this.electricityOn;
-        }
-        else {
+        } else {
             this.usedElectricity += this.electricityOff;
         }
     }

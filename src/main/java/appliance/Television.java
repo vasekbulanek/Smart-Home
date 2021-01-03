@@ -5,7 +5,7 @@ import general.House;
 import general.Room;
 import general.Tickable;
 
-public class Television extends Appliance  {
+public class Television extends Appliance {
     private int electricityOn;
     private int electricityOff;
 
@@ -23,10 +23,9 @@ public class Television extends Appliance  {
     @Override
     public void tick() {
 
-        if(this.on){
+        if (this.on) {
             this.usedElectricity += this.electricityOn;
-        }
-        else {
+        } else {
             this.usedElectricity += this.electricityOff;
         }
     }
