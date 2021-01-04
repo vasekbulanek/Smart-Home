@@ -3,6 +3,7 @@ package appliance.workItems;
 import appliance.Appliance;
 import appliance.Iron;
 import appliance.WashingMachine;
+import general.Fasada;
 import general.House;
 import people.Person;
 
@@ -32,19 +33,19 @@ public class Clothes implements Work{
 
     @Override
     public boolean work(Appliance appliance, Person person) {
-        if(appliance.toString().contains("WashingMachine.")){
+        if(appliance.getApplianceType()== Fasada.allClasses.washingMachine){
             return work((WashingMachine) appliance, person);
         }
-        if(appliance.toString().contains("Iron.")){
+        if(appliance.getApplianceType() == Fasada.allClasses.iron){
             return work((Iron) appliance, person);
         }
         return false;
     }
 
     @Override
-    public String need() {
-        if (currentState==stateCloth.dirty)return "WashingMachine";
-        if (currentState==stateCloth.washed)return "Iron";
+    public Fasada.allClasses need() {
+        if (currentState==stateCloth.dirty)return Fasada.allClasses.washingMachine;
+        if (currentState==stateCloth.washed)return Fasada.allClasses.iron;
         return null;
     }
 

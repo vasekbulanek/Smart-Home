@@ -1,5 +1,6 @@
 package animals;
 
+import general.Fasada;
 import general.House;
 import general.Room;
 import general.Tickable;
@@ -12,6 +13,7 @@ public class Dog extends Animal{
     public Dog(House house) {
         super(house);
         validMaster=false;
+        animalType = Fasada.allClasses.dog;
     }
 
     @Override

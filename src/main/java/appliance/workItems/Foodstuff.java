@@ -2,6 +2,7 @@ package appliance.workItems;
 
 import appliance.Appliance;
 import appliance.Stove;
+import general.Fasada;
 import general.House;
 import people.Person;
 
@@ -17,7 +18,7 @@ public class Foodstuff implements Work{
         this.house=house;
         currentState= stateFood.raw;
         portions=0;
-        house.getPeopleFasada().getByType("Mother").addWorkRequest(this);
+        house.getPeopleFasada().getByType(Fasada.allClasses.mother).addWorkRequest(this);
     }
 
     public void beEaten(){
@@ -25,19 +26,19 @@ public class Foodstuff implements Work{
             portions--;
             if(portions==0) {
                 currentState = stateFood.trash;
-                house.getPeopleFasada().getByType("Mother").addWorkRequest(this);
+                house.getPeopleFasada().getByType(Fasada.allClasses.mother).addWorkRequest(this);
             }
         }
     }
     public boolean work(){
         if(currentState== stateFood.raw ){
             currentState = stateFood.cut;
-            house.getPeopleFasada().getByType("Mother").addWorkRequest(this);
+            house.getPeopleFasada().getByType(Fasada.allClasses.mother).addWorkRequest(this);
             return true;
         }
         if(currentState==stateFood.trash){
             currentState=stateFood.raw;
-            house.getPeopleFasada().getByType("Mother").addWorkRequest(this);
+            house.getPeopleFasada().getByType(Fasada.allClasses.mother).addWorkRequest(this);
             return true;
         }
         return false;
@@ -52,8 +53,8 @@ public class Foodstuff implements Work{
     }
 
     @Override
-    public String need() {
-        if(currentState==stateFood.cut)return "Stove";
+    public Fasada.allClasses need() {
+        if(currentState==stateFood.cut)return Fasada.allClasses.stove;
         return null;
     }
 

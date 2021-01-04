@@ -13,12 +13,13 @@ public class Girl extends Person  {
 
     public Girl(House house) {
         super(house);
+        personType= Fasada.allClasses.girl;
     }
 
     @Override
     public void tick() {
         if (activity==longActivity.sport){
-            Boiler boiler =(Boiler) house.getApplianceFasada().getByType("Boiler");
+            Boiler boiler =(Boiler) house.getApplianceFasada().getByType(Fasada.allClasses.boiler);
             if(boiler!=null)boiler.use(this);
             delay();
         }
@@ -26,7 +27,7 @@ public class Girl extends Person  {
         if(request.allRequests()>0){
             if(request.hasTo(Request.Typ.work)>0){
                 Work r = request.getWork();
-                String name = r.need();
+                Fasada.allClasses name = r.need();
                 if(name!=null)r.work(house.getApplianceFasada().getByType(name), this);
                 else r.work();
                 return;
@@ -48,10 +49,10 @@ public class Girl extends Person  {
         }
         Random random = new Random();
         if(random.nextBoolean()){
-            Phone phone= (Phone) house.getApplianceFasada().getByType("Phone");
+            Phone phone= (Phone) house.getApplianceFasada().getByType(Fasada.allClasses.phone);
             if(phone!=null)phone.use(this);
             else {
-                Television television = (Television) house.getApplianceFasada().getByType("Television");
+                Television television = (Television) house.getApplianceFasada().getByType(Fasada.allClasses.television);
                 if(television!=null)television.use(this);
             }
             return;
@@ -66,12 +67,12 @@ public class Girl extends Person  {
 
 
     public void addRepairableRequest(Repairable repairable) {
-        Father father = (Father) house.getPeopleFasada().getByType("Father");
+        Father father = (Father) house.getPeopleFasada().getByType(Fasada.allClasses.father);
         if(father!=null){
             father.addRepairableRequest(repairable);
         }
         else {
-            Mother mother = (Mother) house.getPeopleFasada().getByType("Mother");
+            Mother mother = (Mother) house.getPeopleFasada().getByType(Fasada.allClasses.mother);
             if(mother!=null){
                 mother.addRepairableRequest(repairable);
             }

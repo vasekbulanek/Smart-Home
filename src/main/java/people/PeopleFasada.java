@@ -16,6 +16,7 @@ public class PeopleFasada extends Fasada {
     Map<String, Person> personMap;
     House house;
 
+
     public PeopleFasada(House house, String initFile) {
         super(house, initFile);
         personMap = new HashMap<>();
@@ -76,13 +77,11 @@ public class PeopleFasada extends Fasada {
         return null;
     }
 
-    public Person getByType(String type) { // I am not sure if it is the best way, but it works
+    public Person getByType(allClasses personType) { // I am not sure if it is the best way, but it works
         LinkedList<Person> people = new LinkedList<>();
-        for (Person key : personMap.values()) {
-            if (key.getClass()
-                    .toString()
-                    .equals("class people." + type)) {
-                people.add(key);
+        for (Person values : personMap.values()) {
+            if (values.getPersonType()==personType){
+                people.add(values);
             }
         }
         if(people.size()>0){
@@ -92,13 +91,11 @@ public class PeopleFasada extends Fasada {
         return null;
     }
 
-    public Person getNextByType(String type, int hash) {
+    public Person getNextByType(allClasses type, int hash) {
         boolean found = false;
         for (Person key : personMap.values()) {
             if (!found && key.hashCode() == hash) found = true;
-            else if (found && key.getClass()
-                    .toString()
-                    .equals("class people." + type)) {
+            else if (found && key.getPersonType()==type) {
                 return key;
             }
         }

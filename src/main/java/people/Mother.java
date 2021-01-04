@@ -2,6 +2,7 @@ package people;
 
 import animals.Animal;
 import appliance.Boiler;
+import general.Fasada;
 import general.House;
 
 public class Mother extends Person {
@@ -9,6 +10,7 @@ public class Mother extends Person {
 
     private Mother(House house) {
         super(house);
+        personType= Fasada.allClasses.mother;
     }
 
 
@@ -29,8 +31,8 @@ public class Mother extends Person {
                 if(request.hasTo(Request.Typ.person)>0) {
                     wakeUp();
                     solvePerson(request.getPerson());
-                    if (house.getPeopleFasada().getByType("Baby").activity != longActivity.sleep) {
-                        ((Baby)house.getPeopleFasada().getByType("Baby")).Gosleep();
+                    if (house.getPeopleFasada().getByType(Fasada.allClasses.baby).activity != longActivity.sleep) {
+                        ((Baby)house.getPeopleFasada().getByType(Fasada.allClasses.baby)).Gosleep();
                     }
                 }
                 sleep();
@@ -39,7 +41,7 @@ public class Mother extends Person {
             if (activity == longActivity.sport && using!=null){
                 using.Tidy();
                 using=null;
-                Boiler boiler =(Boiler) house.getApplianceFasada().getByType("Boiler");
+                Boiler boiler =(Boiler) house.getApplianceFasada().getByType(Fasada.allClasses.boiler);
                 if(boiler!=null)boiler.use(this);
             }
             activity=longActivity.no;
@@ -55,8 +57,8 @@ public class Mother extends Person {
             return;}
             if(request.hasTo(Request.Typ.repairable)>1){
                 request.getRepairable().repair(this);
-                if(house.getPeopleFasada().getByType("Father")!=null){
-                    house.getPeopleFasada().getByType("Father").addRepairableRequest(request.getRepairable());
+                if(house.getPeopleFasada().getByType(Fasada.allClasses.father)!=null){
+                    house.getPeopleFasada().getByType(Fasada.allClasses.father).addRepairableRequest(request.getRepairable());
                 }
                 return;
             }
@@ -82,7 +84,7 @@ public class Mother extends Person {
         if(person instanceof Mother)solvePerson((Mother) person);
     }
     void solvePerson(Baby baby){
-        baby.getRoom().addPropriet(this, null);
+        room.addPropriet(baby, baby.getRoom());
         if(baby.getHunger()>4)baby.eating();
         if (baby.getDiaper())baby.diapering();
     }

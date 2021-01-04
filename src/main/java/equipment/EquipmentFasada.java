@@ -1,5 +1,6 @@
 package equipment;
 
+import appliance.Appliance;
 import general.Fasada;
 import general.House;
 import org.json.simple.JSONObject;
@@ -51,24 +52,20 @@ public class EquipmentFasada extends Fasada {
         }
     }
 
-    public Equipment getByType(String type) { // I am not sure if it is the best way, but it works
+    public Equipment getByType(allClasses type) { // I am not sure if it is the best way, but it works
         for (Equipment e : equipment) {
-            if (e.getClass()
-                    .toString()
-                    .equals("class equipment." + type)) {
+            if (e.getEquipmentType() == type) {
                 return e;
             }
         }
         return null;
     }
 
-    public Equipment getNextByType(String type, int hash) {
+    public Equipment getNextByType(allClasses type, int hash) {
         boolean found = false;
         for (Equipment e : equipment) {
             if (!found && e.hashCode() == hash) found = true;
-            else if (found && e.getClass()
-                    .toString()
-                    .equals("class equipment." + type)) {
+            else if (e.getEquipmentType() == type) {
                 return e;
             }
         }

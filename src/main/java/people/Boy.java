@@ -1,12 +1,14 @@
 package people;
 
 import animals.Animal;
+import general.Fasada;
 import general.House;
 
 public class Boy extends Person  {
 
     public Boy(House house) {
         super(house);
+        personType= Fasada.allClasses.boy;
     }
 
 
@@ -43,14 +45,14 @@ public class Boy extends Person  {
 
 
     public void addPersonRequest(Person person) {
-        Mother mother = (Mother) house.getPeopleFasada().getByType("Mother");
+        Mother mother = (Mother) house.getPeopleFasada().getByType(Fasada.allClasses.mother);
         if(mother!=null){
             mother.addPersonRequest(person);
         }
         else {
-            Girl girl = (Girl) house.getPeopleFasada().getByType("Girl");
+            Girl girl = (Girl) house.getPeopleFasada().getByType(Fasada.allClasses.girl);
             if(girl!=null){
-                mother.addPersonRequest(person);
+                girl.addPersonRequest(person);
             }
         }
     }

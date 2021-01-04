@@ -1,6 +1,7 @@
 package appliance;
 
 import appliance.Appliance;
+import general.Fasada;
 import general.House;
 import general.Room;
 import general.Tickable;
@@ -13,6 +14,7 @@ public class Television extends Appliance {
         super(house);
         this.electricityOn = electricityOn;
         this.electricityOff = electricityOff;
+        applianceType = Fasada.allClasses.stove;
     }
 
     @Override

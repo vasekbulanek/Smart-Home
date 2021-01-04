@@ -1,6 +1,7 @@
 package appliance;
 
 import appliance.workItems.Foodstuff;
+import general.Fasada;
 import general.House;
 import general.Room;
 
@@ -16,6 +17,7 @@ public class Fridge extends Appliance {
         this.electricityOn = electricityOn;
         this.electricityOff = electricityOff;
         content = new Foodstuff(house);
+        applianceType = Fasada.allClasses.fridge;
     }
 
     public void report() {

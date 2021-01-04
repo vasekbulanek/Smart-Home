@@ -5,7 +5,6 @@ import general.House;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import people.*;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,6 +13,7 @@ import java.util.HashMap;
 public class AnimalFasada extends Fasada {
     private HashMap<String, Animal> animalMap;
     House house;
+    allClasses animalType;
 
     public AnimalFasada(House house, String initFile) {
         super(house, initFile);
@@ -68,7 +68,8 @@ public class AnimalFasada extends Fasada {
         return null;
     }
 
-    public Animal getByType(String type) { // I am not sure if it is the best way, but it works
+    @Override
+    public Animal getByType(allClasses type) { // I am not sure if it is the best way, but it works
         for (Animal key : animalMap.values()) {
             if (key.getClass()
                     .toString()
@@ -80,7 +81,14 @@ public class AnimalFasada extends Fasada {
     }
 
     @Override
-    public Object getNextByType(String type, int hash) {
+    public Animal getNextByType(allClasses allClasses, int hash) {
+        boolean found = false;
+        for (Animal key : animalMap.values()) {
+            if (!found && key.hashCode() == hash) found = true;
+            else if (found && key.getAnimalType()==allClasses) {
+                return key;
+            }
+        }
         return null;
     }
 
@@ -90,5 +98,7 @@ public class AnimalFasada extends Fasada {
         }
     }
 
-
+    public HashMap<String, Animal> getAnimalMap() {
+        return animalMap;
+    }
 }

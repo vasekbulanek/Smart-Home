@@ -1,5 +1,6 @@
 package people;
 
+import general.Fasada;
 import general.House;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -10,6 +11,7 @@ import org.junit.Test;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Locale;
 
 
 public class PeopleFasadaTest {
@@ -55,11 +57,18 @@ public class PeopleFasadaTest {
             JSONObject people = (JSONObject) jsonObject.get("people");
             for (Object x:people.values()) {
                 String type = x.toString();
-                Assert.assertNotNull(peopleFasada.getByType(type));
+                Assert.assertNotNull(peopleFasada.getByType(convert(type)));
             }
 
         } catch (ParseException | IOException e) {
             e.printStackTrace();
         }
+    }
+    public static Fasada.allClasses convert(String string) {
+        for (Fasada.allClasses a: Fasada.allClasses.values()) {
+            System.out.println(a + " "+string.toLowerCase(Locale.ROOT));
+            if(a.toString().contains(string.toLowerCase(Locale.ROOT)))return a;
+        }
+        return null;
     }
 }

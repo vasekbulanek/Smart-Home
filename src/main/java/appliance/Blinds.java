@@ -1,5 +1,6 @@
 package appliance;
 
+import general.Fasada;
 import general.House;
 import general.Room;
 import general.Tickable;
@@ -13,6 +14,7 @@ public class Blinds extends Appliance implements Tickable{
         house.getWeather().addObserver(this);
         this.electricityOn = electricityOn;
         this.electricityOff = electricityOff;
+        applianceType = Fasada.allClasses.blinds;
     }
 
     public void use(){

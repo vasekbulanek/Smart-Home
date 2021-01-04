@@ -1,9 +1,6 @@
 package appliance;
 
-import general.House;
-import general.Repairable;
-import general.Room;
-import general.Tickable;
+import general.*;
 import people.Person;
 
 import java.util.Random;
@@ -16,6 +13,7 @@ public abstract class Appliance implements Repairable {
     protected boolean on;
     protected int usedElectricity;
     protected int usedWater;
+    protected Fasada.allClasses applianceType;
     Room room;
     House house;
 
@@ -32,7 +30,7 @@ public abstract class Appliance implements Repairable {
     }
 
     protected void breakDown() {
-        house.getPeopleFasada().getByType("Father").addRepairableRequest(this);
+        house.getPeopleFasada().getByType(Fasada.allClasses.father).addRepairableRequest(this);
         functionality = false;
     }
 
@@ -72,6 +70,10 @@ public abstract class Appliance implements Repairable {
     public void annulConsuption() {
         this.usedElectricity = 0;
         this.usedWater = 0;
+    }
+
+    public Fasada.allClasses getApplianceType() {
+        return applianceType;
     }
 }
 

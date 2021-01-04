@@ -1,5 +1,6 @@
 package animals;
 
+import general.Fasada;
 import general.House;
 import general.Room;
 import general.Tickable;
@@ -12,6 +13,7 @@ public abstract class Animal implements Tickable {
     boolean sleeping;
     Room room;
     House house;
+    protected Fasada.allClasses animalType;
 
     public Animal(House house) {
         this.house = house;
@@ -55,5 +57,9 @@ public abstract class Animal implements Tickable {
 
     public boolean isSleeping() {
         return sleeping;
+    }
+
+    public Fasada.allClasses getAnimalType() {
+        return animalType;
     }
 }

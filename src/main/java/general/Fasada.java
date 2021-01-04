@@ -3,18 +3,26 @@ package general;
 import org.json.simple.JSONObject;
 import people.Person;
 
+import java.util.Locale;
+
 public abstract class Fasada<T> {
     House house; // We need everybody to be able to see Fasadas, house will have the getters
     String initFile;
+
+    public enum allClasses{
+        baby, boy, father, mother, girl, bicycle, sky, blinds,
+        boiler, fridge, iron, phone, stove, television, washingMachine,
+        cat, bird, dog, room
+    }
 
     public Fasada(House house, String initFile) {
         this.house = house;
         this.initFile = initFile;
     }
 
-    abstract public T getByType(String k);
+    abstract public T getByType(allClasses allClasses);
 
-    abstract public T getNextByType(String type, int hash);
+    abstract public T getNextByType(allClasses allClasses, int hash);
 
     public abstract void sendTicks();
 
@@ -30,4 +38,5 @@ public abstract class Fasada<T> {
         }
         return ret;
     }
+
 }

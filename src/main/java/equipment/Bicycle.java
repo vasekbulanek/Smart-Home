@@ -1,5 +1,6 @@
 package equipment;
 
+import general.Fasada;
 import general.House;
 import general.Room;
 import general.Tickable;
@@ -18,12 +19,13 @@ public class Bicycle extends Equipment implements Tickable {
         super(house);
         broken = false;
         timeToService = service;
+        equipmentType = Fasada.allClasses.bicycle;
     }
 
     public boolean use() {
         if(inUse)return false;
         if ( broken || timeToService <= 0){
-            house.getPeopleFasada().getByType("Father").addRepairableRequest(this);
+            house.getPeopleFasada().getByType(Fasada.allClasses.father).addRepairableRequest(this);
             return false;
         }
         timeToService -= using;

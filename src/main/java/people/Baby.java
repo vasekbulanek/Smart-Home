@@ -2,6 +2,7 @@ package people;
 
 import animals.Animal;
 import appliance.workItems.Work;
+import general.Fasada;
 import general.House;
 import general.Repairable;
 
@@ -12,21 +13,22 @@ public class Baby extends Person {
     public Baby(House house) {
         super(house);
         diaper=false;
+        personType= Fasada.allClasses.baby;
     }
 
     private void hungry(){
         hunger++;
         if(hunger>6 && activity!=longActivity.sleep){
-            house.getPeopleFasada().getByType("Mother").addPersonRequest(this);
+            house.getPeopleFasada().getByType(Fasada.allClasses.mother).addPersonRequest(this);
         }
         if(hunger>8){
             activity=longActivity.no;
-            house.getPeopleFasada().getByType("Mother").addPersonRequest(this);
+            house.getPeopleFasada().getByType(Fasada.allClasses.mother).addPersonRequest(this);
         }
     }
     private void poop(){
         if(diaper && activity!=longActivity.sleep){
-            house.getPeopleFasada().getByType("Mother").addPersonRequest(this);
+            house.getPeopleFasada().getByType(Fasada.allClasses.mother).addPersonRequest(this);
             return;
         }
         Random random = new Random();
@@ -55,7 +57,7 @@ public class Baby extends Person {
     }
     @Override
     public void tick() {
-        house.getPeopleFasada().getByType("Mother").addPersonRequest(this);
+        house.getPeopleFasada().getByType(Fasada.allClasses.mother).addPersonRequest(this);
         poop();
         hungry();
         Gosleep();
@@ -76,19 +78,19 @@ public class Baby extends Person {
     }
 
     public void addPersonRequest(Person person) {
-        house.getPeopleFasada().getByType("Mother").addPersonRequest(person);
+        house.getPeopleFasada().getByType(Fasada.allClasses.mother).addPersonRequest(person);
     }
 
     public void addAnimalRequest(Animal animal) {
         request.addAnimal(animal);
-        house.getPeopleFasada().getByType("Mother").addAnimalRequest(animal);
+        house.getPeopleFasada().getByType(Fasada.allClasses.mother).addAnimalRequest(animal);
     }
 
     public void addRepairableRequest(Repairable repairable) {
-        house.getPeopleFasada().getByType("Mother").addRepairableRequest(repairable);
+        house.getPeopleFasada().getByType(Fasada.allClasses.mother).addRepairableRequest(repairable);
     }
 
     public void addWorkRequest(Work work) {
-        house.getPeopleFasada().getByType("Mother").addWorkRequest(work);
+        house.getPeopleFasada().getByType(Fasada.allClasses.mother).addWorkRequest(work);
     }
 }

@@ -1,6 +1,7 @@
 package people;
 
 import appliance.Appliance;
+import general.Fasada;
 import general.House;
 
 import java.util.Random;
@@ -11,6 +12,7 @@ public class Father extends Person  {
 
     private Father(House house) {
         super(house);
+        personType= Fasada.allClasses.father;
     }
 
     public static Father getInstance(House house) {
@@ -28,11 +30,11 @@ public class Father extends Person  {
         super.tick();
         if(request.allRequests()>0){
             if(request.hasTo(Request.Typ.work)>0){
-                if(house.getPeopleFasada().getByType("Girl")!=null){
-                    house.getPeopleFasada().getByType("Girl").addWorkRequest(request.getWork());
+                if(house.getPeopleFasada().getByType(Fasada.allClasses.girl)!=null){
+                    house.getPeopleFasada().getByType(Fasada.allClasses.girl).addWorkRequest(request.getWork());
                 }
-                if(house.getPeopleFasada().getByType("Boy")!=null){
-                    house.getPeopleFasada().getByType("Boy").addWorkRequest(request.getWork());
+                if(house.getPeopleFasada().getByType(Fasada.allClasses.boy)!=null){
+                    house.getPeopleFasada().getByType(Fasada.allClasses.boy).addWorkRequest(request.getWork());
                 }
                 else {
                     workSolve();
@@ -41,8 +43,8 @@ public class Father extends Person  {
             }
             if(request.hasTo(Request.Typ.repairable)>0){
                 if(request.hasTo(Request.Typ.repairable)>2){
-                    if (house.getPeopleFasada().getByType("Boy")!=null){
-                        house.getPeopleFasada().getByType("Boy").addRepairableRequest(request.getRepairable());
+                    if (house.getPeopleFasada().getByType(Fasada.allClasses.boy)!=null){
+                        house.getPeopleFasada().getByType(Fasada.allClasses.boy).addRepairableRequest(request.getRepairable());
                     }
                 }
                 request.getRepairable().repair(this);
@@ -54,7 +56,7 @@ public class Father extends Person  {
         }
         Random random = new Random();
         if(random.nextBoolean()){
-            Appliance a = house.getApplianceFasada().getByType("Television");
+            Appliance a = house.getApplianceFasada().getByType(Fasada.allClasses.television);
             if(a!=null){
                 a.use(this);
                 return;

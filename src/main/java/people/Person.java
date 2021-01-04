@@ -14,6 +14,7 @@ public abstract class Person  extends Observer implements Tickable {
     House house;
     protected Equipment using;
     protected longActivity activity;
+    protected general.Fasada.allClasses personType;
 
     protected enum longActivity{
         no, sleep, sport, other
@@ -41,9 +42,9 @@ public abstract class Person  extends Observer implements Tickable {
     }
 
     protected boolean sport() {
-        String eq ="Sky";
+        Fasada.allClasses eq = Fasada.allClasses.sky;
         if (house.getWeather().getTemperature()>0){
-            eq = "Bicycle";
+            eq = Fasada.allClasses.bicycle;
         }
         Equipment equipment = house.getEquipmentFasada().getByType(eq);
         if(equipment==null)return false;
@@ -52,7 +53,7 @@ public abstract class Person  extends Observer implements Tickable {
             if (equipment==null)return false;
         }
         if (equipment.isBroken()){
-            house.getPeopleFasada().getByType("Father").addRepairableRequest(equipment);
+            house.getPeopleFasada().getByType(Fasada.allClasses.father).addRepairableRequest(equipment);
             return false;
         }
         equipment.use(this);
@@ -77,7 +78,7 @@ public abstract class Person  extends Observer implements Tickable {
     public void tick(){
         hunger++;
         if(hunger>8){
-            Fridge fridge = (Fridge) house.getApplianceFasada().getByType("Fridge");
+            Fridge fridge = (Fridge) house.getApplianceFasada().getByType(Fasada.allClasses.fridge);
             if(fridge!=null)fridge.getContent().beEaten();
         }
         if(activity!=longActivity.no){
@@ -130,11 +131,15 @@ public abstract class Person  extends Observer implements Tickable {
 
     protected void workSolve(){
         Work r = request.getWork();
-        String name = r.need();
+        Fasada.allClasses name = r.need();
         if(name!=null){
             r.work(house.getApplianceFasada().getByType(name), this);
         }
         else r.work();
+    }
+
+    public Fasada.allClasses getPersonType() {
+        return personType;
     }
 }
 

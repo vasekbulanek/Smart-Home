@@ -50,24 +50,20 @@ public class ApplianceFasada extends Fasada {
         }
     }
 
-    public Appliance getByType(String type) { // I am not sure if it is the best way, but it works
+    public Appliance getByType(allClasses type) { // I am not sure if it is the best way, but it works
         for (Appliance a : appliances) {
-            if (a.getClass()
-                    .toString()
-                    .equals("class appliance." + type)) {
+            if (type== a.getApplianceType()) {
                 return a;
             }
         }
         return null;
     }
 
-    public Appliance getNextByType(String type, int hash) {
+    public Appliance getNextByType(allClasses type, int hash) {
         boolean found = false;
         for (Appliance a : appliances) {
             if (!found && a.hashCode() == hash) found = true;
-            else if (found && a.getClass()
-                    .toString()
-                    .equals("class appliance." + type)) {
+            else if (type == a.getApplianceType()) {
                 return a;
             }
         }

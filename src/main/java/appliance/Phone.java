@@ -1,5 +1,6 @@
 package appliance;
 
+import general.Fasada;
 import general.House;
 import general.Room;
 import general.Tickable;
@@ -9,6 +10,7 @@ public class Phone extends Appliance implements Tickable {
         super(house);
         this.electricityOn = electricityOn;
         this.electricityOff = electricityOff;
+        applianceType = Fasada.allClasses.phone;
     }
 
     private int electricityOn;

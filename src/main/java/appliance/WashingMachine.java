@@ -1,6 +1,7 @@
 package appliance;
 
 import appliance.workItems.Clothes;
+import general.Fasada;
 import general.House;
 import people.Person;
 
@@ -20,6 +21,7 @@ public class WashingMachine extends Appliance {
         this.electricityOff = electricityOff;
         this.water = water;
         content = new Clothes(house);
+        applianceType = Fasada.allClasses.washingMachine;
     }
 
     @Override

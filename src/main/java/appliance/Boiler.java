@@ -1,5 +1,6 @@
 package appliance;
 
+import general.Fasada;
 import general.House;
 import general.Room;
 import general.Tickable;
@@ -14,6 +15,7 @@ public class Boiler extends Appliance implements Tickable {
         this.electricityOn = electricityOn;
         this.electricityOff = electricityOff;
         this.water = water;
+        applianceType = Fasada.allClasses.boiler;
     }
 
     @Override

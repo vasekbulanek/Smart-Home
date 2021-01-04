@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Locale;
 
 public class RoomFasada extends Fasada {
     HashMap<String, Integer> lasts;
@@ -40,26 +41,27 @@ public class RoomFasada extends Fasada {
                             .toString());
                     //System.out.println(name+" "+count);
                     for (; count > 0; count--) {
-                        if (lasts.containsKey(name)) {
-                            for (Fasada fasada : fasadas) {
-                                if (fasada.getNextByType(name, lasts.get(name)) != null) {
-                                    room1.addPropriet((Tickable) fasada.getNextByType(name, lasts.get(name)), null);
-                                    lasts.replace(name, fasada.getNextByType(name, lasts.get(name))
-                                            .hashCode());
+                        if (convert(name) != null) {
+                            if (lasts.containsKey(name)) {
+                                for (Fasada fasada : fasadas) {
+                                    if (fasada.getNextByType(convert(name), lasts.get(name)) != null) {
+                                        room1.addPropriet((Tickable) fasada.getNextByType(convert(name), lasts.get(name)), null);
+                                        lasts.replace(name, fasada.getNextByType(convert(name), lasts.get(name))
+                                                .hashCode());
+                                    }
                                 }
-                            }
-                        } else {
-                            for (Fasada fasada : fasadas) {
-                                if (fasada.getByType(name) != null) {
-                                    room1.addPropriet((Tickable) fasada.getByType(name), null);
-                                    lasts.put(name, fasada.getByType(name)
-                                            .hashCode());
+                            } else {
+                                for (Fasada fasada : fasadas) {
+                                    if (fasada.getByType(convert(name)) != null) {
+                                        room1.addPropriet((Tickable) fasada.getByType(convert(name)), null);
+                                        lasts.put(name, fasada.getByType(convert(name))
+                                                .hashCode());
+                                    }
                                 }
                             }
                         }
                     }
                 }
-
                 roomLinkedList.add(room1);
             }
 
@@ -74,12 +76,12 @@ public class RoomFasada extends Fasada {
     }
 
     @Override
-    public Object getByType(String k) {
+    public Room getByType(allClasses allClasses) {
         return roomLinkedList.get(0);
     }
 
     @Override
-    public Object getNextByType(String type, int hash) {
+    public Room getNextByType(allClasses type, int hash) {
         for (Room room :roomLinkedList) {
             if(room.hashCode()==hash)return room;
         }
@@ -107,6 +109,14 @@ public class RoomFasada extends Fasada {
     }
     public Room getOutside(){
         return outside;
+    }
+
+    public static allClasses convert(String string) {
+        for (allClasses a:allClasses.values()) {
+            System.out.println(a + " "+string.toLowerCase(Locale.ROOT));
+            if(a.toString().contains(string.toLowerCase(Locale.ROOT)))return a;
+        }
+        return null;
     }
 }
 

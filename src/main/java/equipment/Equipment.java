@@ -1,9 +1,6 @@
 package equipment;
 
-import general.House;
-import general.Repairable;
-import general.Room;
-import general.Tickable;
+import general.*;
 import people.Person;
 
 public abstract class Equipment implements Repairable {
@@ -12,6 +9,7 @@ public abstract class Equipment implements Repairable {
     House house;
     Room room;
     Room whenTidy;
+    Fasada.allClasses equipmentType;
 
     public Equipment(House house) {
         this.house=house;
@@ -72,4 +70,7 @@ public abstract class Equipment implements Repairable {
         }
     }
 
+    public Fasada.allClasses getEquipmentType() {
+        return equipmentType;
+    }
 }
