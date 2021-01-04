@@ -3,7 +3,7 @@ package general;
 public interface Tickable {
     void tick();
 
-    void report();
+    void report(Reporter reporter);
 
     void place(Room room);
     Room getRoom();

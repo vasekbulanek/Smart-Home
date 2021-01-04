@@ -1,9 +1,6 @@
 package appliance;
 
-import general.Fasada;
-import general.House;
-import general.Room;
-import general.Tickable;
+import general.*;
 
 public class Iron extends Appliance implements Tickable {
     private int electricityOn;
@@ -30,7 +27,7 @@ public class Iron extends Appliance implements Tickable {
     }
 
     @Override
-    public void report() {
+    public void report(Reporter reporter) {
 
     }
 

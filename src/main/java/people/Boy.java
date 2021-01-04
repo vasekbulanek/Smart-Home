@@ -3,6 +3,7 @@ package people;
 import animals.Animal;
 import general.Fasada;
 import general.House;
+import general.Reporter;
 
 public class Boy extends Person  {
 
@@ -39,7 +40,7 @@ public class Boy extends Person  {
     }
 
     @Override
-    public void report() {
+    public void report(Reporter reporter) {
 
     }
 

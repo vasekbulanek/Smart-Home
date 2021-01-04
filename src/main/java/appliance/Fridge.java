@@ -3,9 +3,7 @@ package appliance;
 import appliance.workItems.Foodstuff;
 import general.Fasada;
 import general.House;
-import general.Room;
-
-import java.util.LinkedList;
+import general.Reporter;
 
 public class Fridge extends Appliance {
     private Foodstuff content;
@@ -20,7 +18,7 @@ public class Fridge extends Appliance {
         applianceType = Fasada.allClasses.fridge;
     }
 
-    public void report() {
+    public void report(Reporter reporter) {
 
     }
 

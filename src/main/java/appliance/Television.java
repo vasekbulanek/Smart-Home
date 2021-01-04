@@ -1,10 +1,6 @@
 package appliance;
 
-import appliance.Appliance;
-import general.Fasada;
-import general.House;
-import general.Room;
-import general.Tickable;
+import general.*;
 
 public class Television extends Appliance {
     private int electricityOn;
@@ -29,7 +25,7 @@ public class Television extends Appliance {
     }
 
     @Override
-    public void report() {
+    public void report(Reporter reporter) {
 
     }
 

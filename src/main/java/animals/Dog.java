@@ -1,9 +1,6 @@
 package animals;
 
-import general.Fasada;
-import general.House;
-import general.Room;
-import general.Tickable;
+import general.*;
 import people.Person;
 
 public class Dog extends Animal{
@@ -45,7 +42,7 @@ public class Dog extends Animal{
     }
 
     @Override
-    public void report() {
+    public void report(Reporter reporter) {
 
     }
 

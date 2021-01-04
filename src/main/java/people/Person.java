@@ -30,12 +30,6 @@ public abstract class Person  extends Observer implements Tickable {
         this.name=name;
     }
 
-
-    protected void eat(Foodstuff foodstuff) {
-        foodstuff.beEaten();
-        hunger = 0;
-    }
-
     protected void sleep() {
         activity = longActivity.sleep;
     }
@@ -79,13 +73,13 @@ public abstract class Person  extends Observer implements Tickable {
         this.room=room;
     }
 
-    public abstract void report();
+    public abstract void report(Reporter reporter);
 
     public void tick(){
         hunger++;
         if(hunger>8){
             Fridge fridge = (Fridge) house.getApplianceFasada().getByType(Fasada.allClasses.fridge);
-            if(fridge!=null)fridge.getContent().beEaten();
+            if(fridge!=null)fridge.getContent().beEaten(this);
         }
         if(activity!=longActivity.no){
             if(activity==longActivity.sleep){
@@ -153,6 +147,9 @@ public abstract class Person  extends Observer implements Tickable {
 
     public Fasada.allClasses getPersonType() {
         return personType;
+    }
+    public void eat(Foodstuff foodstuff){
+        hunger=0;
     }
 }
 

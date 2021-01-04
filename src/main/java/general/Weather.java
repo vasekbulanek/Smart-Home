@@ -89,7 +89,7 @@ public class Weather implements Tickable {
     }
 
     @Override
-    public void report() {
+    public void report(Reporter reporter) {
 
     }
 

@@ -1,9 +1,6 @@
 package equipment;
 
-import general.Fasada;
-import general.House;
-import general.Room;
-import general.Tickable;
+import general.*;
 import people.Person;
 
 import java.util.Random;
@@ -59,7 +56,7 @@ public class Ski extends Equipment  {
     }
 
     @Override
-    public void report() {
+    public void report(Reporter reporter) {
 
     }
 
