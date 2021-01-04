@@ -34,11 +34,11 @@ public class WashingMachine extends Appliance {
         if (this.on) {
             this.usedElectricity += this.electricityOn;
             this.usedWater += this.water;
-            on=false;
+            on = false;
         } else {
             this.usedElectricity += this.electricityOff;
         }
         Random random = new Random();
-        if(random.nextInt(24)==1)content.becomeDirty();
+        if (random.nextInt(24) == 1) content.becomeDirty();
     }
 }

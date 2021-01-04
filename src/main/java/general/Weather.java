@@ -23,7 +23,7 @@ public class Weather implements Tickable {
         maxTemperature = 35;
         minTemperature = -10;
         sky = clouds.sunny;
-        observers=new LinkedList<>();
+        observers = new LinkedList<>();
     }
 
     private void changeTemperature() {
@@ -68,7 +68,7 @@ public class Weather implements Tickable {
                 } else sky = clouds.overcast;
                 return;
             case sunny:
-                if (number < 0){
+                if (number < 0) {
                     sky = clouds.clouds;
                     inform();
                 }
@@ -101,11 +101,13 @@ public class Weather implements Tickable {
     public Room getRoom() {
         return null;
     }
-    public void addObserver(Blinds blinds){
+
+    public void addObserver(Blinds blinds) {
         observers.add(blinds);
     }
-    private void inform(){
-        for (Blinds b:observers) {
+
+    private void inform() {
+        for (Blinds b : observers) {
             b.use();
         }
     }

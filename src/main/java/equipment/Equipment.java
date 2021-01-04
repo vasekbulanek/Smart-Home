@@ -11,7 +11,7 @@ public abstract class Equipment implements Repairable {
     Fasada.allClasses equipmentType;
 
     public Equipment(House house) {
-        this.house=house;
+        this.house = house;
         functionality = true;
     }
 
@@ -25,30 +25,34 @@ public abstract class Equipment implements Repairable {
 
     public abstract void tick();
 
-    public Room getRoom(){
-        if(room!=null)return room;
-        house.getRoomFasada().getOutside().addPropriet(this, null);
-        return house.getRoomFasada().getOutside();
+    public Room getRoom() {
+        if (room != null) return room;
+        house.getRoomFasada()
+             .getOutside()
+             .addPropriet(this, null);
+        return house.getRoomFasada()
+                    .getOutside();
     }
 
     @Override
     public void place(Room room) {
-        if(whenTidy==null){
-            whenTidy=room;
+        if (whenTidy == null) {
+            whenTidy = room;
         }
-        this.room=room;
+        this.room = room;
     }
 
     public abstract int getTimeToService();
+
     public abstract boolean isBroken();
 
     public abstract boolean isInUse();
 
     protected abstract void refreshService();
 
-    public void repair(Person person){
-        if(!functionality || getTimeToService()<24){
-            functionality=true;
+    public void repair(Person person) {
+        if (!functionality || getTimeToService() < 24) {
+            functionality = true;
             refreshService();
             person.delay();
         }

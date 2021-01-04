@@ -8,7 +8,7 @@ import java.util.Random;
 public class Bicycle extends Equipment implements Tickable {
     private boolean broken;
     private int timeToService;
-    private final int service = 24*60;
+    private final int service = 24 * 60;
     private final int using = 3;
     private final int OKusageLikehood = 5;
     private boolean inUse;
@@ -23,14 +23,20 @@ public class Bicycle extends Equipment implements Tickable {
 
     public boolean use(Person person) {
         if (!inUse) {
-            if ( broken || timeToService <= 0){
-                house.getPeopleFasada().getByType(Fasada.allClasses.father).addRepairableRequest(this);
+            if (broken || timeToService <= 0) {
+                house.getPeopleFasada()
+                     .getByType(Fasada.allClasses.father)
+                     .addRepairableRequest(this);
                 return false;
             }
             timeToService -= using;
             inUse = true;
-            house.getRoomFasada().getOutside().addPropriet(this, room);
-            house.getRoomFasada().getOutside().addPropriet(person, room);
+            house.getRoomFasada()
+                 .getOutside()
+                 .addPropriet(this, room);
+            house.getRoomFasada()
+                 .getOutside()
+                 .addPropriet(person, room);
             person.setUsing(this);
             return true;
         } else return false;
@@ -38,7 +44,7 @@ public class Bicycle extends Equipment implements Tickable {
     }
 
     public void Tidy() {
-        if(whenTidy!=null) {
+        if (whenTidy != null) {
             whenTidy.addPropriet(this, room);
         }
         Random random = new Random();
@@ -47,7 +53,9 @@ public class Bicycle extends Equipment implements Tickable {
             if (random.nextBoolean()) return;
         }
         broken = true;
-        house.getPeopleFasada().getByType(Fasada.allClasses.father).addRepairableRequest(this);
+        house.getPeopleFasada()
+             .getByType(Fasada.allClasses.father)
+             .addRepairableRequest(this);
     }
 
     @Override
@@ -64,12 +72,12 @@ public class Bicycle extends Equipment implements Tickable {
         return timeToService;
     }
 
-    protected void refreshService(){
-        timeToService=service;
+    protected void refreshService() {
+        timeToService = service;
     }
 
     public boolean isBroken() {
-        return broken && timeToService<0;
+        return broken && timeToService < 0;
     }
 
     public boolean isInUse() {

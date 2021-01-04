@@ -9,13 +9,13 @@ import java.util.HashMap;
 import java.util.Random;
 
 
-public class Father extends Person  {
+public class Father extends Person {
     private static Father singleton = null;
     private HashMap<String, String> diary;
 
     private Father(House house, String name) {
         super(house, name);
-        personType= Fasada.allClasses.father;
+        personType = Fasada.allClasses.father;
         diary = new HashMap<>();
     }
 
@@ -38,38 +38,48 @@ public class Father extends Person  {
     @Override
     public void tick() {
         super.tick();
-        if(request.allRequests()>0){
-            if(request.hasTo(Request.Typ.work)>0){
-                if(house.getPeopleFasada().getByType(Fasada.allClasses.girl)!=null){
-                    house.getPeopleFasada().getByType(Fasada.allClasses.girl).addWorkRequest(request.getWork());
+        if (request.allRequests() > 0) {
+            if (request.hasTo(Request.Typ.work) > 0) {
+                if (house.getPeopleFasada()
+                         .getByType(Fasada.allClasses.girl) != null) {
+                    house.getPeopleFasada()
+                         .getByType(Fasada.allClasses.girl)
+                         .addWorkRequest(request.getWork());
                     diary.put("passed work to girl", "activity");
-                }
-                else if(house.getPeopleFasada().getByType(Fasada.allClasses.boy)!=null){
-                    house.getPeopleFasada().getByType(Fasada.allClasses.boy).addWorkRequest(request.getWork());
+                } else if (house.getPeopleFasada()
+                                .getByType(Fasada.allClasses.boy) != null) {
+                    house.getPeopleFasada()
+                         .getByType(Fasada.allClasses.boy)
+                         .addWorkRequest(request.getWork());
                     diary.put("passed work to boy", "activity");
-                }
-                else {
+                } else {
                     workSolve();
                     return;
                 }
             }
-            if(request.hasTo(Request.Typ.repairable)>0){
-                if(request.hasTo(Request.Typ.repairable)>2){
-                    if (house.getPeopleFasada().getByType(Fasada.allClasses.boy)!=null){
-                        house.getPeopleFasada().getByType(Fasada.allClasses.boy).addRepairableRequest(request.getRepairable());
+            if (request.hasTo(Request.Typ.repairable) > 0) {
+                if (request.hasTo(Request.Typ.repairable) > 2) {
+                    if (house.getPeopleFasada()
+                             .getByType(Fasada.allClasses.boy) != null) {
+                        house.getPeopleFasada()
+                             .getByType(Fasada.allClasses.boy)
+                             .addRepairableRequest(request.getRepairable());
                     }
                 }
-                request.getRepairable().repair(this);
+                request.getRepairable()
+                       .repair(this);
                 return;
             }
-            if(request.hasTo(Request.Typ.animal)>0){
-                request.getAnimal().feed();
+            if (request.hasTo(Request.Typ.animal) > 0) {
+                request.getAnimal()
+                       .feed();
             }
         }
         Random random = new Random();
-        if(random.nextBoolean()){
-            Appliance a = house.getApplianceFasada().getByType(Fasada.allClasses.television);
-            if(a!=null){
+        if (random.nextBoolean()) {
+            Appliance a = house.getApplianceFasada()
+                               .getByType(Fasada.allClasses.television);
+            if (a != null) {
                 a.use(this);
                 return;
             }
@@ -79,11 +89,11 @@ public class Father extends Person  {
 
     @Override
     public void report(Reporter reporter) {
-        for (String key:diary.keySet()) {
-            if(!diary.get(key).equals("activity")) {
+        for (String key : diary.keySet()) {
+            if (!diary.get(key)
+                      .equals("activity")) {
                 reporter.eventSolved(key, diary.get(key));
-            }
-            else reporter.activityCatch(personType.toString() + " " + name, key);
+            } else reporter.activityCatch(personType.toString() + " " + name, key);
         }
     }
 

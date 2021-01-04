@@ -21,16 +21,18 @@ public abstract class Appliance implements Repairable {
         this.house = house;
     }
 
-    public boolean use(Person person){
+    public boolean use(Person person) {
         room.addPropriet(person, person.getRoom());
         Random random = new Random();
-        if(random.nextInt(100)==1)breakDown();
-        on=true;
+        if (random.nextInt(100) == 1) breakDown();
+        on = true;
         return functionality;
     }
 
     protected void breakDown() {
-        house.getPeopleFasada().getByType(Fasada.allClasses.father).addRepairableRequest(this);
+        house.getPeopleFasada()
+             .getByType(Fasada.allClasses.father)
+             .addRepairableRequest(this);
         functionality = false;
     }
 

@@ -21,7 +21,7 @@ public class PeopleFasada extends Fasada {
         super(house, initFile);
         personMap = new HashMap<>();
         JSONParser parser = new JSONParser();
-        this.house=house;
+        this.house = house;
         try {
             Object obj = parser.parse(new FileReader(initFile));
             JSONObject jsonObject = (JSONObject) obj;
@@ -30,7 +30,7 @@ public class PeopleFasada extends Fasada {
             for (Object key : people.keySet()) {
                 String name = key.toString();
                 String type = people.get(key)
-                        .toString();
+                                    .toString();
                 System.out.println("Hi, I am " + name + " and I am " + type);
                 switch (type) {
                     case ("Father"):
@@ -80,13 +80,13 @@ public class PeopleFasada extends Fasada {
     public Person getByType(allClasses personType) { // I am not sure if it is the best way, but it works
         LinkedList<Person> people = new LinkedList<>();
         for (Person values : personMap.values()) {
-            if (values.getPersonType()==personType){
+            if (values.getPersonType() == personType) {
                 people.add(values);
             }
         }
-        if(people.size()>0){
+        if (people.size() > 0) {
             Random random = new Random();
-            return people.get(random.nextInt(people.size()+2)%people.size());
+            return people.get(random.nextInt(people.size() + 2) % people.size());
         }
         return null;
     }
@@ -95,27 +95,34 @@ public class PeopleFasada extends Fasada {
         boolean found = false;
         for (Person key : personMap.values()) {
             if (!found && key.hashCode() == hash) found = true;
-            else if (found && key.getPersonType()==type) {
+            else if (found && key.getPersonType() == type) {
                 return key;
             }
         }
         return null;
     }
-    public void checkRooms(){
-        for (Person p: personMap.values()) {
-            if (p.getRoom()==house.getRoomFasada().getOutside()){
-                house.getRoomFasada().getRoomLinkedList().get(0).addPropriet(p, p.room);
+
+    public void checkRooms() {
+        for (Person p : personMap.values()) {
+            if (p.getRoom() == house.getRoomFasada()
+                                    .getOutside()) {
+                house.getRoomFasada()
+                     .getRoomLinkedList()
+                     .get(0)
+                     .addPropriet(p, p.room);
             }
         }
     }
-    public Person getRandom(){
+
+    public Person getRandom() {
         Random r = new Random();
-        Person person = (Person) personMap.values().toArray()[r.nextInt(personMap.size())];
+        Person person = (Person) personMap.values()
+                                          .toArray()[r.nextInt(personMap.size())];
         System.out.println(person);
         return person;
     }
 
-    public int getSize(){
+    public int getSize() {
         return personMap.size();
     }
 }

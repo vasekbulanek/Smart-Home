@@ -18,7 +18,7 @@ public class Television extends Appliance {
 
         if (this.on) {
             this.usedElectricity += this.electricityOn;
-            on=false;
+            on = false;
         } else {
             this.usedElectricity += this.electricityOff;
         }

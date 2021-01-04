@@ -6,5 +6,6 @@ public interface Tickable {
     void report(Reporter reporter);
 
     void place(Room room);
+
     Room getRoom();
 }

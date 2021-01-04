@@ -18,7 +18,7 @@ public class AnimalFasada extends Fasada {
     public AnimalFasada(House house, String initFile) {
         super(house, initFile);
         animalMap = new HashMap<>();
-        this.house=house;
+        this.house = house;
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse(new FileReader(initFile));
@@ -28,7 +28,7 @@ public class AnimalFasada extends Fasada {
             for (Object key : people.keySet()) {
                 String name = key.toString();
                 String type = people.get(key)
-                        .toString();
+                                    .toString();
                 System.out.println("Hi, I am " + name + " and I am " + type);
                 switch (type) {
                     case ("Bird"):
@@ -72,8 +72,8 @@ public class AnimalFasada extends Fasada {
     public Animal getByType(allClasses type) { // I am not sure if it is the best way, but it works
         for (Animal key : animalMap.values()) {
             if (key.getClass()
-                    .toString()
-                    .equals("class animal." + type)) {
+                   .toString()
+                   .equals("class animal." + type)) {
                 return key;
             }
         }
@@ -85,15 +85,15 @@ public class AnimalFasada extends Fasada {
         boolean found = false;
         for (Animal key : animalMap.values()) {
             if (!found && key.hashCode() == hash) found = true;
-            else if (found && key.getAnimalType()==allClasses) {
+            else if (found && key.getAnimalType() == allClasses) {
                 return key;
             }
         }
         return null;
     }
 
-    public void checkRooms(){
-        for (Animal p: animalMap.values()) {
+    public void checkRooms() {
+        for (Animal p : animalMap.values()) {
             p.getRoom();
         }
     }

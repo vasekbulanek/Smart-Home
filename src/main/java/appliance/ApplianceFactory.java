@@ -11,18 +11,18 @@ public class ApplianceFactory {
 
     public ApplianceFactory(ApplianceFasada applianceFasada, House house) {
         this.applianceFasada = applianceFasada;
-        this.house=house;
+        this.house = house;
     }
 
     protected void create(Object key, JSONObject object) {
         JSONObject appliance = (JSONObject) object.get("appliance");
         int count = applianceFasada.countJsonItems(key.toString(), object);
         int elecOn = Integer.parseInt(((JSONObject) appliance.get(key)).get("electricity on")
-                .toString());
+                                                                       .toString());
         int elecOff = Integer.parseInt(((JSONObject) appliance.get(key)).get("electricity off")
-                .toString());
+                                                                        .toString());
         int water = Integer.parseInt(((JSONObject) appliance.get(key)).get("water")
-                .toString());
+                                                                      .toString());
 
         System.out.println("There will be " + count + " " + key.toString());
         switch (key.toString()) {
@@ -50,4 +50,5 @@ public class ApplianceFactory {
             default:
                 System.out.println("There is unknown appliance type " + key.toString() + ". Check init.json, please.");
         }
-    }}
+    }
+}

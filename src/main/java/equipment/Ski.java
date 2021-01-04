@@ -5,15 +5,15 @@ import people.Person;
 
 import java.util.Random;
 
-public class Ski extends Equipment  {
+public class Ski extends Equipment {
     private boolean broken;
     private int timeToService;
-    private final int service = 50*24;
+    private final int service = 50 * 24;
     private final int using = 4;
     private final int OKusageLikehood = 4;
     private boolean inUse;
 
-    public Ski(House  house) {
+    public Ski(House house) {
         super(house);
         broken = false;
         timeToService = service;
@@ -23,14 +23,20 @@ public class Ski extends Equipment  {
 
     public boolean use(Person person) {
         if (!inUse) {
-            if ( broken || timeToService <= 0){
-                house.getPeopleFasada().getByType(Fasada.allClasses.father).addRepairableRequest(this);
+            if (broken || timeToService <= 0) {
+                house.getPeopleFasada()
+                     .getByType(Fasada.allClasses.father)
+                     .addRepairableRequest(this);
                 return false;
             }
             timeToService -= using;
             inUse = true;
-            house.getRoomFasada().getOutside().addPropriet(this, room);
-            house.getRoomFasada().getOutside().addPropriet(person, room);
+            house.getRoomFasada()
+                 .getOutside()
+                 .addPropriet(this, room);
+            house.getRoomFasada()
+                 .getOutside()
+                 .addPropriet(person, room);
             person.setUsing(this);
             return true;
         } else return false;
@@ -38,7 +44,7 @@ public class Ski extends Equipment  {
     }
 
     public void Tidy() {
-        if(whenTidy!=null) {
+        if (whenTidy != null) {
             whenTidy.addPropriet(this, room);
         }
         Random random = new Random();
@@ -47,7 +53,9 @@ public class Ski extends Equipment  {
             if (random.nextBoolean()) return;
         }
         broken = true;
-        house.getPeopleFasada().getByType(Fasada.allClasses.father).addRepairableRequest(this);
+        house.getPeopleFasada()
+             .getByType(Fasada.allClasses.father)
+             .addRepairableRequest(this);
     }
 
     @Override
@@ -64,8 +72,8 @@ public class Ski extends Equipment  {
         return timeToService;
     }
 
-    protected void refreshService(){
-        timeToService=service;
+    protected void refreshService() {
+        timeToService = service;
     }
 
     public boolean isBroken() {

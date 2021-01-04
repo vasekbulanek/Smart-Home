@@ -7,7 +7,7 @@ import equipment.Equipment;
 import general.*;
 import appliance.workItems.Foodstuff;
 
-public abstract class Person  extends Observer implements Tickable {
+public abstract class Person extends Observer implements Tickable {
     int hunger;
     protected final Request request;
     Room room;
@@ -17,17 +17,17 @@ public abstract class Person  extends Observer implements Tickable {
     protected general.Fasada.allClasses personType;
     protected String name;
 
-    protected enum longActivity{
+    protected enum longActivity {
         no, sleep, sport, other
     }
 
     public Person(House house, String name) {
         super(house.getTime());
         this.house = house;
-        hunger=0;
-        activity=longActivity.no;
+        hunger = 0;
+        activity = longActivity.no;
         request = new Request();
-        this.name=name;
+        this.name = name;
     }
 
     protected void sleep() {
@@ -40,59 +40,77 @@ public abstract class Person  extends Observer implements Tickable {
 
     protected boolean sport() {
         Fasada.allClasses eq = Fasada.allClasses.ski;
-        if (house.getWeather().getTemperature()>0){
+        if (house.getWeather()
+                 .getTemperature() > 0) {
             eq = Fasada.allClasses.bicycle;
         }
-        Equipment equipment = house.getEquipmentFasada().getByType(eq);
-        if(equipment==null)return false;
-        while (equipment.isInUse()){
-            equipment = house.getEquipmentFasada().getNextByType(eq, equipment.hashCode());
-            if (equipment==null)return false;
+        Equipment equipment = house.getEquipmentFasada()
+                                   .getByType(eq);
+        if (equipment == null) return false;
+        while (equipment.isInUse()) {
+            equipment = house.getEquipmentFasada()
+                             .getNextByType(eq, equipment.hashCode());
+            if (equipment == null) return false;
         }
-        if (equipment.isBroken()){
-            house.getPeopleFasada().getByType(Fasada.allClasses.father).addRepairableRequest(equipment);
+        if (equipment.isBroken()) {
+            house.getPeopleFasada()
+                 .getByType(Fasada.allClasses.father)
+                 .addRepairableRequest(equipment);
             return false;
         }
-        house.getRoomFasada().getOutside().addPropriet(this, room);
-        if(equipment.use(this)){
-            activity=longActivity.sport;
+        house.getRoomFasada()
+             .getOutside()
+             .addPropriet(this, room);
+        if (equipment.use(this)) {
+            activity = longActivity.sport;
             return true;
         }
         return false;
     }
 
-    public Room getRoom(){
-        if(room!=null)return room;
-        if(house.getRoomFasada()==null)return null;
-        house.getRoomFasada().getOutside().addPropriet(this, room);
-        return house.getRoomFasada().getOutside();
+    public Room getRoom() {
+        if (room != null) return room;
+        if (house.getRoomFasada() == null) return null;
+        house.getRoomFasada()
+             .getOutside()
+             .addPropriet(this, room);
+        return house.getRoomFasada()
+                    .getOutside();
     }
 
     @Override
     public void place(Room room) {
-        this.room=room;
+        this.room = room;
     }
 
     public abstract void report(Reporter reporter);
 
-    public void tick(){
+    public void tick() {
         hunger++;
-        if(hunger>8){
-            Fridge fridge = (Fridge) house.getApplianceFasada().getByType(Fasada.allClasses.fridge);
-            if(fridge!=null)fridge.getContent().beEaten(this);
+        if (hunger > 8) {
+            Fridge fridge = (Fridge) house.getApplianceFasada()
+                                          .getByType(Fasada.allClasses.fridge);
+            if (fridge != null) fridge.getContent()
+                                      .beEaten(this);
         }
-        if(activity!=longActivity.no){
-            if(activity==longActivity.sleep){
+        if (activity != longActivity.no) {
+            if (activity == longActivity.sleep) {
                 return;
             }
-            if (activity == longActivity.sport && using!=null){
+            if (activity == longActivity.sport && using != null) {
                 using.Tidy();
-                if(house.getApplianceFasada().getByType(Fasada.allClasses.boiler)!=null){
-                    house.getApplianceFasada().getByType(Fasada.allClasses.boiler).use(this);
-                }else house.getRoomFasada().getRoomLinkedList().get(0).addPropriet(this, room);
-                using=null;
+                if (house.getApplianceFasada()
+                         .getByType(Fasada.allClasses.boiler) != null) {
+                    house.getApplianceFasada()
+                         .getByType(Fasada.allClasses.boiler)
+                         .use(this);
+                } else house.getRoomFasada()
+                            .getRoomLinkedList()
+                            .get(0)
+                            .addPropriet(this, room);
+                using = null;
             }
-            activity=longActivity.no;
+            activity = longActivity.no;
             return;
         }
     }
@@ -117,39 +135,44 @@ public abstract class Person  extends Observer implements Tickable {
         request.addWork(work);
     }
 
-    public void update(){
-        if(activity!=longActivity.sleep && !house.getTime().isDay()){
-            if(house.getRoomFasada().getByName("bedroom")!=null){
-                ((Room)house.getRoomFasada().getByName("bedroom")).addPropriet(this, room);
+    public void update() {
+        if (activity != longActivity.sleep && !house.getTime()
+                                                    .isDay()) {
+            if (house.getRoomFasada()
+                     .getByName("bedroom") != null) {
+                ((Room) house.getRoomFasada()
+                             .getByName("bedroom")).addPropriet(this, room);
             }
-            activity=longActivity.sleep;
-        }
-        else if(activity==longActivity.sleep && house.getTime().isDay()){
-            activity=longActivity.no;
+            activity = longActivity.sleep;
+        } else if (activity == longActivity.sleep && house.getTime()
+                                                          .isDay()) {
+            activity = longActivity.no;
         }
     }
-    public void delay(){
-        activity=longActivity.other;
+
+    public void delay() {
+        activity = longActivity.other;
     }
 
     public void setUsing(Equipment using) {
         this.using = using;
     }
 
-    protected void workSolve(){
+    protected void workSolve() {
         Work r = request.getWork();
         Fasada.allClasses name = r.need();
-        if(name!=null){
-            r.work(house.getApplianceFasada().getByType(name), this);
-        }
-        else r.work();
+        if (name != null) {
+            r.work(house.getApplianceFasada()
+                        .getByType(name), this);
+        } else r.work();
     }
 
     public Fasada.allClasses getPersonType() {
         return personType;
     }
-    public void eat(Foodstuff foodstuff){
-        hunger=0;
+
+    public void eat(Foodstuff foodstuff) {
+        hunger = 0;
     }
 }
 

@@ -21,7 +21,7 @@ public class Boiler extends Appliance implements Tickable {
         if (this.on) {
             this.usedElectricity += this.electricityOn;
             this.usedWater += this.water;
-            on=false;
+            on = false;
         } else {
             this.usedElectricity += this.electricityOff;
         }

@@ -20,7 +20,7 @@ public class Iron extends Appliance implements Tickable {
 
         if (this.on) {
             this.usedElectricity += this.electricityOn;
-            on=false;
+            on = false;
         } else {
             this.usedElectricity += this.electricityOff;
         }

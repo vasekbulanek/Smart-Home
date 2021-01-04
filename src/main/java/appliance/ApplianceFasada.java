@@ -24,10 +24,10 @@ public class ApplianceFasada extends Fasada {
             Object obj = parser.parse(new FileReader(initFile));
             JSONObject jsonObject = (JSONObject) obj;
             waterPrice = Integer.parseInt(((JSONObject) jsonObject.get("prices")).get("water")
-                    .toString());
+                                                                                 .toString());
             System.out.println("water " + waterPrice);
             electricityPrice = Integer.parseInt(((JSONObject) jsonObject.get("prices")).get("electricity")
-                    .toString());
+                                                                                       .toString());
             JSONObject appliance = (JSONObject) jsonObject.get("appliance");
             ApplianceFactory applianceFactory = new ApplianceFactory(this, house);
             for (Object key : appliance.keySet()) {
@@ -52,7 +52,7 @@ public class ApplianceFasada extends Fasada {
 
     public Appliance getByType(allClasses type) { // I am not sure if it is the best way, but it works
         for (Appliance a : appliances) {
-            if (type== a.getApplianceType()) {
+            if (type == a.getApplianceType()) {
                 return a;
             }
         }

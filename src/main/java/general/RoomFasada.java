@@ -37,7 +37,7 @@ public class RoomFasada extends Fasada {
                 for (Object thing : inside.keySet()) {
                     String name = thing.toString();
                     int count = Integer.parseInt(inside.get(thing)
-                            .toString());
+                                                       .toString());
                     for (; count > 0; count--) {
                         if (convert(name) != null) {
                             if (lasts.containsKey(name)) {
@@ -45,7 +45,7 @@ public class RoomFasada extends Fasada {
                                     if (fasada.getNextByType(convert(name), lasts.get(name)) != null) {
                                         room1.addPropriet((Tickable) fasada.getNextByType(convert(name), lasts.get(name)), null);
                                         lasts.replace(name, fasada.getNextByType(convert(name), lasts.get(name))
-                                                .hashCode());
+                                                                  .hashCode());
                                     }
                                 }
                             } else {
@@ -53,7 +53,7 @@ public class RoomFasada extends Fasada {
                                     if (fasada.getByType(convert(name)) != null) {
                                         room1.addPropriet((Tickable) fasada.getByType(convert(name)), null);
                                         lasts.put(name, fasada.getByType(convert(name))
-                                                .hashCode());
+                                                              .hashCode());
                                     }
                                 }
                             }
@@ -77,8 +77,8 @@ public class RoomFasada extends Fasada {
 
     @Override
     public Room getNextByType(allClasses type, int hash) {
-        for (Room room :roomLinkedList) {
-            if(room.hashCode()==hash)return room;
+        for (Room room : roomLinkedList) {
+            if (room.hashCode() == hash) return room;
         }
         return null;
     }
@@ -87,9 +87,11 @@ public class RoomFasada extends Fasada {
         if (lasts.containsKey(k)) lasts.replace(k, hash);
         else lasts.put(k, hash);
     }
+
     public Object getByName(String k) {
-        for (Room room :roomLinkedList) {
-            if(room.getName().equals(k))return room;
+        for (Room room : roomLinkedList) {
+            if (room.getName()
+                    .equals(k)) return room;
         }
         return null;
     }
@@ -102,13 +104,15 @@ public class RoomFasada extends Fasada {
     public LinkedList<Room> getRoomLinkedList() {
         return roomLinkedList;
     }
-    public Room getOutside(){
+
+    public Room getOutside() {
         return outside;
     }
 
     public static allClasses convert(String string) {
-        for (allClasses a:allClasses.values()) {
-            if(a.toString().contains(string.toLowerCase(Locale.ROOT)))return a;
+        for (allClasses a : allClasses.values()) {
+            if (a.toString()
+                 .contains(string.toLowerCase(Locale.ROOT))) return a;
         }
         return null;
     }

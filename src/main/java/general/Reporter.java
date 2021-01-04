@@ -74,9 +74,11 @@ public class Reporter {
         for (String creature : this.activities.keySet()) {
             for (String activity : this.activities.get(creature)
                                                   .keySet()) {
-                System.out.println(creature+" spent "+this.activities.get(creature).get(activity)+" hours "+activity);
+                System.out.println(creature + " spent " + this.activities.get(creature)
+                                                                         .get(activity) + " hours " + activity);
             }
         }
+        this.activities.clear();
     }
 
     public void consuptionReport() {

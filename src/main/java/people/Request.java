@@ -60,11 +60,12 @@ public class Request {
     protected int allRequests() {
         return repairableLinkedList.size() + animalLinkedList.size() + personLinkedList.size() + workLinkedList.size();
     }
-    protected Typ getFirst(){
-        if (!personLinkedList.isEmpty())return Typ.person;
-        if (!animalLinkedList.isEmpty())return Typ.animal;
-        if (!repairableLinkedList.isEmpty())return Typ.repairable;
-        if (!workLinkedList.isEmpty())return Typ.work;
+
+    protected Typ getFirst() {
+        if (!personLinkedList.isEmpty()) return Typ.person;
+        if (!animalLinkedList.isEmpty()) return Typ.animal;
+        if (!repairableLinkedList.isEmpty()) return Typ.repairable;
+        if (!workLinkedList.isEmpty()) return Typ.work;
         return null;
     }
 
@@ -85,6 +86,7 @@ public class Request {
         repairableLinkedList.remove(0);
         return repairable;
     }
+
     protected Work getWork() {
         Work work = workLinkedList.get(0);
         workLinkedList.remove(0);

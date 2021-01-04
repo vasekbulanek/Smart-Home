@@ -12,14 +12,13 @@ public class Room {
     public Room(String name, House house) {
         this.name = name;
         propriets = new LinkedList<>();
-        this.house=house;
+        this.house = house;
     }
 
 
-
     public void addPropriet(Tickable tickable, Room old) {
-        if(old!=null) old.deletePropriet(tickable);
-        if(propriets.contains(tickable))return;
+        if (old != null) old.deletePropriet(tickable);
+        if (propriets.contains(tickable)) return;
         propriets.add(tickable);
         tickable.place(this);
     }
@@ -36,10 +35,11 @@ public class Room {
         return propriets;
     }
 
-    public LinkedList<Person> getPeople(){
+    public LinkedList<Person> getPeople() {
         LinkedList<Person> ret = new LinkedList<>();
-        for (Tickable t:propriets) {
-            if (t.toString().contains("people.")){
+        for (Tickable t : propriets) {
+            if (t.toString()
+                 .contains("people.")) {
                 ret.add((Person) t);
             }
         }
