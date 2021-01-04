@@ -28,7 +28,7 @@ public class Reporter {
     }
 
     public void eventSolved(String event, String entity) {      // more like eventCatch (have to change everywhere)
-        if (this.events.containsKey(event)){
+        if (this.events.containsKey(event)) {
             this.events.replace(event, entity);
         } else {
             this.events.put(event, entity);
@@ -42,7 +42,7 @@ public class Reporter {
             if (handler != null) {
                 System.out.println(event + " handeled succesfuly by " + this.events.get(event));
             } else {
-                System.out.println(event+" is pending");
+                System.out.println(event + " is pending");
             }
         }
         this.events.clear();
@@ -51,9 +51,12 @@ public class Reporter {
     public void activityCatch(String creature, String activity) {   // too complicated probably
         HashMap<String, Integer> insideMap;
         if (this.activities.containsKey(creature)) {
-            if (this.activities.get(creature).containsKey(activity)) {
-                int value = this.activities.get(creature).get(activity);
-                this.activities.get(creature).replace(activity, value + 1);
+            if (this.activities.get(creature)
+                               .containsKey(activity)) {
+                int value = this.activities.get(creature)
+                                           .get(activity);
+                this.activities.get(creature)
+                               .replace(activity, value + 1);
             } else {
                 insideMap = new HashMap<String, Integer>();
                 insideMap.put(activity, 1);
@@ -68,7 +71,12 @@ public class Reporter {
 
     public void activityAndUsageReport() {
         System.out.println("--Activities since last report--");
-
+        for (String creature : this.activities.keySet()) {
+            for (String activity : this.activities.get(creature)
+                                                  .keySet()) {
+                System.out.println(creature+" spent "+this.activities.get(creature).get(activity)+" hours "+activity);
+            }
+        }
     }
 
     public void consuptionReport() {
