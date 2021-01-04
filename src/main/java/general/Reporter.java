@@ -4,10 +4,12 @@ import appliance.Appliance;
 import appliance.ApplianceFasada;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Reporter {
     House house;
     HashMap<String, String> events = new HashMap<>();   // ("#event", "#who managed to get rid of the event")
+    HashMap<String, HashMap<String, Integer>> activities = new HashMap<>();
 
     public Reporter(House house) {
         this.house = house;
@@ -25,15 +27,11 @@ public class Reporter {
         }
     }
 
-    public void newEvent(String event) {
-        this.events.put(event, null);
-    }
-
-    public void eventSolved(String event, String entity) {
-        if (entity != null) {
+    public void eventSolved(String event, String entity) {      // more like eventCatch (have to change everywhere)
+        if (this.events.containsKey(event)){
             this.events.replace(event, entity);
-        } else{
-            this.events.put(event, "itself");
+        } else {
+            this.events.put(event, entity);
         }
     }
 
@@ -50,7 +48,26 @@ public class Reporter {
         this.events.clear();
     }
 
+    public void activityCatch(String creature, String activity) {   // too complicated probably
+        HashMap<String, Integer> insideMap;
+        if (this.activities.containsKey(creature)) {
+            if (this.activities.get(creature).containsKey(activity)) {
+                int value = this.activities.get(creature).get(activity);
+                this.activities.get(creature).replace(activity, value + 1);
+            } else {
+                insideMap = new HashMap<String, Integer>();
+                insideMap.put(activity, 1);
+                this.activities.replace(creature, insideMap);
+            }
+        } else {
+            insideMap = new HashMap<String, Integer>();
+            insideMap.put(activity, 1);
+            this.activities.put(creature, insideMap);
+        }
+    }
+
     public void activityAndUsageReport() {
+        System.out.println("--Activities since last report--");
 
     }
 
