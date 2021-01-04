@@ -6,12 +6,16 @@ import general.Fasada;
 import general.House;
 import general.Reporter;
 
+import java.util.HashMap;
+
 public class Mother extends Person {
     private static Mother singleton = null;
+    private HashMap<String, String> diary;
 
     private Mother(House house, String name) {
         super(house, name);
         personType= Fasada.allClasses.mother;
+        diary = new HashMap<>();
     }
 
 
@@ -75,7 +79,12 @@ public class Mother extends Person {
 
     @Override
     public void report(Reporter reporter) {
-
+        for (String key:diary.keySet()) {
+            if(!diary.get(key).equals("activity")) {
+                reporter.eventSolved(key, diary.get(key));
+            }
+            else reporter.activityCatch(personType.toString() + " " + name, key);
+        }
     }
 
     void solvePerson(Person person){
