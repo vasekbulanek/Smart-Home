@@ -43,6 +43,7 @@ public class Mother extends Person {
                 using=null;
                 Boiler boiler =(Boiler) house.getApplianceFasada().getByType(Fasada.allClasses.boiler);
                 if(boiler!=null)boiler.use(this);
+                else house.getRoomFasada().getRoomLinkedList().get(0).addPropriet(this, room);
             }
             activity=longActivity.no;
             return;

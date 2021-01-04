@@ -1,6 +1,5 @@
 package general;
 
-import appliance.ApplianceFactory;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -39,7 +38,6 @@ public class RoomFasada extends Fasada {
                     String name = thing.toString();
                     int count = Integer.parseInt(inside.get(thing)
                             .toString());
-                    //System.out.println(name+" "+count);
                     for (; count > 0; count--) {
                         if (convert(name) != null) {
                             if (lasts.containsKey(name)) {
@@ -70,9 +68,6 @@ public class RoomFasada extends Fasada {
         }
         outside = new Room("outside", house);
         roomLinkedList.add(outside);
-        for (Room r : roomLinkedList) {
-            r.printContent();
-        }
     }
 
     @Override
@@ -113,7 +108,6 @@ public class RoomFasada extends Fasada {
 
     public static allClasses convert(String string) {
         for (allClasses a:allClasses.values()) {
-            System.out.println(a + " "+string.toLowerCase(Locale.ROOT));
             if(a.toString().contains(string.toLowerCase(Locale.ROOT)))return a;
         }
         return null;

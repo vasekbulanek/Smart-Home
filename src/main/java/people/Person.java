@@ -9,7 +9,7 @@ import appliance.workItems.Foodstuff;
 
 public abstract class Person  extends Observer implements Tickable {
     int hunger;
-    protected final Request request = new Request();
+    protected final Request request;
     Room room;
     House house;
     protected Equipment using;
@@ -25,6 +25,7 @@ public abstract class Person  extends Observer implements Tickable {
         this.house = house;
         hunger=0;
         activity=longActivity.no;
+        request = new Request();
     }
 
 
@@ -56,11 +57,14 @@ public abstract class Person  extends Observer implements Tickable {
             house.getPeopleFasada().getByType(Fasada.allClasses.father).addRepairableRequest(equipment);
             return false;
         }
-        equipment.use(this);
-        activity=longActivity.sport;
-        return true;
-
+        house.getRoomFasada().getOutside().addPropriet(this, room);
+        if(equipment.use(this)){
+            activity=longActivity.sport;
+            return true;
+        }
+        return false;
     }
+
     public Room getRoom(){
         if(room!=null)return room;
         if(house.getRoomFasada()==null)return null;
@@ -87,6 +91,9 @@ public abstract class Person  extends Observer implements Tickable {
             }
             if (activity == longActivity.sport && using!=null){
                 using.Tidy();
+                if(house.getApplianceFasada().getByType(Fasada.allClasses.boiler)!=null){
+                    house.getApplianceFasada().getByType(Fasada.allClasses.boiler).use(this);
+                }else house.getRoomFasada().getRoomLinkedList().get(0).addPropriet(this, room);
                 using=null;
             }
             activity=longActivity.no;

@@ -28,15 +28,17 @@ public class EquipmentFasada extends Fasada {
                 String type = key.toString();
                 int num = countJsonItems(type, jsonObject);
                 System.out.println("There will be " + num + " " + type);
-                switch (type) {
-                    case ("Sky"):
-                        equipment.add(new Sky(house));
-                        break;
-                    case ("Bicycle"):
-                        equipment.add(new Bicycle(house));
-                        break;
-                    default:
-                        System.out.println("There is unknown equipment type " + type + ". Check init.json, please.");
+                for (; num > 0; num--) {
+                    switch (type) {
+                        case ("Sky"):
+                            equipment.add(new Sky(house));
+                            break;
+                        case ("Bicycle"):
+                            equipment.add(new Bicycle(house));
+                            break;
+                        default:
+                            System.out.println("There is unknown equipment type " + type + ". Check init.json, please.");
+                    }
                 }
             }
 
@@ -65,7 +67,7 @@ public class EquipmentFasada extends Fasada {
         boolean found = false;
         for (Equipment e : equipment) {
             if (!found && e.hashCode() == hash) found = true;
-            else if (e.getEquipmentType() == type) {
+            else if (e.getEquipmentType() == type && found) {
                 return e;
             }
         }

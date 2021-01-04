@@ -4,36 +4,18 @@ import general.*;
 import people.Person;
 
 public abstract class Equipment implements Repairable {
-    public boolean free;
     public boolean functionality;
-    House house;
-    Room room;
-    Room whenTidy;
+    protected House house;
+    protected Room room;
+    protected Room whenTidy;
     Fasada.allClasses equipmentType;
 
     public Equipment(House house) {
         this.house=house;
-        free = true;
         functionality = true;
     }
 
-    public boolean use(Person person) {
-        if (free) {
-            free = false;
-            house.getRoomFasada().getOutside().addPropriet(this, room);
-            house.getRoomFasada().getOutside().addPropriet(person, room);
-            person.setUsing(this);
-            return true;
-        } else return false;
-
-    }
-
-    public void Tidy(){
-        free=true;
-        if(whenTidy!=null) {
-            whenTidy.addPropriet(this, room);
-        }
-    }
+    public abstract void Tidy();
 
     private void breakDown() {
         functionality = false;
@@ -51,7 +33,9 @@ public abstract class Equipment implements Repairable {
 
     @Override
     public void place(Room room) {
-        if(whenTidy==null)whenTidy=room;
+        if(whenTidy==null){
+            whenTidy=room;
+        }
         this.room=room;
     }
 

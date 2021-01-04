@@ -4,6 +4,7 @@ import general.Fasada;
 import general.House;
 import general.Room;
 import general.Tickable;
+import people.Person;
 
 import java.util.Random;
 
@@ -23,28 +24,33 @@ public class Sky extends Equipment  {
         equipmentType = Fasada.allClasses.sky;
     }
 
-    public boolean use() {
-        if(inUse)return false;
-        if ( broken || timeToService <= 0){
-            house.getPeopleFasada().getByType(Fasada.allClasses.father).addRepairableRequest(this);
-            return false;
-        }
-        timeToService -= using;
-        inUse = true;
-        return true;
+    public boolean use(Person person) {
+        if (!inUse) {
+            if ( broken || timeToService <= 0){
+                house.getPeopleFasada().getByType(Fasada.allClasses.father).addRepairableRequest(this);
+                return false;
+            }
+            timeToService -= using;
+            inUse = true;
+            house.getRoomFasada().getOutside().addPropriet(this, room);
+            house.getRoomFasada().getOutside().addPropriet(person, room);
+            person.setUsing(this);
+            return true;
+        } else return false;
+
     }
 
-    /*
-     * Returns true if putting back was successful, false if broken
-     */
-    public boolean back() {
+    public void Tidy() {
+        if(whenTidy!=null) {
+            whenTidy.addPropriet(this, room);
+        }
         Random random = new Random();
         inUse = false;
         for (int i = 0; i < OKusageLikehood; i++) {
-            if (random.nextBoolean()) return true;
+            if (random.nextBoolean()) return;
         }
         broken = true;
-        return false;
+        house.getPeopleFasada().getByType(Fasada.allClasses.father).addRepairableRequest(this);
     }
 
     @Override

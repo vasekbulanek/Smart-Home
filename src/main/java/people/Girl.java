@@ -18,11 +18,6 @@ public class Girl extends Person  {
 
     @Override
     public void tick() {
-        if (activity==longActivity.sport){
-            Boiler boiler =(Boiler) house.getApplianceFasada().getByType(Fasada.allClasses.boiler);
-            if(boiler!=null)boiler.use(this);
-            delay();
-        }
         super.tick();
         if(request.allRequests()>0){
             if(request.hasTo(Request.Typ.work)>0){

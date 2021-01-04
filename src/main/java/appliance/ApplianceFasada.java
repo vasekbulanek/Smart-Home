@@ -63,7 +63,7 @@ public class ApplianceFasada extends Fasada {
         boolean found = false;
         for (Appliance a : appliances) {
             if (!found && a.hashCode() == hash) found = true;
-            else if (type == a.getApplianceType()) {
+            else if (type == a.getApplianceType() && found) {
                 return a;
             }
         }

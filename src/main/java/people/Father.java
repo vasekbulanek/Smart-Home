@@ -33,7 +33,7 @@ public class Father extends Person  {
                 if(house.getPeopleFasada().getByType(Fasada.allClasses.girl)!=null){
                     house.getPeopleFasada().getByType(Fasada.allClasses.girl).addWorkRequest(request.getWork());
                 }
-                if(house.getPeopleFasada().getByType(Fasada.allClasses.boy)!=null){
+                else if(house.getPeopleFasada().getByType(Fasada.allClasses.boy)!=null){
                     house.getPeopleFasada().getByType(Fasada.allClasses.boy).addWorkRequest(request.getWork());
                 }
                 else {
