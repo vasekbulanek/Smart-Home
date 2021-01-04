@@ -26,17 +26,26 @@ public class Reporter {
     }
 
     public void newEvent(String event) {
-        this.events.put(event, "pending");
+        this.events.put(event, null);
     }
 
     public void eventSolved(String event, String entity) {
-        this.events.replace(event, entity);
+        if (entity != null) {
+            this.events.replace(event, entity);
+        } else{
+            this.events.put(event, "itself");
+        }
     }
 
     public void houseEventReport() {
         System.out.println("--Events since last report--");
         for (String event : this.events.keySet()) {
-            System.out.println(this.events.get(event) + " handeled succesfuly " + event);
+            String handler = this.events.get(event);
+            if (handler != null) {
+                System.out.println(event + " handeled succesfuly by " + this.events.get(event));
+            } else {
+                System.out.println(event+" is pending");
+            }
         }
         this.events.clear();
     }
@@ -55,13 +64,14 @@ public class Reporter {
             int water = app.getUsedWater();
             if (water > 0) {
                 int consumed = electricity * elCost + water * watCost;
-                System.out.println(app.getClass().getSimpleName()+" used "+electricity+" electricity and "+water+" water." +
-                        "\n\tTotal price: "+consumed);
-            }
-            else {
+                System.out.println(app.getClass()
+                                      .getSimpleName() + " used " + electricity + " electricity and " + water + " water." +
+                        "\n\tTotal price: " + consumed);
+            } else {
                 int consumed = electricity * elCost;
-                System.out.println(app.getClass().getSimpleName()+" used "+electricity+" electricity "+
-                        "\n\tTotal price: "+consumed);
+                System.out.println(app.getClass()
+                                      .getSimpleName() + " used " + electricity + " electricity " +
+                        "\n\tTotal price: " + consumed);
             }
         }
     }
