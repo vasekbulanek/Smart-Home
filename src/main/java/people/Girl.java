@@ -6,13 +6,16 @@ import appliance.Television;
 import appliance.workItems.Work;
 import general.*;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class Girl extends Person  {
+    private HashMap<String, String> diary;
 
     public Girl(House house, String name) {
         super(house, name);
         personType= Fasada.allClasses.girl;
+        diary = new HashMap<>();
     }
 
     @Override
@@ -56,7 +59,12 @@ public class Girl extends Person  {
 
     @Override
     public void report(Reporter reporter) {
-
+        for (String key:diary.keySet()) {
+            if(!diary.get(key).equals("activity")) {
+                reporter.eventSolved(key, diary.get(key));
+            }
+            else reporter.activityCatch(personType.toString() + " " + name, key);
+        }
     }
 
 
@@ -64,11 +72,13 @@ public class Girl extends Person  {
         Father father = (Father) house.getPeopleFasada().getByType(Fasada.allClasses.father);
         if(father!=null){
             father.addRepairableRequest(repairable);
+            diary.put("passed repairable to father", "activity");
         }
         else {
             Mother mother = (Mother) house.getPeopleFasada().getByType(Fasada.allClasses.mother);
             if(mother!=null){
                 mother.addRepairableRequest(repairable);
+                diary.put("passed repairable to mother", "activity");
             }
         }
     }

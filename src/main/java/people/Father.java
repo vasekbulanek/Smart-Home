@@ -5,15 +5,18 @@ import general.Fasada;
 import general.House;
 import general.Reporter;
 
+import java.util.HashMap;
 import java.util.Random;
 
 
 public class Father extends Person  {
     private static Father singleton = null;
+    private HashMap<String, String> diary;
 
     private Father(House house, String name) {
         super(house, name);
         personType= Fasada.allClasses.father;
+        diary = new HashMap<>();
     }
 
     public static Father getInstance(House house, String name) {
@@ -33,9 +36,11 @@ public class Father extends Person  {
             if(request.hasTo(Request.Typ.work)>0){
                 if(house.getPeopleFasada().getByType(Fasada.allClasses.girl)!=null){
                     house.getPeopleFasada().getByType(Fasada.allClasses.girl).addWorkRequest(request.getWork());
+                    diary.put("passed work to girl", "activity");
                 }
                 else if(house.getPeopleFasada().getByType(Fasada.allClasses.boy)!=null){
                     house.getPeopleFasada().getByType(Fasada.allClasses.boy).addWorkRequest(request.getWork());
+                    diary.put("passed work to boy", "activity");
                 }
                 else {
                     workSolve();
@@ -68,7 +73,12 @@ public class Father extends Person  {
 
     @Override
     public void report(Reporter reporter) {
-
+        for (String key:diary.keySet()) {
+            if(!diary.get(key).equals("activity")) {
+                reporter.eventSolved(key, diary.get(key));
+            }
+            else reporter.activityCatch(personType.toString() + " " + name, key);
+        }
     }
 
 
