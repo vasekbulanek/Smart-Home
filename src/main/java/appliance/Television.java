@@ -10,7 +10,7 @@ public class Television extends Appliance {
         super(house);
         this.electricityOn = electricityOn;
         this.electricityOff = electricityOff;
-        applianceType = Fasada.allClasses.stove;
+        applianceType = Fasada.allClasses.television;
     }
 
     @Override

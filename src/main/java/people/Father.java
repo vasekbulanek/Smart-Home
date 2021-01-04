@@ -30,6 +30,12 @@ public class Father extends Person  {
     }
 
     @Override
+    protected void sleep() {
+        super.sleep();
+        diary.put("sleeps", "activity");
+    }
+
+    @Override
     public void tick() {
         super.tick();
         if(request.allRequests()>0){
@@ -81,5 +87,9 @@ public class Father extends Person  {
         }
     }
 
-
+    @Override
+    protected void wakeUp() {
+        super.wakeUp();
+        diary.put("wakes up", "activity");
+    }
 }

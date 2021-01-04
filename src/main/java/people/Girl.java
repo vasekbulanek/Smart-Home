@@ -37,10 +37,8 @@ public class Girl extends Person  {
                 Animal animal = request.getAnimal();
                 animal.getRoom().addPropriet(this, room);
                 if (animal.getHunger()>10)animal.feed();
-                if(!animal.isSleeping()){
-                    animal.play();
-                    delay();
-                }
+                animal.play(this);
+                delay();
                 return;
             }
         }
@@ -89,5 +87,17 @@ public class Girl extends Person  {
         baby.getRoom().addPropriet(this, null);
         if(baby.getHunger()>4)baby.eating(this);
         if (baby.getDiaper())baby.diapering(this);
+    }
+
+    @Override
+    protected void sleep() {
+        super.sleep();
+        diary.put("sleeps", "activity");
+    }
+
+    @Override
+    protected void wakeUp() {
+        super.wakeUp();
+        diary.put("wakes up", "activity");
     }
 }

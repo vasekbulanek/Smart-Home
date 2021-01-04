@@ -5,8 +5,6 @@ import people.Person;
 
 public abstract class Animal implements Tickable {
     int hunger;
-    int mood;
-    int health;
     boolean sleeping;
     Room room;
     House house;
@@ -17,19 +15,12 @@ public abstract class Animal implements Tickable {
         this.house = house;
         this.name = name;
         hunger=0;
+
     }
-    public abstract void play();
+    public abstract void play(Person person);
 
     protected void feed(Person person) {
         hunger = 0;
-    }
-
-    protected void sleep() {
-        sleeping = true;
-    }
-
-    protected void wakeUp() {
-        sleeping = false;
     }
 
     public abstract void tick();
@@ -52,10 +43,6 @@ public abstract class Animal implements Tickable {
 
     public int getHunger() {
         return hunger;
-    }
-
-    public boolean isSleeping() {
-        return sleeping;
     }
 
     public Fasada.allClasses getAnimalType() {

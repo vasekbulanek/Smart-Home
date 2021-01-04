@@ -115,4 +115,16 @@ public class Mother extends Person {
     public void addAnimalRequest(Animal animal) {
         house.getPeopleFasada().getRandom().addAnimalRequest(animal);
     }
+
+    @Override
+    protected void sleep() {
+        super.sleep();
+        diary.put("sleeps", "activity");
+    }
+
+    @Override
+    protected void wakeUp() {
+        super.wakeUp();
+        diary.put("wakes up", "activity");
+    }
 }

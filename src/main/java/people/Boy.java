@@ -4,7 +4,6 @@ import animals.Animal;
 import general.Fasada;
 import general.House;
 import general.Reporter;
-import javafx.beans.binding.MapExpression;
 
 import java.util.HashMap;
 
@@ -34,10 +33,7 @@ public class Boy extends Person  {
                 Animal animal = request.getAnimal();
                 animal.getRoom().addPropriet(this, room);
                 if (animal.getHunger()>10)animal.feed();
-                if(!animal.isSleeping()){
-                    animal.play();
-                }
-                return;
+                animal.play(this);
             }
 
         }
@@ -54,7 +50,6 @@ public class Boy extends Person  {
         }
     }
 
-
     public void addPersonRequest(Person person) {
         Mother mother = (Mother) house.getPeopleFasada().getByType(Fasada.allClasses.mother);
         if(mother!=null){
@@ -68,6 +63,18 @@ public class Boy extends Person  {
                 girl.addPersonRequest(person);
             }
         }
+    }
+
+    @Override
+    protected void sleep() {
+        super.sleep();
+        diary.put("sleeps", "activity");
+    }
+
+    @Override
+    protected void wakeUp() {
+        super.wakeUp();
+        diary.put("wakes up", "activity");
     }
 }
 

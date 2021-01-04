@@ -61,6 +61,7 @@ public class Baby extends Person {
             int number = random.nextInt(3) ;
             if (number==1){
                 activity=longActivity.sleep;
+                diary.put("sleeps", "activity");
                 return true;
             }
         }
@@ -112,5 +113,11 @@ public class Baby extends Person {
     public void addWorkRequest(Work work) {
         house.getPeopleFasada().getByType(Fasada.allClasses.mother).addWorkRequest(work);
         diary.put("passed work to mother", "activity");
+    }
+
+    @Override
+    protected void wakeUp() {
+        super.wakeUp();
+        diary.put("wakes up", "activity");
     }
 }
