@@ -10,14 +10,14 @@ import java.util.Random;
 public class Father extends Person  {
     private static Father singleton = null;
 
-    private Father(House house) {
-        super(house);
+    private Father(House house, String name) {
+        super(house, name);
         personType= Fasada.allClasses.father;
     }
 
-    public static Father getInstance(House house) {
+    public static Father getInstance(House house, String name) {
         if (singleton == null) {
-            singleton = new Father(house);
+            singleton = new Father(house, name);
             return singleton;
         } else {
             System.out.println("This house already has its father. No new will be created.");

@@ -8,7 +8,7 @@ import people.Person;
 
 import java.util.Random;
 
-public class Sky extends Equipment  {
+public class Ski extends Equipment  {
     private boolean broken;
     private int timeToService;
     private final int service = 50*24;
@@ -16,12 +16,12 @@ public class Sky extends Equipment  {
     private final int OKusageLikehood = 4;
     private boolean inUse;
 
-    public Sky(House  house) {
+    public Ski(House  house) {
         super(house);
         broken = false;
         timeToService = service;
         inUse = false;
-        equipmentType = Fasada.allClasses.sky;
+        equipmentType = Fasada.allClasses.ski;
     }
 
     public boolean use(Person person) {

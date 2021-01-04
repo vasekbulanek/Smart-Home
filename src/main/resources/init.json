@@ -3,7 +3,7 @@
     "living room": {"Blinds": 3, "Iron": 1, "Father": 1, "Television": 1},
     "bathroom": {"Boiler": 1, "Girl": 1},
     "bedroom": {"Blinds": 1, "Cat": 1, "Phone": 1},
-    "cellar": {"Sky": 2, "Bicycle": 4}
+    "cellar": {"Ski": 2, "Bicycle": 4}
   },
   "people": {
     "Milan": "Father",
@@ -15,7 +15,7 @@
   },
   "equipment": {
     "Bicycle": {},
-    "Sky": {}
+    "Ski": {}
 
   },
   "appliance":{

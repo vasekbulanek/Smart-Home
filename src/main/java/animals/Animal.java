@@ -13,10 +13,12 @@ public abstract class Animal implements Tickable {
     boolean sleeping;
     Room room;
     House house;
+    String name;
     protected Fasada.allClasses animalType;
 
-    public Animal(House house) {
+    public Animal(House house, String name) {
         this.house = house;
+        this.name = name;
         hunger=0;
     }
     public abstract void play();

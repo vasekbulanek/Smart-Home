@@ -6,12 +6,14 @@ import general.Fasada;
 import general.House;
 import general.Repairable;
 
+import java.util.Map;
 import java.util.Random;
 
 public class Baby extends Person {
     private boolean diaper;
-    public Baby(House house) {
-        super(house);
+    private Map<String, String>diary;
+    public Baby(House house, String name) {
+        super(house, name);
         diaper=false;
         personType= Fasada.allClasses.baby;
     }
@@ -37,7 +39,8 @@ public class Baby extends Person {
             diaper=true;
         }
     }
-    protected void diapering(){
+    protected void diapering(Person person){
+        diary.put("diapered baby", person.getPersonType().toString()+ " "+person.getName());
         diaper=false;
     }
 

@@ -10,8 +10,8 @@ import java.util.Random;
 
 public class Cat extends Animal  {
 
-    public Cat(House house) {
-        super(house);
+    public Cat(House house, String name) {
+        super(house, name);
         animalType = Fasada.allClasses.cat;
     }
 

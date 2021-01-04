@@ -1,6 +1,5 @@
 package equipment;
 
-import appliance.Appliance;
 import general.Fasada;
 import general.House;
 import org.json.simple.JSONObject;
@@ -9,7 +8,6 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.LinkedList;
 
 public class EquipmentFasada extends Fasada {
@@ -30,8 +28,8 @@ public class EquipmentFasada extends Fasada {
                 System.out.println("There will be " + num + " " + type);
                 for (; num > 0; num--) {
                     switch (type) {
-                        case ("Sky"):
-                            equipment.add(new Sky(house));
+                        case ("Ski"):
+                            equipment.add(new Ski(house));
                             break;
                         case ("Bicycle"):
                             equipment.add(new Bicycle(house));

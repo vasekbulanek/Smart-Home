@@ -10,8 +10,8 @@ import java.util.LinkedList;
 
 public class Bird extends Animal {
 
-    public Bird(House house) {
-        super(house);
+    public Bird(House house, String name) {
+        super(house, name);
         animalType = Fasada.allClasses.bird;
     }
 

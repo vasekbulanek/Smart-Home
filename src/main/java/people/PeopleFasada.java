@@ -34,21 +34,21 @@ public class PeopleFasada extends Fasada {
                 System.out.println("Hi, I am " + name + " and I am " + type);
                 switch (type) {
                     case ("Father"):
-                        Father father = Father.getInstance(house);
+                        Father father = Father.getInstance(house, name);
                         if (!personMap.containsValue(father)) personMap.put(name, father);
                         break;
                     case ("Mother"):
-                        Mother mother = Mother.getInstance(house);
+                        Mother mother = Mother.getInstance(house, name);
                         if (!personMap.containsValue(mother)) personMap.put(name, mother);
                         break;
                     case ("Boy"):
-                        personMap.put(name, new Boy(house));
+                        personMap.put(name, new Boy(house, name));
                         break;
                     case ("Girl"):
-                        personMap.put(name, new Girl(house));
+                        personMap.put(name, new Girl(house, name));
                         break;
                     case ("Baby"):
-                        personMap.put(name, new Baby(house));
+                        personMap.put(name, new Baby(house, name));
                         break;
                     default:
                         System.out.println("There is unknown person type " + type + ". Check init.json, please.");

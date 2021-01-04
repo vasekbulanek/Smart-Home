@@ -11,8 +11,8 @@ import java.util.Random;
 
 public class Girl extends Person  {
 
-    public Girl(House house) {
-        super(house);
+    public Girl(House house, String name) {
+        super(house, name);
         personType= Fasada.allClasses.girl;
     }
 
@@ -79,6 +79,6 @@ public class Girl extends Person  {
     private void solvePerson(Baby baby){
         baby.getRoom().addPropriet(this, null);
         if(baby.getHunger()>4)baby.eating();
-        if (baby.getDiaper())baby.diapering();
+        if (baby.getDiaper())baby.diapering(this);
     }
 }

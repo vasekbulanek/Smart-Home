@@ -15,17 +15,19 @@ public abstract class Person  extends Observer implements Tickable {
     protected Equipment using;
     protected longActivity activity;
     protected general.Fasada.allClasses personType;
+    protected String name;
 
     protected enum longActivity{
         no, sleep, sport, other
     }
 
-    public Person(House house) {
+    public Person(House house, String name) {
         super(house.getTime());
         this.house = house;
         hunger=0;
         activity=longActivity.no;
         request = new Request();
+        this.name=name;
     }
 
 
@@ -43,7 +45,7 @@ public abstract class Person  extends Observer implements Tickable {
     }
 
     protected boolean sport() {
-        Fasada.allClasses eq = Fasada.allClasses.sky;
+        Fasada.allClasses eq = Fasada.allClasses.ski;
         if (house.getWeather().getTemperature()>0){
             eq = Fasada.allClasses.bicycle;
         }
@@ -99,6 +101,10 @@ public abstract class Person  extends Observer implements Tickable {
             activity=longActivity.no;
             return;
         }
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void addPersonRequest(Person person) {

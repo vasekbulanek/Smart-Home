@@ -10,8 +10,8 @@ public class Dog extends Animal{
     private Person master;
     private boolean validMaster;
     private Room allowed;
-    public Dog(House house) {
-        super(house);
+    public Dog(House house, String name) {
+        super(house, name);
         validMaster=false;
         animalType = Fasada.allClasses.dog;
     }

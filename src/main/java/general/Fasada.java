@@ -10,7 +10,7 @@ public abstract class Fasada<T> {
     String initFile;
 
     public enum allClasses{
-        baby, boy, father, mother, girl, bicycle, sky, blinds,
+        baby, boy, father, mother, girl, bicycle, ski, blinds,
         boiler, fridge, iron, phone, stove, television, washingMachine,
         cat, bird, dog, room
     }

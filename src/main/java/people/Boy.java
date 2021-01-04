@@ -6,8 +6,8 @@ import general.House;
 
 public class Boy extends Person  {
 
-    public Boy(House house) {
-        super(house);
+    public Boy(House house, String name) {
+        super(house, name);
         personType= Fasada.allClasses.boy;
     }
 

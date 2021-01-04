@@ -32,13 +32,13 @@ public class AnimalFasada extends Fasada {
                 System.out.println("Hi, I am " + name + " and I am " + type);
                 switch (type) {
                     case ("Bird"):
-                        animalMap.put(name, new Bird(house));
+                        animalMap.put(name, new Bird(house, name));
                         break;
                     case ("Cat"):
-                        animalMap.put(name, new Cat(house));
+                        animalMap.put(name, new Cat(house, name));
                         break;
                     case ("Dog"):
-                        animalMap.put(name, new Dog(house));
+                        animalMap.put(name, new Dog(house, name));
                         break;
                     default:
                         System.out.println("There is unknown animal type " + type + ". Check init.json, please.");

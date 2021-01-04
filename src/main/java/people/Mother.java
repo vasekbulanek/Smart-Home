@@ -8,15 +8,15 @@ import general.House;
 public class Mother extends Person {
     private static Mother singleton = null;
 
-    private Mother(House house) {
-        super(house);
+    private Mother(House house, String name) {
+        super(house, name);
         personType= Fasada.allClasses.mother;
     }
 
 
-    public static Mother getInstance(House house) {
+    public static Mother getInstance(House house, String name) {
         if (singleton == null) {
-            singleton = new Mother(house);
+            singleton = new Mother(house, name);
             return singleton;
         } else {
             System.out.println("This house already has its mother. No new will be created.");
@@ -87,7 +87,7 @@ public class Mother extends Person {
     void solvePerson(Baby baby){
         room.addPropriet(baby, baby.getRoom());
         if(baby.getHunger()>4)baby.eating();
-        if (baby.getDiaper())baby.diapering();
+        if (baby.getDiaper())baby.diapering(this);
     }
     void solvePerson(Girl girl){
 
