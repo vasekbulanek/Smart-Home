@@ -1,7 +1,6 @@
 package people;
 
 import animals.Animal;
-import appliance.Boiler;
 import appliance.Phone;
 import appliance.Television;
 import appliance.workItems.Work;
@@ -56,7 +55,7 @@ public class Girl extends Person  {
     }
 
     @Override
-    public void report() {
+    public void report(Reporter reporter) {
 
     }
 
@@ -78,7 +77,7 @@ public class Girl extends Person  {
     }
     private void solvePerson(Baby baby){
         baby.getRoom().addPropriet(this, null);
-        if(baby.getHunger()>4)baby.eating();
+        if(baby.getHunger()>4)baby.eating(this);
         if (baby.getDiaper())baby.diapering(this);
     }
 }

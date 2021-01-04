@@ -1,9 +1,6 @@
 package appliance;
 
-import general.Fasada;
-import general.House;
-import general.Room;
-import general.Tickable;
+import general.*;
 
 public class Phone extends Appliance implements Tickable {
     public Phone(House house, int electricityOn, int electricityOff) {
@@ -28,7 +25,7 @@ public class Phone extends Appliance implements Tickable {
     }
 
     @Override
-    public void report() {
+    public void report(Reporter reporter) {
 
     }
 

@@ -5,6 +5,7 @@ import appliance.workItems.Work;
 import general.Fasada;
 import general.House;
 import general.Repairable;
+import general.Reporter;
 
 import java.util.Map;
 import java.util.Random;
@@ -40,11 +41,13 @@ public class Baby extends Person {
         }
     }
     protected void diapering(Person person){
-        diary.put("diapered baby", person.getPersonType().toString()+ " "+person.getName());
+        diary.put("diapered baby", person.getPersonType().toString()+
+                " "+person.getName());
         diaper=false;
     }
 
-    protected void eating(){
+    protected void eating(Person person){
+        diary.put("feed baby", person.getPersonType().toString()+ " " + person.getName());
         hunger=0;
     }
     public boolean Gosleep(){
@@ -67,8 +70,10 @@ public class Baby extends Person {
     }
 
     @Override
-    public void report() {
-
+    public void report(Reporter reporter) {
+        for (String key:diary.keySet()) {
+            reporter.eventSolved(key, diary.get(key));
+        }
     }
 
 

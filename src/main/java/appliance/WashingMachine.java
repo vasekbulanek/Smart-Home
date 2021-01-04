@@ -3,7 +3,7 @@ package appliance;
 import appliance.workItems.Clothes;
 import general.Fasada;
 import general.House;
-import people.Person;
+import general.Reporter;
 
 import java.util.Random;
 
@@ -25,7 +25,7 @@ public class WashingMachine extends Appliance {
     }
 
     @Override
-    public void report() {
+    public void report(Reporter reporter) {
 
     }
 

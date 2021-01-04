@@ -21,7 +21,7 @@ public abstract class Equipment implements Repairable {
         functionality = false;
     }
 
-    public abstract void report();
+    public abstract void report(Reporter reporter);
 
     public abstract void tick();
 

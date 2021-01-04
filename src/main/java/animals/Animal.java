@@ -1,9 +1,6 @@
 package animals;
 
-import general.Fasada;
-import general.House;
-import general.Room;
-import general.Tickable;
+import general.*;
 import people.Person;
 
 public abstract class Animal implements Tickable {
@@ -37,7 +34,7 @@ public abstract class Animal implements Tickable {
 
     public abstract void tick();
 
-    public abstract void report();
+    public abstract void report(Reporter reporter);
 
     public Room getRoom(){
         if(room!=null)return room;

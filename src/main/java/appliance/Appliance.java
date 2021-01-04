@@ -34,7 +34,7 @@ public abstract class Appliance implements Repairable {
         functionality = false;
     }
 
-    public abstract void report();
+    public abstract void report(Reporter reporter);
 
     @Override
     public void place(Room room) {

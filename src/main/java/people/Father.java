@@ -3,6 +3,7 @@ package people;
 import appliance.Appliance;
 import general.Fasada;
 import general.House;
+import general.Reporter;
 
 import java.util.Random;
 
@@ -66,7 +67,7 @@ public class Father extends Person  {
     }
 
     @Override
-    public void report() {
+    public void report(Reporter reporter) {
 
     }
 

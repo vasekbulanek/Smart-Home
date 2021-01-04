@@ -4,6 +4,7 @@ import animals.Animal;
 import appliance.Boiler;
 import general.Fasada;
 import general.House;
+import general.Reporter;
 
 public class Mother extends Person {
     private static Mother singleton = null;
@@ -73,7 +74,7 @@ public class Mother extends Person {
     }
 
     @Override
-    public void report() {
+    public void report(Reporter reporter) {
 
     }
 
@@ -86,7 +87,7 @@ public class Mother extends Person {
     }
     void solvePerson(Baby baby){
         room.addPropriet(baby, baby.getRoom());
-        if(baby.getHunger()>4)baby.eating();
+        if(baby.getHunger()>4)baby.eating(this);
         if (baby.getDiaper())baby.diapering(this);
     }
     void solvePerson(Girl girl){

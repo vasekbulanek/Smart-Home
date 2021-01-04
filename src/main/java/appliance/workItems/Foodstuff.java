@@ -21,9 +21,10 @@ public class Foodstuff implements Work{
         house.getPeopleFasada().getByType(Fasada.allClasses.mother).addWorkRequest(this);
     }
 
-    public void beEaten(){
+    public void beEaten(Person person){
         if(currentState==stateFood.prepared) {
             portions--;
+            person.eat(this);
             if(portions==0) {
                 currentState = stateFood.trash;
                 house.getPeopleFasada().getByType(Fasada.allClasses.mother).addWorkRequest(this);
