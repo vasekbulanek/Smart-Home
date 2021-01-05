@@ -130,10 +130,10 @@ public class Reporter {
             for (String creature : this.activities.keySet()) {
                 for (String activity : this.activities.get(creature)
                                                       .keySet()) {
-                    System.out.println(creature + " spent " + this.activities.get(creature)
-                                                                             .get(activity) + " hours " + activity);
-                    fileWriter.write(creature + " spent " + this.activities.get(creature)
-                                                                           .get(activity) + " hours " + activity + "\n");
+                    System.out.println(creature + " " + activity + " times " + this.activities.get(creature)
+                                                                                             .get(activity));
+                    fileWriter.write(creature + " " + activity + " times " + this.activities.get(creature)
+                                                                                           .get(activity) + "\n");
                 }
             }
             this.activities.clear();
