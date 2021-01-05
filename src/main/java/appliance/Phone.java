@@ -46,13 +46,19 @@ public class Phone extends Appliance implements Tickable {
     }
 
     @Override
-    public void report(Reporter reporter) {
-        for (String key : eventLog.keySet()) {
-            if (!eventLog.isEmpty()){
-                reporter.eventCatch(key, eventLog.get(key));
-            }
-        }
-        eventLog.clear();
+    public boolean use(Person person) {
+        eventLog.put(person.getPersonType().toString()+" "+person.getName()+" is using phone", "activity");
+        return super.use(person);
     }
 
+    @Override
+    public void report(Reporter reporter) {
+        for (String key : eventLog.keySet()) {
+            if (eventLog.get(key)!=null && !eventLog.get(key)
+                    .equals("activity")) {
+                reporter.eventCatch(key, eventLog.get(key));
+            } else reporter.activityCatch(eventLog.toString(), key);
+        }
+        eventLog = new HashMap<>();
+    }
 }

@@ -8,7 +8,7 @@ public class Main {
             house.run();
             if (i % 3 == 0) {
                 house.reporter.activityAndUsageReport();
-
+                house.reporter.houseEventReport();
             }
         }
         //house.reporter.consuptionReport();

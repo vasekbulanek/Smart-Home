@@ -33,6 +33,7 @@ public class Bicycle extends Equipment implements Tickable {
                 eventLog.put("broken bicycle", null);
                 return false;
             }
+            eventLog.put(person.getPersonType().toString()+" "+person.getName()+" is riding bicycle", "activity");
             timeToService -= using;
             inUse = true;
             house.getRoomFasada()
@@ -71,11 +72,12 @@ public class Bicycle extends Equipment implements Tickable {
     @Override
     public void report(Reporter reporter) {
         for (String key : eventLog.keySet()) {
-            if (!eventLog.isEmpty()){
+            if (eventLog.get(key)!=null && !eventLog.get(key)
+                    .equals("activity")) {
                 reporter.eventCatch(key, eventLog.get(key));
-            }
+            } else reporter.activityCatch(eventLog.toString(), key);
         }
-        eventLog.clear();
+        eventLog = new HashMap<>();
     }
 
     @Override

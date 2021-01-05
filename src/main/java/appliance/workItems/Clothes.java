@@ -1,21 +1,24 @@
 package appliance.workItems;
 
 import appliance.Appliance;
-import appliance.Iron;
-import appliance.WashingMachine;
 import general.Fasada;
 import general.House;
+import general.Reporter;
 import people.Person;
+
+import java.util.HashMap;
 
 public class Clothes implements Work {
     private Work currentState;
     House house;
+    private HashMap<String, String>eventLog;
 
     private class Dirty implements Work{
 
         @Override
-        public boolean work() {
+        public boolean work(Person person) {
             house.getPeopleFasada().getByType(Fasada.allClasses.mother).addWorkRequest(this);
+            eventLog.put("wash clothes", null);
             return false;
         }
 
@@ -26,8 +29,10 @@ public class Clothes implements Work {
                 return false;
             }
             appliance.use(person);
+            eventLog.put("wash clothes", person.getPersonType()+" "+person.getName());
             currentState = new Washed();
             person.addWorkRequest(currentState);
+            eventLog.put("iron clothes", null);
             return true;
         }
 
@@ -40,7 +45,7 @@ public class Clothes implements Work {
     private class Washed implements Work{
 
         @Override
-        public boolean work() {
+        public boolean work(Person person) {
             house.getPeopleFasada().getByType(Fasada.allClasses.mother).addWorkRequest(this);
             return false;
         }
@@ -52,6 +57,7 @@ public class Clothes implements Work {
                 return false;
             }
             appliance.use(person);
+            eventLog.put("iron clothes", person.getPersonType()+" "+person.getName());
             currentState = new Ironed();
             return true;
         }
@@ -65,7 +71,7 @@ public class Clothes implements Work {
     private class Ironed implements Work{
 
         @Override
-        public boolean work() {
+        public boolean work(Person person) {
             return false;
         }
 
@@ -82,6 +88,7 @@ public class Clothes implements Work {
 
     public Clothes(House house) {
         this.house = house;
+        eventLog = new HashMap<>();
         currentState = new Ironed();
     }
 
@@ -93,8 +100,8 @@ public class Clothes implements Work {
     }
 
     @Override
-    public boolean work() {
-        return currentState.work();
+    public boolean work(Person person) {
+        return currentState.work(person);
     }
 
     @Override
@@ -106,4 +113,14 @@ public class Clothes implements Work {
     public Fasada.allClasses need() {
         return currentState.need();
     }
+
+    public void report(Reporter reporter) {
+        for (String key : eventLog.keySet()) {
+            if (!eventLog.isEmpty()){
+                reporter.eventCatch(key, eventLog.get(key));
+            }
+        }
+        eventLog.clear();
+    }
 }
+

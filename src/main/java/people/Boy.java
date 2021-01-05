@@ -44,7 +44,7 @@ public class Boy extends Person {
     @Override
     public void report(Reporter reporter) {
         for (String key : diary.keySet()) {
-            if (!diary.get(key)
+            if (diary.get(key)!=null && !diary.get(key)
                       .equals("activity")) {
                 reporter.eventCatch(key, diary.get(key));
             } else reporter.activityCatch(personType.toString() + " " + name, key);

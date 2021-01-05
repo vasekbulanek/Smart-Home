@@ -5,7 +5,7 @@ import general.Fasada;
 import people.Person;
 
 public interface Work {
-    boolean work();
+    boolean work(Person person);
 
     boolean work(Appliance appliance, Person person);
 

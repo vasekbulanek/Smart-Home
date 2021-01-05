@@ -164,7 +164,7 @@ public abstract class Person extends Observer implements Tickable {
         if (name != null) {
             r.work(house.getApplianceFasada()
                         .getByType(name), this);
-        } else r.work();
+        } else r.work(this);
     }
 
     public Fasada.allClasses getPersonType() {

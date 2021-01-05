@@ -48,13 +48,22 @@ public class Fridge extends Appliance {
         }
     }
 
+    @Override
+    public boolean use(Person person) {
+        eventLog.put(person.getPersonType().toString()+" "+person.getName()+" is using fridge", "activity");
+        return super.use(person);
+    }
+
+    @Override
     public void report(Reporter reporter) {
         for (String key : eventLog.keySet()) {
-            if (!eventLog.isEmpty()){
+            if (eventLog.get(key)!=null && !eventLog.get(key)
+                    .equals("activity")) {
                 reporter.eventCatch(key, eventLog.get(key));
-            }
+            } else reporter.activityCatch(eventLog.toString(), key);
         }
-        eventLog.clear();
+        eventLog = new HashMap<>();
+        content.report(reporter);
     }
 
     public Foodstuff getContent() {

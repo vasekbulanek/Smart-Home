@@ -27,7 +27,7 @@ public class Girl extends Person {
                 Fasada.allClasses name = r.need();
                 if (name != null) r.work(house.getApplianceFasada()
                                               .getByType(name), this);
-                else r.work();
+                else r.work(this);
                 return;
             }
             if (request.hasTo(Request.Typ.person) > 0) {
@@ -62,8 +62,8 @@ public class Girl extends Person {
     @Override
     public void report(Reporter reporter) {
         for (String key : diary.keySet()) {
-            if (!diary.get(key)
-                      .equals("activity")) {
+            if (diary.get(key)!=null && !diary.get(key)
+                    .equals("activity")) {
                 reporter.eventCatch(key, diary.get(key));
             } else reporter.activityCatch(personType.toString() + " " + name, key);
         }
