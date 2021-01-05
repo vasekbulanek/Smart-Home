@@ -29,12 +29,7 @@ public abstract class Appliance implements Repairable {
         return functionality;
     }
 
-    protected void breakDown() {
-        house.getPeopleFasada()
-             .getByType(Fasada.allClasses.father)
-             .addRepairableRequest(this);
-        functionality = false;
-    }
+    protected abstract void breakDown();
 
     public abstract void report(Reporter reporter);
 
@@ -54,12 +49,7 @@ public abstract class Appliance implements Repairable {
                     .getOutside();
     }
 
-    public void repair(Person person) {
-        if (!functionality) {
-            functionality = true;
-            person.delay();
-        }
-    }
+    public abstract void repair(Person person);
 
     public int getUsedElectricity() {
         return usedElectricity;

@@ -3,6 +3,7 @@ package equipment;
 import general.*;
 import people.Person;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class Ski extends Equipment {
@@ -12,6 +13,7 @@ public class Ski extends Equipment {
     private final int using = 4;
     private final int OKusageLikehood = 4;
     private boolean inUse;
+    private HashMap<String, String> eventLog;
 
     public Ski(House house) {
         super(house);
@@ -19,6 +21,7 @@ public class Ski extends Equipment {
         timeToService = service;
         inUse = false;
         equipmentType = Fasada.allClasses.ski;
+        eventLog = new HashMap<>();
     }
 
     public boolean use(Person person) {
@@ -65,7 +68,22 @@ public class Ski extends Equipment {
 
     @Override
     public void report(Reporter reporter) {
+        for (String key : eventLog.keySet()) {
+            if (!eventLog.isEmpty()){
+                reporter.eventCatch(key, eventLog.get(key));
+            }
+        }
+        eventLog.clear();
+    }
 
+    @Override
+    public void repair(Person person) {
+        if (!functionality || getTimeToService() < 24) {
+            functionality = true;
+            refreshService();
+            person.delay();
+            eventLog.put("broken bicycle", person.getName());
+        }
     }
 
     public int getTimeToService() {

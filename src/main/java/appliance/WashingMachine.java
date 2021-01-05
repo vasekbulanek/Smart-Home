@@ -4,7 +4,9 @@ import appliance.workItems.Clothes;
 import general.Fasada;
 import general.House;
 import general.Reporter;
+import people.Person;
 
+import java.util.HashMap;
 import java.util.Random;
 
 
@@ -14,6 +16,7 @@ public class WashingMachine extends Appliance {
     private int electricityOff;
     private int water;
     private Clothes content;
+    private HashMap<String, String> eventLog;
 
     public WashingMachine(House house, int electricityOn, int electricityOff, int water) {
         super(house);
@@ -22,11 +25,7 @@ public class WashingMachine extends Appliance {
         this.water = water;
         content = new Clothes(house);
         applianceType = Fasada.allClasses.washingmachine;
-    }
-
-    @Override
-    public void report(Reporter reporter) {
-
+        eventLog = new HashMap<>();
     }
 
     @Override
@@ -43,4 +42,26 @@ public class WashingMachine extends Appliance {
             content.becomeDirty();
         }
     }
+
+    protected void breakDown() {
+        house.getPeopleFasada()
+             .getByType(Fasada.allClasses.father)
+             .addRepairableRequest(this);
+        functionality = false;
+        eventLog.put("broken washing machine", null);
+    }
+
+    public void repair(Person person) {
+        if (!functionality) {
+            functionality = true;
+            person.delay();
+            eventLog.put("broken washing machine", person.getName());
+        }
+    }
+
+    @Override
+    public void report(Reporter reporter) {
+
+    }
+
 }

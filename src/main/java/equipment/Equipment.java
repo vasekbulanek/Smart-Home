@@ -50,13 +50,7 @@ public abstract class Equipment implements Repairable {
 
     protected abstract void refreshService();
 
-    public void repair(Person person) {
-        if (!functionality || getTimeToService() < 24) {
-            functionality = true;
-            refreshService();
-            person.delay();
-        }
-    }
+    public abstract void repair(Person person);
 
     public Fasada.allClasses getEquipmentType() {
         return equipmentType;

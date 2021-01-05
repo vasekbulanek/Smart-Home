@@ -3,6 +3,7 @@ package equipment;
 import general.*;
 import people.Person;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class Bicycle extends Equipment implements Tickable {
@@ -12,6 +13,7 @@ public class Bicycle extends Equipment implements Tickable {
     private final int using = 3;
     private final int OKusageLikehood = 5;
     private boolean inUse;
+    private HashMap<String, String> eventLog;
 
     public Bicycle(House house) {
         super(house);
@@ -19,6 +21,7 @@ public class Bicycle extends Equipment implements Tickable {
         timeToService = service;
         equipmentType = Fasada.allClasses.bicycle;
         inUse = false;
+        eventLog = new HashMap<>();
     }
 
     public boolean use(Person person) {
@@ -27,6 +30,7 @@ public class Bicycle extends Equipment implements Tickable {
                 house.getPeopleFasada()
                      .getByType(Fasada.allClasses.father)
                      .addRepairableRequest(this);
+                eventLog.put("broken bicycle", null);
                 return false;
             }
             timeToService -= using;
@@ -56,6 +60,7 @@ public class Bicycle extends Equipment implements Tickable {
         house.getPeopleFasada()
              .getByType(Fasada.allClasses.father)
              .addRepairableRequest(this);
+        eventLog.put("broken bicycle", null);
     }
 
     @Override
@@ -65,7 +70,22 @@ public class Bicycle extends Equipment implements Tickable {
 
     @Override
     public void report(Reporter reporter) {
+        for (String key : eventLog.keySet()) {
+            if (!eventLog.isEmpty()){
+                reporter.eventCatch(key, eventLog.get(key));
+            }
+        }
+        eventLog.clear();
+    }
 
+    @Override
+    public void repair(Person person) {
+        if (!functionality || getTimeToService() < 24) {
+            functionality = true;
+            refreshService();
+            person.delay();
+            eventLog.put("broken bicycle", person.getName());
+        }
     }
 
     public int getTimeToService() {
