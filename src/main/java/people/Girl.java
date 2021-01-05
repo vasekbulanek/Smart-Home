@@ -27,7 +27,7 @@ public class Girl extends Person {
                 Fasada.allClasses name = r.need();
                 if (name != null) r.work(house.getApplianceFasada()
                                               .getByType(name), this);
-                else r.work(this);
+                else r.work();
                 return;
             }
             if (request.hasTo(Request.Typ.person) > 0) {
@@ -67,7 +67,6 @@ public class Girl extends Person {
                 reporter.eventCatch(key, diary.get(key));
             } else reporter.activityCatch(personType.toString() + " " + name, key);
         }
-        diary = new HashMap<>();
     }
 
 
@@ -101,12 +100,12 @@ public class Girl extends Person {
     @Override
     protected void sleep() {
         super.sleep();
-        diary.put(personType.toString()+" "+ name +" sleeps", "activity");
+        diary.put("sleeps", "activity");
     }
 
     @Override
     protected void wakeUp() {
         super.wakeUp();
-        diary.put(personType.toString()+" "+ name +" wakes up", "activity");
+        diary.put("wakes up", "activity");
     }
 }

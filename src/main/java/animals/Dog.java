@@ -9,13 +9,13 @@ public class Dog extends Animal {
     private Person master;
     private boolean validMaster;
     private Room allowed;
-    private HashMap<String, String> eventLog;
+    private HashMap<String, String> diary;
 
     public Dog(House house, String name) {
         super(house, name);
         validMaster = false;
         animalType = Fasada.allClasses.dog;
-        eventLog = new HashMap<>();
+        diary = new HashMap<>();
     }
 
     @Override
@@ -26,12 +26,12 @@ public class Dog extends Animal {
                 for (Person p : room.getPeople()) {
                     p.addAnimalRequest(this);
                 }
-                eventLog.put("feeding dog", null);
+                diary.put("feeding dog", null);
                 validMaster = false;
             }
             else {
                 master.addAnimalRequest(this);
-                eventLog.put("feeding dog", null);
+                diary.put("feeding dog", null);
             }
         }
         if (master != null && master.getRoom() == house.getRoomFasada()
@@ -39,7 +39,7 @@ public class Dog extends Animal {
             house.getRoomFasada()
                  .getOutside()
                  .addPropriet(this, room);
-            eventLog.put("go with " + master.getName() + " out", "activity");
+            diary.put("go with " + master.getName() + " out", "activity");
         } else if (allowed != null) {
             allowed.addPropriet(this, room);
         }
@@ -52,25 +52,26 @@ public class Dog extends Animal {
         super.feed(person);
         if (!validMaster) {
             master = person;
-            eventLog.put("my new master is " + master.getName(), "activity");
+            diary.put("my new master is " + master.getName(), "activity");
         }
-        eventLog.put("feeding dog", person.getPersonType()
+        diary.put("feeding dog", person.getPersonType()
                                        .toString() + " " + person.getName());
     }
 
     @Override
     public void report(Reporter reporter) {
-        for (String key : eventLog.keySet()) {
-            if (!eventLog.isEmpty()){
-                reporter.eventCatch(key, eventLog.get(key));
-            }
+        for (String key : diary.keySet()) {
+            if (diary.get(key)!=null && !diary.get(key)
+                      .equals("activity")) {
+                reporter.eventCatch(key, diary.get(key));
+            } else reporter.activityCatch(animalType.toString() + " " + name, key);
         }
-        eventLog.clear();
+        diary = new HashMap<>();
     }
 
     @Override
     public void play(Person person) {
-        eventLog.put(person.getName() + " is playing with dog " + name, "activity");
+        diary.put(person.getName() + " is playing with dog " + name, "activity");
     }
 
     public void place(Room room) {

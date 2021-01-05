@@ -30,7 +30,7 @@ public class Bicycle extends Equipment implements Tickable {
                 house.getPeopleFasada()
                      .getByType(Fasada.allClasses.father)
                      .addRepairableRequest(this);
-                eventLog.put("repair broken bicycle", null);
+                eventLog.put("broken bicycle", null);
                 return false;
             }
             timeToService -= using;
@@ -42,7 +42,6 @@ public class Bicycle extends Equipment implements Tickable {
                  .getOutside()
                  .addPropriet(person, room);
             person.setUsing(this);
-            eventLog.put(person.getPersonType().toString()+" "+person.getName()+" is riding bicycle", "activity");
             return true;
         } else return false;
 
@@ -51,7 +50,6 @@ public class Bicycle extends Equipment implements Tickable {
     public void Tidy() {
         if (whenTidy != null) {
             whenTidy.addPropriet(this, room);
-            eventLog.put("bicycle placed in "+room.getName(), "activity");
         }
         Random random = new Random();
         inUse = false;
@@ -86,7 +84,7 @@ public class Bicycle extends Equipment implements Tickable {
             functionality = true;
             refreshService();
             person.delay();
-            eventLog.put("repair broken bicycle", person.getName());
+            eventLog.put("broken bicycle", person.getName());
         }
     }
 

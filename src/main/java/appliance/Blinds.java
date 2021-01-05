@@ -21,7 +21,6 @@ public class Blinds extends Appliance implements Tickable {
     }
 
     public void use() {
-        eventLog.put("Blinds are working", "activity");
         on = true;
     }
 
@@ -42,6 +41,7 @@ public class Blinds extends Appliance implements Tickable {
              .addRepairableRequest(this);
         functionality = false;
         eventLog.put("broken blinds", null);
+        System.out.println("blinds XX");
     }
 
     public void repair(Person person) {

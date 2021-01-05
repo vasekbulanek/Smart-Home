@@ -32,7 +32,7 @@ public class Father extends Person {
     @Override
     protected void sleep() {
         super.sleep();
-        diary.put(personType.toString()+" "+ name +" sleeps", "activity");
+        diary.put("sleeps", "activity");
     }
 
     @Override
@@ -95,12 +95,11 @@ public class Father extends Person {
                 reporter.eventCatch(key, diary.get(key));
             } else reporter.activityCatch(personType.toString() + " " + name, key);
         }
-        diary = new HashMap<>();
     }
 
     @Override
     protected void wakeUp() {
         super.wakeUp();
-        diary.put(personType.toString()+" "+ name +" wakes up", "activity");
+        diary.put("wakes up", "activity");
     }
 }

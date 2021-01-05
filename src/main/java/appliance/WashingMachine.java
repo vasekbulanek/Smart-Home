@@ -60,12 +60,6 @@ public class WashingMachine extends Appliance {
     }
 
     @Override
-    public boolean use(Person person) {
-        eventLog.put(person.getPersonType().toString()+" "+person.getName()+"used washing machine", "activity");
-        return super.use(person);
-    }
-
-    @Override
     public void report(Reporter reporter) {
         for (String key : eventLog.keySet()) {
             if (!eventLog.isEmpty()){
@@ -73,7 +67,6 @@ public class WashingMachine extends Appliance {
             }
         }
         eventLog.clear();
-        content.report(reporter);
     }
 
 }

@@ -46,12 +46,6 @@ public class Stove extends Appliance implements Tickable {
     }
 
     @Override
-    public boolean use(Person person) {
-        eventLog.put(person.getPersonType().toString()+" "+person.getName()+"used stove", "activity");
-        return super.use(person);
-    }
-
-    @Override
     public void report(Reporter reporter) {
         for (String key : eventLog.keySet()) {
             if (!eventLog.isEmpty()){
