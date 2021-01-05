@@ -39,6 +39,7 @@ public class House {
         applianceFasada.sendTicks();
         peopleFasada.sendTicks();
         equipmentFasada.sendTicks();
+        reporter.refresh();
     }
 
     public AnimalFasada getAnimalFasada() {
