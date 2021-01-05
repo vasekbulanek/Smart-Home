@@ -16,8 +16,7 @@ public class Time extends Observable {
         clock = clock % 24;
         if (clock == 0) {
             date++;
-            reporter.houseEventReport();
-            reporter.activityAndUsageReport();
+            reporter.refresh();
         }
         if (clock == 7 || clock == 22) change();
     }

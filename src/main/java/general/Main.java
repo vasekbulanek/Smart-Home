@@ -3,12 +3,13 @@ package general;
 public class Main {
     public static void main(String[] args) {
         House house = new House();
-        house.reporter.houseConfigurationReport();
+        //house.reporter.houseConfigurationReport();
         for (int i = 0; i<24*30; i++){
             house.run();
+            house.reporter.activityAndUsageReport();
         }
-        house.reporter.consuptionReport();
-        house.reporter.endReport();
+        //house.reporter.consuptionReport();
+        //house.reporter.endReport();
 
     }
 }

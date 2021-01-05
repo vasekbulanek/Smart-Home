@@ -69,6 +69,10 @@ public class PeopleFasada extends Fasada {
 
     }
 
+    public Map<String, Person> getPersonMap() {
+        return personMap;
+    }
+
     public Person getByName(String name) {
         for (String key : personMap.keySet()) {
             if (name.equals(key)) {

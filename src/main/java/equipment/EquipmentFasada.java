@@ -61,6 +61,10 @@ public class EquipmentFasada extends Fasada {
         return null;
     }
 
+    public LinkedList<Equipment> getEquipment() {
+        return equipment;
+    }
+
     public Equipment getNextByType(allClasses type, int hash) {
         boolean found = false;
         for (Equipment e : equipment) {
