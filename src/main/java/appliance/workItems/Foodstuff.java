@@ -7,17 +7,102 @@ import general.House;
 import people.Person;
 
 public class Foodstuff implements Work {
-    private stateFood currentState;
+    private Work currentState;
     House house;
     private int portions;
 
-    private enum stateFood {
-        raw, cut, prepared, trash
+    private class Raw implements Work{
+
+        @Override
+        public boolean work() {
+            currentState = new Cut();
+            house.getPeopleFasada()
+                    .getByType(Fasada.allClasses.mother)
+                    .addWorkRequest(currentState);
+            return true;
+        }
+
+        @Override
+        public boolean work(Appliance appliance, Person person) {
+            person.addWorkRequest(this);
+            return false;
+        }
+
+        @Override
+        public Fasada.allClasses need() {
+            return null;
+        }
+    }
+
+    private class Cut implements Work{
+
+        @Override
+        public boolean work() {
+            house.getPeopleFasada().getByType(Fasada.allClasses.mother).addWorkRequest(this);
+            return false;
+        }
+
+        @Override
+        public boolean work(Appliance appliance, Person person) {
+            if(appliance.getApplianceType()!= Fasada.allClasses.stove){
+                person.addWorkRequest(this);
+                return false;
+            }
+            appliance.use(person);
+            currentState = new Prepared();
+            portions = house.getPeopleFasada()
+                    .getSize() * 2;
+            return true;
+        }
+
+        @Override
+        public Fasada.allClasses need() {
+            return Fasada.allClasses.stove;
+        }
+    }
+
+    private class Prepared implements Work{
+        @Override
+        public boolean work() {
+            return false;
+        }
+
+        @Override
+        public boolean work(Appliance appliance, Person person) {
+            return false;
+        }
+
+        @Override
+        public Fasada.allClasses need() {
+            return null;
+        }
+
+    }
+
+    private class Trash implements Work{
+
+        @Override
+        public boolean work() {
+            currentState = new Raw();
+            house.getPeopleFasada().getByType(Fasada.allClasses.mother).addWorkRequest(currentState);
+            return true;
+        }
+
+        @Override
+        public boolean work(Appliance appliance, Person person) {
+            house.getPeopleFasada().getByType(Fasada.allClasses.mother).addWorkRequest(currentState);
+            return false;
+        }
+
+        @Override
+        public Fasada.allClasses need() {
+            return null;
+        }
     }
 
     public Foodstuff(House house) {
         this.house = house;
-        currentState = stateFood.raw;
+        currentState = new Raw();
         portions = 0;
         house.getPeopleFasada()
              .getByType(Fasada.allClasses.mother)
@@ -25,11 +110,11 @@ public class Foodstuff implements Work {
     }
 
     public void beEaten(Person person) {
-        if (currentState == stateFood.prepared) {
+        if (portions>0) {
             portions--;
             person.eat(this);
             if (portions == 0) {
-                currentState = stateFood.trash;
+                currentState = new Trash();
                 house.getPeopleFasada()
                      .getByType(Fasada.allClasses.mother)
                      .addWorkRequest(this);
@@ -38,51 +123,17 @@ public class Foodstuff implements Work {
     }
 
     public boolean work() {
-        if (currentState == stateFood.raw) {
-            currentState = stateFood.cut;
-            house.getPeopleFasada()
-                 .getByType(Fasada.allClasses.mother)
-                 .addWorkRequest(this);
-            return true;
-        }
-        if (currentState == stateFood.trash) {
-            currentState = stateFood.raw;
-            house.getPeopleFasada()
-                 .getByType(Fasada.allClasses.mother)
-                 .addWorkRequest(this);
-            return true;
-        }
-        return false;
+        return currentState.work();
     }
 
     @Override
     public boolean work(Appliance appliance, Person person) {
-        if (appliance.toString()
-                     .contains("Stove.")) {
-            return work((Stove) appliance, person);
-        }
-        return false;
+        return currentState.work(appliance, person);
     }
 
     @Override
     public Fasada.allClasses need() {
-        if (currentState == stateFood.cut) return Fasada.allClasses.stove;
-        return null;
+        return currentState.need();
     }
 
-    public boolean work(Stove stove, Person person) {
-        stove.use(person);
-        if (currentState == stateFood.cut) {
-            currentState = stateFood.prepared;
-            portions = house.getPeopleFasada()
-                            .getSize() * 2;
-            return true;
-        }
-        person.addWorkRequest(this);
-        return false;
-    }
-
-    public stateFood getCurrentState() {
-        return currentState;
-    }
 }
