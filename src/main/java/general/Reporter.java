@@ -27,7 +27,7 @@ public class Reporter {
         }
     }
 
-    public void eventSolved(String event, String entity) {      // more like eventCatch (have to change everywhere)
+    public void eventCatch(String event, String entity) {      // old eventSolved (didn't make sense) /// changed everywhere
         if (this.events.containsKey(event)) {
             this.events.replace(event, entity);
         } else {

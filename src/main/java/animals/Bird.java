@@ -31,7 +31,7 @@ public class Bird extends Animal {
         for (String key : diary.keySet()) {
             if (!diary.get(key)
                       .equals("activity")) {
-                reporter.eventSolved(key, diary.get(key));
+                reporter.eventCatch(key, diary.get(key));
             } else reporter.activityCatch(animalType.toString() + " " + name, key);
         }
         diary = new HashMap<>();

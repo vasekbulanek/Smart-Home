@@ -92,7 +92,7 @@ public class Father extends Person {
         for (String key : diary.keySet()) {
             if (!diary.get(key)
                       .equals("activity")) {
-                reporter.eventSolved(key, diary.get(key));
+                reporter.eventCatch(key, diary.get(key));
             } else reporter.activityCatch(personType.toString() + " " + name, key);
         }
     }
