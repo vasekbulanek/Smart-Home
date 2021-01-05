@@ -23,6 +23,6 @@ Factory – ve třídě ApplianceFactory\
 Composite – třídy s názvy „...Fasda“ plní spíše funkci Composite než fasády. Spolu s třídou House v kořeni tvoří vnitřní uzly stromu, po němž se lze dostat do (téměř) kterékoliv třídy.\
 Singleton – třídy Mother a Father. Singleton zde má spíše symbolickou roli, simulace by měla proběhnout i s více instancemi.\
 Visitor – Reporter navštěvuje třídy implementující Tickable (Z důvodů ušetření kódu podobně fungují i metody jako use(Person person) ve třídě Ski.) \
-Observer – Time a Person, Weather a Blinds
-
-
+Observer – Time a Person, Weather a Blinds\
+Iterator - ve třídě PeopleFasada je třída PeopleIterator. Slouží k rozdělování úkolů, a proto je inicializován 
+pouze ve třídě PeopleFasada a je zacyklený. Metoda pro získání iterátoru je primitivní lazy initialization.
