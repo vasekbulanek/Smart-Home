@@ -6,12 +6,12 @@ import people.Person;
 import java.util.HashMap;
 
 public class Bird extends Animal {
-    private HashMap<String, String> diary;
+    private HashMap<String, String> eventLog;
 
     public Bird(House house, String name) {
         super(house, name);
         animalType = Fasada.allClasses.bird;
-        diary = new HashMap<>();
+        eventLog = new HashMap<>();
     }
 
     @Override
@@ -21,32 +21,31 @@ public class Bird extends Animal {
             for (Person p : room.getPeople()) {
                 p.addAnimalRequest(this);
             }
-            diary.put("feeding bird", null);
+            eventLog.put("feeding bird", null);
         }
 
     }
 
     @Override
     public void report(Reporter reporter) {
-        for (String key : diary.keySet()) {
-            if (diary.get(key)!=null && !diary.get(key)
-                      .equals("activity")) {
-                reporter.eventCatch(key, diary.get(key));
-            } else reporter.activityCatch(animalType.toString() + " " + name, key);
+        for (String key : eventLog.keySet()) {
+            if (!eventLog.isEmpty()){
+                reporter.eventCatch(key, eventLog.get(key));
+            }
         }
-        diary = new HashMap<>();
+        eventLog.clear();
     }
 
 
     @Override
     public void play(Person person) {
-        diary.put(person.getName() + " is talking with bird " + name, "activity");
+        eventLog.put(person.getName() + " is talking with bird " + name, "activity");
     }
 
     @Override
     protected void feed(Person person) {
         super.feed(person);
-        diary.put("feeding bird", person.getPersonType()
+        eventLog.put("feeding bird", person.getPersonType()
                                         .toString() + " " + person.getName());
     }
 }

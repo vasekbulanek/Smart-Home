@@ -7,12 +7,12 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Cat extends Animal {
-    private HashMap<String, String> diary;
+    private HashMap<String, String> eventLog;
 
     public Cat(House house, String name) {
         super(house, name);
         animalType = Fasada.allClasses.cat;
-        diary = new HashMap<>();
+        eventLog = new HashMap<>();
     }
 
     @Override
@@ -21,7 +21,7 @@ public class Cat extends Animal {
         if (hunger > 12) {
             for (Person p : room.getPeople()) {
                 p.addAnimalRequest(this);
-                diary.put("feeding cat", null);
+                eventLog.put("feeding cat", null);
             }
         }
         Random random = new Random();
@@ -36,18 +36,17 @@ public class Cat extends Animal {
 
     @Override
     public void report(Reporter reporter) {
-        for (String key : diary.keySet()) {
-            if (diary.get(key)!=null && !diary.get(key)
-                      .equals("activity")) {
-                reporter.eventCatch(key, diary.get(key));
-            } else reporter.activityCatch(animalType.toString() + " " + name, key);
+        for (String key : eventLog.keySet()) {
+            if (!eventLog.isEmpty()){
+                reporter.eventCatch(key, eventLog.get(key));
+            }
         }
-        diary = new HashMap<>();
+        eventLog.clear();
     }
 
     @Override
     public void play(Person person) {
-        diary.put(person.getName() + " is playing with cat " + name, "activity");
+        eventLog.put(person.getName() + " is playing with cat " + name, "activity");
     }
 
     @Override
@@ -55,7 +54,7 @@ public class Cat extends Animal {
         if (room != person.getRoom()) person.getRoom()
                                             .addPropriet(this, room);
         super.feed(person);
-        diary.put("feeding cat", person.getPersonType()
+        eventLog.put("feeding cat", person.getPersonType()
                                        .toString() + " " + person.getName());
     }
 

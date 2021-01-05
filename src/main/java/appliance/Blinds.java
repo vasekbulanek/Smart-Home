@@ -21,6 +21,7 @@ public class Blinds extends Appliance implements Tickable {
     }
 
     public void use() {
+        eventLog.put("Blinds are working", "activity");
         on = true;
     }
 
@@ -53,7 +54,12 @@ public class Blinds extends Appliance implements Tickable {
 
     @Override
     public void report(Reporter reporter) {
-
+        for (String key : eventLog.keySet()) {
+            if (!eventLog.isEmpty()){
+                reporter.eventCatch(key, eventLog.get(key));
+            }
+        }
+        eventLog.clear();
     }
 
     @Override

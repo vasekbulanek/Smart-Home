@@ -89,8 +89,8 @@ public class Reporter {
             for (String event : this.events.keySet()) {
                 String handler = this.events.get(event);
                 if (handler != null) {
-                    System.out.println(event + " handeled succesfuly by " + this.events.get(event));
-                    fileWriter.write(event + " handeled succesfuly by " + this.events.get(event) + "\n");
+                    System.out.println(event + " handled successfully by " + this.events.get(event));
+                    fileWriter.write(event + " handled successfully by " + this.events.get(event) + "\n");
                 } else {
                     System.out.println(event + " is pending");
                     fileWriter.write(event + " is pending\n");

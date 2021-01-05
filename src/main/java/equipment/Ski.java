@@ -30,6 +30,7 @@ public class Ski extends Equipment {
                 house.getPeopleFasada()
                      .getByType(Fasada.allClasses.father)
                      .addRepairableRequest(this);
+                eventLog.put("repair broken ski", null);
                 return false;
             }
             timeToService -= using;
@@ -41,6 +42,7 @@ public class Ski extends Equipment {
                  .getOutside()
                  .addPropriet(person, room);
             person.setUsing(this);
+            eventLog.put(person.getPersonType().toString()+" "+person.getName()+" is riding ski", "activity");
             return true;
         } else return false;
 
@@ -49,6 +51,7 @@ public class Ski extends Equipment {
     public void Tidy() {
         if (whenTidy != null) {
             whenTidy.addPropriet(this, room);
+            eventLog.put("ski placed in "+room.getName(), "activity");
         }
         Random random = new Random();
         inUse = false;
@@ -82,7 +85,7 @@ public class Ski extends Equipment {
             functionality = true;
             refreshService();
             person.delay();
-            eventLog.put("broken bicycle", person.getName());
+            eventLog.put("repair broken ski", person.getName());
         }
     }
 

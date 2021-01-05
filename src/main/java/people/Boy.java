@@ -49,6 +49,7 @@ public class Boy extends Person {
                 reporter.eventCatch(key, diary.get(key));
             } else reporter.activityCatch(personType.toString() + " " + name, key);
         }
+        diary = new HashMap<>();
     }
 
     public void addPersonRequest(Person person) {
@@ -70,13 +71,13 @@ public class Boy extends Person {
     @Override
     protected void sleep() {
         super.sleep();
-        diary.put("sleeps", "activity");
+        diary.put(personType.toString()+" "+ name +" sleeps", "activity");
     }
 
     @Override
     protected void wakeUp() {
         super.wakeUp();
-        diary.put("wakes up", "activity");
+        diary.put(personType.toString()+" "+ name +" wakes up", "activity");
     }
 }
 

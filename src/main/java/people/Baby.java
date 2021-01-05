@@ -71,7 +71,7 @@ public class Baby extends Person {
             int number = random.nextInt(3);
             if (number == 1) {
                 activity = longActivity.sleep;
-                diary.put("sleeps", "activity");
+                diary.put(personType.toString()+" "+ name +" sleeps", "activity");
                 return true;
             }
         }
@@ -96,6 +96,7 @@ public class Baby extends Person {
                 reporter.eventCatch(key, diary.get(key));
             } else reporter.activityCatch(personType.toString() + " " + name, key);
         }
+        diary = new HashMap<>();
     }
 
 
@@ -139,6 +140,6 @@ public class Baby extends Person {
     @Override
     protected void wakeUp() {
         super.wakeUp();
-        diary.put("wakes up", "activity");
+        diary.put(personType.toString()+" "+ name +" wakes up", "activity");
     }
 }

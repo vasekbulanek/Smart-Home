@@ -49,8 +49,19 @@ public class Boiler extends Appliance implements Tickable {
     }
 
     @Override
-    public void report(Reporter reporter) {
+    public boolean use(Person person) {
+        eventLog.put(person.getPersonType().toString()+" "+person.getName()+"used boiler", "activity");
+        return super.use(person);
+    }
 
+    @Override
+    public void report(Reporter reporter) {
+        for (String key : eventLog.keySet()) {
+            if (!eventLog.isEmpty()){
+                reporter.eventCatch(key, eventLog.get(key));
+            }
+        }
+        eventLog.clear();
     }
 
 }
