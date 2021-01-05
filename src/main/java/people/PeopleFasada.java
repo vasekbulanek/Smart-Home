@@ -15,6 +15,7 @@ import java.util.*;
 public class PeopleFasada extends Fasada {
     Map<String, Person> personMap;
     House house;
+    private PeopleIterator peopleIterator;
 
 
     public PeopleFasada(House house, String initFile) {
@@ -124,5 +125,32 @@ public class PeopleFasada extends Fasada {
 
     public int getSize() {
         return personMap.size();
+    }
+
+    public PeopleIterator getPeopleIterator() {
+        if (peopleIterator==null){
+            peopleIterator = new PeopleIterator();
+        }
+        return peopleIterator;
+    }
+
+    public class PeopleIterator implements Iterator{
+        private int current;
+        private final Object[] people;
+        private PeopleIterator() {
+            current = -1;
+            people = personMap.values().toArray();
+        }
+
+        @Override
+        public boolean hasNext() {
+            return true;
+        }
+
+        @Override
+        public Person next() {
+            current = (current+1)%personMap.size();
+            return (Person) people[current];
+        }
     }
 }

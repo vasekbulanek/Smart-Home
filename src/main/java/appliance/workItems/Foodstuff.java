@@ -1,7 +1,6 @@
 package appliance.workItems;
 
 import appliance.Appliance;
-import appliance.Stove;
 import general.Fasada;
 import general.House;
 import people.Person;
@@ -38,14 +37,14 @@ public class Foodstuff implements Work {
 
         @Override
         public boolean work() {
-            house.getPeopleFasada().getByType(Fasada.allClasses.mother).addWorkRequest(this);
+            house.getPeopleFasada().getPeopleIterator().next().addWorkRequest(this);
             return false;
         }
 
         @Override
         public boolean work(Appliance appliance, Person person) {
             if(appliance.getApplianceType()!= Fasada.allClasses.stove){
-                person.addWorkRequest(this);
+                house.getPeopleFasada().getPeopleIterator().next().addWorkRequest(this);
                 return false;
             }
             appliance.use(person);
@@ -90,7 +89,7 @@ public class Foodstuff implements Work {
 
         @Override
         public boolean work(Appliance appliance, Person person) {
-            house.getPeopleFasada().getByType(Fasada.allClasses.mother).addWorkRequest(currentState);
+            house.getPeopleFasada().getPeopleIterator().next().addWorkRequest(this);
             return false;
         }
 
