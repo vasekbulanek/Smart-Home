@@ -47,6 +47,9 @@ public class ApplianceFactory {
             case ("Television"):
                 for (int i = 0; i < count; i++) applianceFasada.addToList(new Television(house, elecOn, elecOff));
                 break;
+            case ("WashingMachine"):
+                for (int i = 0; i < count; i++) applianceFasada.addToList(new WashingMachine(house, elecOn, elecOff, water));
+                break;
             default:
                 System.out.println("There is unknown appliance type " + key.toString() + ". Check init.json, please.");
         }

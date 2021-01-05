@@ -17,12 +17,13 @@ public class Clothes implements Work {
 
     public Clothes(House house) {
         this.house = house;
-        currentState = stateCloth.washed;
+        currentState = stateCloth.ironed;
     }
 
     public void becomeDirty() {
         if (currentState == stateCloth.ironed) {
             currentState = stateCloth.dirty;
+            house.getPeopleFasada().getByType(Fasada.allClasses.mother).addWorkRequest(this);
         }
     }
 
@@ -33,7 +34,7 @@ public class Clothes implements Work {
 
     @Override
     public boolean work(Appliance appliance, Person person) {
-        if (appliance.getApplianceType() == Fasada.allClasses.washingMachine) {
+        if (appliance.getApplianceType() == Fasada.allClasses.washingmachine) {
             return work((WashingMachine) appliance, person);
         }
         if (appliance.getApplianceType() == Fasada.allClasses.iron) {
@@ -44,7 +45,7 @@ public class Clothes implements Work {
 
     @Override
     public Fasada.allClasses need() {
-        if (currentState == stateCloth.dirty) return Fasada.allClasses.washingMachine;
+        if (currentState == stateCloth.dirty) return Fasada.allClasses.washingmachine;
         if (currentState == stateCloth.washed) return Fasada.allClasses.iron;
         return null;
     }
@@ -63,6 +64,7 @@ public class Clothes implements Work {
         washingMachine.use(person);
         if (currentState == stateCloth.dirty) {
             currentState = stateCloth.washed;
+            person.addWorkRequest(this);
             return true;
         }
         person.addWorkRequest(this);

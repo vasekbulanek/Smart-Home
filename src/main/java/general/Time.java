@@ -3,10 +3,12 @@ package general;
 public class Time extends Observable {
     private int clock;
     private int date;
+    private Reporter reporter;
 
-    public Time() {
+    public Time(Reporter reporter) {
         clock = 8;
         date = 1;
+        this.reporter = reporter;
     }
 
     protected void tick() {
@@ -14,6 +16,8 @@ public class Time extends Observable {
         clock = clock % 24;
         if (clock == 0) {
             date++;
+            reporter.houseEventReport();
+            reporter.activityAndUsageReport();
         }
         if (clock == 7 || clock == 22) change();
     }

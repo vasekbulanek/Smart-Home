@@ -11,7 +11,7 @@ public abstract class Fasada<T> {
 
     public enum allClasses {
         baby, boy, father, mother, girl, bicycle, ski, blinds,
-        boiler, fridge, iron, phone, stove, television, washingMachine,
+        boiler, fridge, iron, phone, stove, television, washingmachine,
         cat, bird, dog, room
     }
 

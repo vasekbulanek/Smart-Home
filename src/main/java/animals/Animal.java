@@ -5,7 +5,6 @@ import people.Person;
 
 public abstract class Animal implements Tickable {
     int hunger;
-    boolean sleeping;
     Room room;
     House house;
     String name;

@@ -21,7 +21,7 @@ public class WashingMachine extends Appliance {
         this.electricityOff = electricityOff;
         this.water = water;
         content = new Clothes(house);
-        applianceType = Fasada.allClasses.washingMachine;
+        applianceType = Fasada.allClasses.washingmachine;
     }
 
     @Override
@@ -39,6 +39,8 @@ public class WashingMachine extends Appliance {
             this.usedElectricity += this.electricityOff;
         }
         Random random = new Random();
-        if (random.nextInt(24) == 1) content.becomeDirty();
+        if (random.nextInt(24) == 1){
+            content.becomeDirty();
+        }
     }
 }

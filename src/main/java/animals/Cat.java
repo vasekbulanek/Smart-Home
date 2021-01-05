@@ -47,7 +47,7 @@ public class Cat extends Animal {
 
     @Override
     public void play(Person person) {
-        diary.put(person.getName() + " is playng with cat " + name, "activity");
+        diary.put(person.getName() + " is playing with cat " + name, "activity");
     }
 
     @Override

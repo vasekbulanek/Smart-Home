@@ -17,7 +17,8 @@ public class House {
     public Reporter reporter;
 
     public House() {
-        time = new Time();
+        reporter = new Reporter(this);
+        time = new Time(reporter);
         weather = new Weather();
         String initFile = "src/main/resources/init.json";
         peopleFasada = new PeopleFasada(this, initFile);
@@ -25,10 +26,10 @@ public class House {
         applianceFasada = new ApplianceFasada(this, initFile);
         equipmentFasada = new EquipmentFasada(this, initFile);
         roomFasada = new RoomFasada(this, initFile);
-        reporter = new Reporter(this);
         getPeopleFasada().checkRooms();
         getAnimalFasada().checkRooms();
         peopleFasada.sendTicks();
+        reporter.houseConfigurationReport();
     }
 
     void run() {

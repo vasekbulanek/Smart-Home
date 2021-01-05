@@ -29,8 +29,10 @@ public class Dog extends Animal {
                 diary.put("feeding dog", null);
                 validMaster = false;
             }
-            master.addAnimalRequest(this);
-            diary.put("feeding dog", null);
+            else {
+                master.addAnimalRequest(this);
+                diary.put("feeding dog", null);
+            }
         }
         if (master != null && master.getRoom() == house.getRoomFasada()
                                                        .getOutside()) {

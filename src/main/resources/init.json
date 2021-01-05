@@ -1,7 +1,7 @@
 {
   "room": {"kitchen": {"Blinds": 1, "Fridge": 1, "Phone": 1, "Stove": 1, "Mother": 1, "Baby": 1},
     "living room": {"Blinds": 3, "Iron": 1, "Father": 1, "Television": 1},
-    "bathroom": {"Boiler": 1, "Girl": 1},
+    "bathroom": {"Boiler": 1, "Girl": 1, "WashingMachine": 1},
     "bedroom": {"Blinds": 1, "Cat": 1, "Phone": 1},
     "cellar": {"Ski": 2, "Bicycle": 4}
   },
@@ -25,7 +25,8 @@
     "Iron": { "electricity on": 25, "electricity off": 0, "water": 1},
     "Phone": { "electricity on": 2, "electricity off": 1, "water": 0},
     "Stove": { "electricity on": 100, "electricity off": 1, "water": 0},
-    "Television": { "electricity on": 10, "electricity off": 0, "water": 0}
+    "Television": { "electricity on": 10, "electricity off": 0, "water": 0},
+    "WashingMachine": { "electricity on": 30, "electricity off": 0, "water": 4}
   },
   "prices": {"electricity": 1, "water":1},
   "animals": {
