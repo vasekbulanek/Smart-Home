@@ -50,6 +50,7 @@ public class Ski extends Equipment {
     public void Tidy() {
         if (whenTidy != null) {
             whenTidy.addPropriet(this, room);
+            eventLog.put("ski are placed in"+room.getName(), "activity");
         }
         Random random = new Random();
         inUse = false;

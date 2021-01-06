@@ -26,7 +26,6 @@ public class Dog extends Animal {
                 for (Person p : room.getPeople()) {
                     p.addAnimalRequest(this);
                 }
-                diary.put("feeding dog", null);
                 validMaster = false;
             }
             else {

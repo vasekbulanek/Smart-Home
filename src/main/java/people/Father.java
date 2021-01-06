@@ -95,6 +95,7 @@ public class Father extends Person {
                 reporter.eventCatch(key, diary.get(key));
             } else reporter.activityCatch(personType.toString() + " " + name, key);
         }
+        diary = new HashMap<>();
     }
 
     @Override

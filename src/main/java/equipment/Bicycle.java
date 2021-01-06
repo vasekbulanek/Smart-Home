@@ -3,6 +3,7 @@ package equipment;
 import general.*;
 import people.Person;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -27,10 +28,6 @@ public class Bicycle extends Equipment implements Tickable {
     public boolean use(Person person) {
         if (!inUse) {
             if (broken || timeToService <= 0) {
-                house.getPeopleFasada()
-                     .getByType(Fasada.allClasses.father)
-                     .addRepairableRequest(this);
-                eventLog.put("broken bicycle", null);
                 return false;
             }
             eventLog.put(person.getPersonType().toString()+" "+person.getName()+" is riding bicycle", "activity");
@@ -51,11 +48,14 @@ public class Bicycle extends Equipment implements Tickable {
     public void Tidy() {
         if (whenTidy != null) {
             whenTidy.addPropriet(this, room);
+            eventLog.put("bicycle is placed in "+room.getName(), "activity");
         }
         Random random = new Random();
         inUse = false;
-        for (int i = 0; i < OKusageLikehood; i++) {
-            if (random.nextBoolean()) return;
+        if(timeToService>0) {
+            for (int i = 0; i < OKusageLikehood; i++) {
+                if (random.nextBoolean()) return;
+            }
         }
         broken = true;
         house.getPeopleFasada()
@@ -75,19 +75,19 @@ public class Bicycle extends Equipment implements Tickable {
             if (eventLog.get(key)!=null && !eventLog.get(key)
                     .equals("activity")) {
                 reporter.eventCatch(key, eventLog.get(key));
-            } else reporter.activityCatch(eventLog.toString(), key);
+            } else {reporter.activityCatch(equipmentType.toString(), key);
+            System.out.println("                             "+key);}
         }
         eventLog = new HashMap<>();
     }
 
     @Override
     public void repair(Person person) {
-        if (!functionality || getTimeToService() < 24) {
             functionality = true;
+            broken = false;
             refreshService();
             person.delay();
             eventLog.put("broken bicycle", person.getName());
-        }
     }
 
     public int getTimeToService() {

@@ -96,6 +96,7 @@ public class Baby extends Person {
                 reporter.eventCatch(key, diary.get(key));
             } else reporter.activityCatch(personType.toString() + " " + name, key);
         }
+        diary = new HashMap<>();
     }
 
 
@@ -131,7 +132,7 @@ public class Baby extends Person {
 
     public void addWorkRequest(Work work) {
         house.getPeopleFasada()
-             .getByType(Fasada.allClasses.mother)
+             .getByType(Fasada.allClasses.father)
              .addWorkRequest(work);
         diary.put("passed work to mother", "activity");
     }

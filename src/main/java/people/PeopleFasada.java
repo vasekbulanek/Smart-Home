@@ -123,7 +123,6 @@ public class PeopleFasada extends Fasada {
         Random r = new Random();
         Person person = (Person) personMap.values()
                                           .toArray()[r.nextInt(personMap.size())];
-        System.out.println(person);
         return person;
     }
 
