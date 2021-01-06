@@ -93,7 +93,7 @@ public class PeopleFasada extends Fasada {
             Random random = new Random();
             return people.get(random.nextInt(people.size() + 2) % people.size());
         }
-        return null;
+        return getPeopleIterator().next();
     }
 
     public Person getNextByType(allClasses type, int hash) {
@@ -104,7 +104,7 @@ public class PeopleFasada extends Fasada {
                 return key;
             }
         }
-        return null;
+        return getPeopleIterator().next();
     }
 
     public void checkRooms() {

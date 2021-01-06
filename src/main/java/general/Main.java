@@ -12,7 +12,7 @@ public class Main {
             }
         }
         //house.reporter.consuptionReport();
-        //house.reporter.endReport();
+        house.reporter.endReport();
 
     }
 }

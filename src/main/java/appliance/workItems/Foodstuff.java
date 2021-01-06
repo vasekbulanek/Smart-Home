@@ -47,6 +47,7 @@ public class Foodstuff implements Work {
 
         @Override
         public boolean work(Appliance appliance, Person person) {
+            if(appliance==null)return false;
             if(appliance.getApplianceType()!= Fasada.allClasses.stove){
                 house.getPeopleFasada().getPeopleIterator().next().addWorkRequest(this);
                 return false;

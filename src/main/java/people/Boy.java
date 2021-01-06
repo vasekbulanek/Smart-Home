@@ -44,7 +44,7 @@ public class Boy extends Person {
     @Override
     public void report(Reporter reporter) {
         for (String key : diary.keySet()) {
-            if (diary.get(key)!=null && !diary.get(key)
+            if (diary.get(key)==null || !diary.get(key)
                       .equals("activity")) {
                 reporter.eventCatch(key, diary.get(key));
             } else reporter.activityCatch(personType.toString() + " " + name, key);
@@ -53,13 +53,13 @@ public class Boy extends Person {
     }
 
     public void addPersonRequest(Person person) {
-        Mother mother = (Mother) house.getPeopleFasada()
+        Person mother = house.getPeopleFasada()
                                       .getByType(Fasada.allClasses.mother);
-        if (mother != null) {
+        if (mother.getPersonType()== Fasada.allClasses.mother) {
             diary.put(personType.toString()+" "+name+"passed person request to mother", "activity");
             mother.addPersonRequest(person);
         } else {
-            Girl girl = (Girl) house.getPeopleFasada()
+            Person girl = house.getPeopleFasada()
                                     .getByType(Fasada.allClasses.girl);
             if (girl != null) {
                 diary.put(personType.toString()+" "+name+" passed person request to sister", "activity");

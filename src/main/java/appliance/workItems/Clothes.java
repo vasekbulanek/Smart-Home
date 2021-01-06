@@ -52,6 +52,7 @@ public class Clothes implements Work {
 
         @Override
         public boolean work(Appliance appliance, Person person) {
+            if (appliance==null)return false;
             if(appliance.getApplianceType()!= Fasada.allClasses.iron){
                 house.getPeopleFasada().getByType(Fasada.allClasses.mother).addWorkRequest(this);
                 return false;

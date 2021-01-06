@@ -51,12 +51,14 @@ public class ApplianceFasada extends Fasada {
     }
 
     public Appliance getByType(allClasses type) { // I am not sure if it is the best way, but it works
+        Appliance first = null;
         for (Appliance a : appliances) {
             if (type == a.getApplianceType()) {
-                return a;
+                if(!a.functionality)first=a;
+                else return a;
             }
         }
-        return null;
+        return first;
     }
 
     public Appliance getNextByType(allClasses type, int hash) {

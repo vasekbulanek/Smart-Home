@@ -20,7 +20,7 @@ public class House {
         reporter = new Reporter(this);
         time = new Time(reporter);
         weather = new Weather();
-        String initFile = "src/main/resources/init.json";
+        String initFile = "src/main/resources/init2.json";
         peopleFasada = new PeopleFasada(this, initFile);
         animalFasada = new AnimalFasada(this, initFile);
         applianceFasada = new ApplianceFasada(this, initFile);
