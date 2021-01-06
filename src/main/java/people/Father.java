@@ -45,13 +45,13 @@ public class Father extends Person {
                     house.getPeopleFasada()
                          .getByType(Fasada.allClasses.girl)
                          .addWorkRequest(request.getWork());
-                    diary.put("passed work to girl", "activity");
+                    diary.put(personType.toString()+" "+name+" passed work to girl", "activity");
                 } else if (house.getPeopleFasada()
                                 .getByType(Fasada.allClasses.boy) != null) {
                     house.getPeopleFasada()
                          .getByType(Fasada.allClasses.boy)
                          .addWorkRequest(request.getWork());
-                    diary.put("passed work to boy", "activity");
+                    diary.put(personType.toString()+" "+name+" passed work to boy", "activity");
                 } else {
                     workSolve();
                     return;

@@ -37,7 +37,7 @@ public class Cat extends Animal {
     @Override
     public void report(Reporter reporter) {
         for (String key : diary.keySet()) {
-            if (diary.get(key)!=null && !diary.get(key)
+            if (diary.get(key)==null || !diary.get(key)
                       .equals("activity")) {
                 reporter.eventCatch(key, diary.get(key));
             } else reporter.activityCatch(animalType.toString() + " " + name, key);
@@ -47,7 +47,7 @@ public class Cat extends Animal {
 
     @Override
     public void play(Person person) {
-        diary.put(person.getName() + " is playing with cat " + name, "activity");
+        diary.put(person.getPersonType().toString()+" "+person.getName() + " is playing with cat " + name, "activity");
     }
 
     @Override

@@ -71,7 +71,7 @@ public class Ski extends Equipment {
     @Override
     public void report(Reporter reporter) {
         for (String key : eventLog.keySet()) {
-            if (eventLog.get(key)!=null && !eventLog.get(key)
+            if (eventLog.get(key)==null || !eventLog.get(key)
                     .equals("activity")) {
                 reporter.eventCatch(key, eventLog.get(key));
             } else reporter.activityCatch(eventLog.toString(), key);
