@@ -71,7 +71,7 @@ public class Baby extends Person {
             int number = random.nextInt(3);
             if (number == 1) {
                 activity = longActivity.sleep;
-                diary.put("sleeps", "activity");
+                diary.put(personType.toString()+" "+name+" sleeps", "activity");
                 return true;
             }
         }
@@ -112,7 +112,7 @@ public class Baby extends Person {
         house.getPeopleFasada()
              .getByType(Fasada.allClasses.mother)
              .addPersonRequest(person);
-        diary.put("passed personrequest to mother", "activity");
+        diary.put(personType.toString()+" "+name+" passed personrequest to mother", "activity");
     }
 
     public void addAnimalRequest(Animal animal) {
@@ -120,26 +120,26 @@ public class Baby extends Person {
         house.getPeopleFasada()
              .getByType(Fasada.allClasses.mother)
              .addAnimalRequest(animal);
-        diary.put("passed animalrequest to mother", "activity");
+        diary.put(personType.toString()+" "+name+" passed animalrequest to mother", "activity");
     }
 
     public void addRepairableRequest(Repairable repairable) {
         house.getPeopleFasada()
              .getByType(Fasada.allClasses.mother)
              .addRepairableRequest(repairable);
-        diary.put("passed repairable to mother", "activity");
+        diary.put(personType.toString()+" "+name+" passed repairable to mother", "activity");
     }
 
     public void addWorkRequest(Work work) {
         house.getPeopleFasada()
              .getByType(Fasada.allClasses.father)
              .addWorkRequest(work);
-        diary.put("passed work to mother", "activity");
+        diary.put(personType.toString()+" "+name+" passed work to mother", "activity");
     }
 
     @Override
     protected void wakeUp() {
         super.wakeUp();
-        diary.put("wakes up", "activity");
+        diary.put(personType.toString()+" "+name+" wakes up", "activity");
     }
 }

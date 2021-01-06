@@ -56,13 +56,13 @@ public class Boy extends Person {
         Mother mother = (Mother) house.getPeopleFasada()
                                       .getByType(Fasada.allClasses.mother);
         if (mother != null) {
-            diary.put("passed person request to mother", "activity");
+            diary.put(personType.toString()+" "+name+"passed person request to mother", "activity");
             mother.addPersonRequest(person);
         } else {
             Girl girl = (Girl) house.getPeopleFasada()
                                     .getByType(Fasada.allClasses.girl);
             if (girl != null) {
-                diary.put("passed person request to sister", "activity");
+                diary.put(personType.toString()+" "+name+" passed person request to sister", "activity");
                 girl.addPersonRequest(person);
             }
         }
@@ -71,13 +71,13 @@ public class Boy extends Person {
     @Override
     protected void sleep() {
         super.sleep();
-        diary.put("sleeps", "activity");
+        diary.put(personType.toString()+" "+name+" sleeps", "activity");
     }
 
     @Override
     protected void wakeUp() {
         super.wakeUp();
-        diary.put("wakes up", "activity");
+        diary.put(personType.toString()+" "+name+" wakes up", "activity");
     }
 }
 

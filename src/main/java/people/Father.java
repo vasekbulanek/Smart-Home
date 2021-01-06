@@ -32,7 +32,7 @@ public class Father extends Person {
     @Override
     protected void sleep() {
         super.sleep();
-        diary.put("sleeps", "activity");
+        diary.put(personType.toString()+" "+name+" sleeps", "activity");
     }
 
     @Override
@@ -101,6 +101,6 @@ public class Father extends Person {
     @Override
     protected void wakeUp() {
         super.wakeUp();
-        diary.put("wakes up", "activity");
+        diary.put(personType.toString()+" "+name+" wakes up", "activity");
     }
 }

@@ -75,8 +75,7 @@ public class Bicycle extends Equipment implements Tickable {
             if (eventLog.get(key)!=null && !eventLog.get(key)
                     .equals("activity")) {
                 reporter.eventCatch(key, eventLog.get(key));
-            } else {reporter.activityCatch(equipmentType.toString(), key);
-            System.out.println("                             "+key);}
+            } else {reporter.activityCatch(equipmentType.toString(), key);}
         }
         eventLog = new HashMap<>();
     }

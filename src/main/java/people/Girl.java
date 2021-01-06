@@ -76,13 +76,13 @@ public class Girl extends Person {
                                       .getByType(Fasada.allClasses.father);
         if (father != null) {
             father.addRepairableRequest(repairable);
-            diary.put("passed repairable to father", "activity");
+            diary.put(personType.toString()+" "+name+" passed repairable to father", "activity");
         } else {
             Mother mother = (Mother) house.getPeopleFasada()
                                           .getByType(Fasada.allClasses.mother);
             if (mother != null) {
                 mother.addRepairableRequest(repairable);
-                diary.put("passed repairable to mother", "activity");
+                diary.put(personType.toString()+" "+name+" passed repairable to mother", "activity");
             }
         }
     }
@@ -101,12 +101,12 @@ public class Girl extends Person {
     @Override
     protected void sleep() {
         super.sleep();
-        diary.put("sleeps", "activity");
+        diary.put(personType.toString()+" "+name+" sleeps", "activity");
     }
 
     @Override
     protected void wakeUp() {
         super.wakeUp();
-        diary.put("wakes up", "activity");
+        diary.put(personType.toString()+" "+name+" wakes up", "activity");
     }
 }

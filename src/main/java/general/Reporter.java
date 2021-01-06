@@ -9,18 +9,22 @@ import people.Person;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Reporter {
     House house;
     HashMap<String, String> events = new HashMap<>();   // ("#event", "#who managed to get rid of the event")
     HashMap<String, HashMap<String, Integer>> activities = new HashMap<>();
+    HashMap<String, Integer> activ;
     private File file;
     private FileWriter fileWriter;
 
     public Reporter(House house) {
         this.house = house;
+        activ = new HashMap<>();
         file = new File("report.txt");
         try {
             if (file.exists()) {
@@ -102,7 +106,8 @@ public class Reporter {
         }
     }
 
-    public void activityCatch(String creature, String activity) {   // too complicated probably
+    public void activityCatch1(String creature, String activity) {   // too complicated probably
+        System.out.println("                              "+activity);
         HashMap<String, Integer> insideMap;
         if (this.activities.containsKey(creature)) {
             if (this.activities.get(creature)
@@ -123,7 +128,32 @@ public class Reporter {
         }
     }
 
+    public void activityCatch(String c, String activity){
+        for (String a:activ.keySet()) {
+            if(a.equals(activity)){
+                activ.replace(a, activ.get(a), activ.get(a)+1);
+                return;
+            }
+        }
+        activ.put(activity, 1);
+    }
+
     public void activityAndUsageReport() {
+        System.out.println("--Activities since last report--");
+        try {
+            fileWriter.write("--Activities since last report--\n");
+            Map<String, Integer> map = new TreeMap<>(activ);
+                for (String activity : map.keySet()) {
+                    System.out.println( activity + " " + activ.get(activity) + "x");
+                    fileWriter.write( activity + " " + activ.get(activity) + "x\n");
+                }
+            this.activ = new HashMap<>();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void activityAndUsageReport1() {
         System.out.println("--Activities since last report--");
         try {
             fileWriter.write("--Activities since last report--\n");
