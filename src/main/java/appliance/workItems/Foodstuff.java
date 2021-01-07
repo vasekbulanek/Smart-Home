@@ -19,9 +19,9 @@ public class Foodstuff implements Work {
         @Override
         public boolean work(Person person) {
             currentState = new Cut();
-            eventLog.put("cut foodstuff", null);
+            eventLog.put("cook meal", null);
             house.getPeopleFasada().getPeopleIterator().next().addWorkRequest(currentState);
-            eventLog.put("cook meal", person.getPersonType().toString()+" "+person.getName());
+            eventLog.put("cut foodstuff", person.getPersonType().toString()+" "+person.getName());
             return true;
         }
 
