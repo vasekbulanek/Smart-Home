@@ -9,7 +9,6 @@ import people.Person;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -62,15 +61,24 @@ public class Reporter {
         System.out.println("--House Configuration Report--\nHouse:");
         try {
             fileWriter.write("--House Configuration Report--\nHouse:\n");
+            String name = "";
             for (Room room : house.getRoomFasada()
                                   .getRoomLinkedList()) {
                 System.out.println("\t" + room.getName() + ":");
                 fileWriter.write("\t" + room.getName() + ":\n");
                 for (Tickable item : room.getPropriets()) {
+                    if (item instanceof Person) {
+                        Person tmp = (Person) item;
+                        name = tmp.getName();
+                    } else if (item instanceof Animal) {
+                        Animal tmp = (Animal) item;
+                        name = tmp.getName();
+                    }
                     System.out.println("\t\t" + item.getClass()
-                                                    .getSimpleName());
+                                                    .getSimpleName() + " " + name);
                     fileWriter.write("\t\t" + item.getClass()
                                                   .getSimpleName() + "\n");
+                    name = "";
                 }
             }
         } catch (IOException e) {
@@ -199,6 +207,7 @@ public class Reporter {
                                         .getSimpleName() + " used " + electricity + " electricity " +
                             "\n\tTotal price: " + consumed + "\n");
                 }
+                app.annulConsuption();
             }
         } catch (IOException e) {
             e.printStackTrace();

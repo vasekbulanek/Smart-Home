@@ -39,7 +39,7 @@ public class Mother extends Person {
                     if (house.getPeopleFasada()
                              .getByType(Fasada.allClasses.baby).activity != longActivity.sleep) {
                         ((Baby) house.getPeopleFasada()
-                                     .getByType(Fasada.allClasses.baby)).Gosleep();
+                                     .getByType(Fasada.allClasses.baby)).goSleep();
                     }
                 }
                 sleep();

@@ -29,7 +29,7 @@ public class House {
         getPeopleFasada().checkRooms();
         getAnimalFasada().checkRooms();
         peopleFasada.sendTicks();
-        reporter.houseConfigurationReport();
+        //reporter.houseConfigurationReport();
     }
 
     void run() {

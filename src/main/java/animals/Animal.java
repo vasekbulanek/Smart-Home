@@ -48,6 +48,10 @@ public abstract class Animal implements Tickable {
         return hunger;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Fasada.allClasses getAnimalType() {
         return animalType;
     }

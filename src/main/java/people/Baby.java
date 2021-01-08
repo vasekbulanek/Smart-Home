@@ -65,7 +65,7 @@ public class Baby extends Person {
         hunger = 0;
     }
 
-    public boolean Gosleep() {
+    public boolean goSleep() {
         if (hunger < 4) {
             Random random = new Random();
             int number = random.nextInt(3);
@@ -85,7 +85,7 @@ public class Baby extends Person {
              .addPersonRequest(this);
         poop();
         hungry();
-        Gosleep();
+        goSleep();
     }
 
     @Override
