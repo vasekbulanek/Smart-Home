@@ -1,0 +1,129 @@
+--House Configuration Report--
+House:
+	cellar:
+		Ski
+		Mother
+		Baby
+		Baby
+		Boy
+	living room:
+		Television
+		Mother
+		Iron
+		Baby
+		Baby
+		Blinds
+		Boy
+		Cat
+	kitchen:
+		Mother
+		Stove
+		Baby
+		Baby
+		Boy
+		Fridge
+	bathroom:
+		Boiler
+		Baby
+		WashingMachine
+	bedroom:
+		Phone
+		Mother
+		Baby
+		Baby
+	outside:
+		Dog
+		Dog
+		Bicycle
+		Boy
+--Consuption since last report--
+Boiler used 1410 electricity and 195 water.
+	Total price: 1800
+WashingMachine used 30 electricity and 4 water.
+	Total price: 38
+Television used 0 electricity 
+	Total price: 0
+Stove used 123 electricity 
+	Total price: 123
+Phone used 24 electricity 
+	Total price: 24
+Iron used 25 electricity 
+	Total price: 25
+Blinds used 78 electricity 
+	Total price: 78
+Blinds used 78 electricity 
+	Total price: 78
+Blinds used 78 electricity 
+	Total price: 78
+Blinds used 78 electricity 
+	Total price: 78
+Fridge used 480 electricity 
+	Total price: 480
+--Consuption since last report--
+Boiler used 0 electricity 
+	Total price: 0
+WashingMachine used 0 electricity 
+	Total price: 0
+Television used 0 electricity 
+	Total price: 0
+Stove used 0 electricity 
+	Total price: 0
+Phone used 0 electricity 
+	Total price: 0
+Iron used 0 electricity 
+	Total price: 0
+Blinds used 0 electricity 
+	Total price: 0
+Blinds used 0 electricity 
+	Total price: 0
+Blinds used 0 electricity 
+	Total price: 0
+Blinds used 0 electricity 
+	Total price: 0
+Fridge used 0 electricity 
+	Total price: 0
+--Events since last report--
+iron clothes handeled succesfuly by boy David
+cook meal handeled succesfuly by boy David
+wash clothes handeled succesfuly by boy David
+feeding baby handeled succesfuly by mother Helena
+feeding cat is pending
+diapering baby handeled succesfuly by mother Helena
+cut foodstuff handeled succesfuly by boy David
+--Events since last report--
+--Events since last report--
+diapering baby handeled succesfuly by mother Helena
+--Events since last report--
+feeding cat is pending
+--Events since last report--
+feeding baby handeled succesfuly by mother Helena
+--Events since last report--
+iron clothes handeled succesfuly by boy David
+cook meal handeled succesfuly by boy David
+take out waste and buy food handeled succesfuly by boy David
+wash clothes handeled succesfuly by boy David
+feeding baby handeled succesfuly by mother Helena
+feeding cat is pending
+diapering baby handeled succesfuly by mother Helena
+broken bicycle handeled succesfuly by David
+cut foodstuff handeled succesfuly by boy David
+--Activities since last report--
+Blinds are working 72x
+baby Ella passed animalrequest to mother 6x
+baby Ella passed work to mother 5x
+baby Ella sleeps 15x
+baby Tereza passed animalrequest to mother 6x
+baby Tereza passed work to mother 4x
+baby Tereza sleeps 19x
+bicycle is placed in cellar 21x
+bicycle is placed in outside 19x
+boy David is playing with cat Mikes 21x
+boy David is playing with dog Brok 6x
+boy David is playing with dog Herkules 6x
+boy David is riding bicycle 43x
+boy David is using boiler 40x
+boy David is using iron 2x
+boy David is using stove 2x
+boy David is using wash machine 2x
+mother Helena sleeps 30x
+mother Helena wakes up 30x

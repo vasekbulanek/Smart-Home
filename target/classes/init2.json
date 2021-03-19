@@ -1,0 +1,35 @@
+{
+  "room": {"kitchen": {"Blinds": 1, "Fridge": 1, "Stove": 1, "Mother": 1, "Baby": 2},
+    "living room": {"Blinds": 2, "Iron": 1, "Father": 1, "Television": 1},
+    "bathroom": {"Boiler": 1, "WashingMachine": 1},
+    "bedroom": {"Blinds": 1, "Cat": 1, "Phone": 1},
+    "cellar": {"Ski": 5, "Bicycle": 3}
+  },
+  "people": {
+    "Helena": "Mother",
+    "David": "Boy",
+    "Tereza": "Baby",
+    "Ella":"Baby"
+  },
+  "equipment": {
+    "Bicycle": {},
+    "Ski": {}
+
+  },
+  "appliance":{
+    "Blinds":{ "electricity on": 10, "electricity off": 1, "water": 0},
+    "Boiler": { "electricity on": 100, "electricity off": 10, "water": 15},
+    "Fridge": { "electricity on": 40, "electricity off": 20, "water": 0},
+    "Iron": { "electricity on": 25, "electricity off": 0, "water": 1},
+    "Phone": { "electricity on": 2, "electricity off": 1, "water": 0},
+    "Stove": { "electricity on": 100, "electricity off": 1, "water": 0},
+    "Television": { "electricity on": 10, "electricity off": 0, "water": 0},
+    "WashingMachine": { "electricity on": 30, "electricity off": 0, "water": 4}
+  },
+  "prices": {"electricity": 1, "water":2},
+  "animals": {
+    "Herkules": "Dog",
+    "Brok": "Dog",
+    "Mikes": "Cat"
+  }
+}

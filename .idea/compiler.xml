@@ -6,7 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="untitled15" />
+        <module name="temp_try" />
+        <module name="smart-home" />
       </profile>
     </annotationProcessing>
   </component>
